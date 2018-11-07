@@ -1,8 +1,59 @@
 import React from 'react';
-import { Button, View, Text, Image, StyleSheet } from 'react-native';
+import { Button, View, Text, Image, StyleSheet, TextInput,
+  TouchbleWithoutFeedback,StatusBar,SafeAreaView, 
+  Keyboard, ToachbleOpacity, KeyboardAvoidingView} from 'react-native';
 import { StackNavigator } from 'react-navigation'; // Version can be specified in package.json
-import Login from './Login';
 
+class SignIn extends React.Component {
+  static navigationOptions = { title: 'Registro'};
+  render() {
+    return (
+      <SafeAreaView style={styles.container}>
+        <KeyboardAvoidingView behavior='padding' 
+        style={styles.container}>
+          <View style={styles.logoContainer}>
+            <Image source={require('./main-logo.png')} 
+            style={styles.logo}/>
+          </View>
+
+          <View style={styles.infoContainer}>
+            <View style={styles.infoPosition}>
+              <TextInput placeholder={'Nombre completo'} style={styles.input}/>
+              <TextInput placeholder={'Email'} style={styles.input}/>
+              <TextInput placeholder={'Contraseña'} style={styles.input}/>
+              <TextInput placeholder={'Confirmar contraseña'} style={styles.input}/>
+            </View>
+          </View>
+        </KeyboardAvoidingView>     
+      </SafeAreaView>
+    );
+  }
+};
+
+class Login extends React.Component {
+  static navigationOptions = { title: 'Inicio de sesión'};
+  render(){
+    return(
+      <SafeAreaView style={styles.container}>
+        <KeyboardAvoidingView behavior='padding' 
+        style={styles.container}>
+          <View style={styles.logoContainer}>
+            <Image source={require('./main-logo.png')} 
+            style={styles.logo}/>
+          </View>
+
+          <View style={styles.infoContainer}>
+            <View style={styles.infoPosition}>
+              <TextInput placeholder={'Nombre completo'} style={styles.input}/>
+              <TextInput placeholder={'Email'} style={styles.input}/>
+            </View>
+          </View>
+        </KeyboardAvoidingView>     
+      </SafeAreaView>
+    );
+  }
+
+};
 
 class HomeScreen extends React.Component {
   static navigationOptions = { title: 'Welcome', header: null};
@@ -28,27 +79,6 @@ class HomeScreen extends React.Component {
           </View>
         </View> 
         
-      </View>
-    );
-  }
-}
-
-class SingInScreen extends React.Component {
-  static navigationOptions = { header: null};
-  render() {
-    return (
-      <View style={styles.wrapper}>
-        
-        <Text>Details Screen</Text>
-
-        <Button
-          title="Go to Home"
-          onPress={() => this.props.navigation.navigate('Home')}
-        />
-        <Button
-          title="Go back"
-          onPress={() => this.props.navigation.goBack()}
-        />
       </View>
     );
   }
@@ -88,6 +118,35 @@ const styles = StyleSheet.create({
     width: 250,
     height: 250,
     resizeMode: 'contain',
+  },
+   container:{
+    flex: 1,
+    backgroundColor: 'white', 
+    flexDirection: 'column'
+  },
+  logoContainer:{
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1
+  },
+  infoContainer:{
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: 200,
+    padding:20,
+  },
+  input:{
+    height: 50,
+    backgroundColor: 'rgba(255,255,255,0.2)',
+    borderColor: 'gray', 
+    borderWidth:1
+  },
+  infoPosition:{
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
+    flex:1
   }
 });
 
@@ -97,7 +156,7 @@ const RootStack = StackNavigator(
       screen: HomeScreen,
     },
     Sign_in: {
-      screen: SingInScreen,
+      screen: SignIn,
     },
     Log_in:{
       screen: Login,
