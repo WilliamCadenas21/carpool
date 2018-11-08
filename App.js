@@ -3,57 +3,10 @@ import { Button, View, Text, Image, StyleSheet, TextInput,
   TouchbleWithoutFeedback,StatusBar,SafeAreaView, 
   Keyboard, ToachbleOpacity, KeyboardAvoidingView} from 'react-native';
 import { StackNavigator } from 'react-navigation'; // Version can be specified in package.json
+import SignIn from './src/components/SignIn';
+import Login from './src/components/Login';
 
-class SignIn extends React.Component {
-  static navigationOptions = { title: 'Registro'};
-  render() {
-    return (
-      <SafeAreaView style={styles.container}>
-        <KeyboardAvoidingView behavior='padding' 
-        style={styles.container}>
-          <View style={styles.logoContainer}>
-            <Image source={require('./main-logo.png')} 
-            style={styles.logo}/>
-          </View>
-
-          <View style={styles.infoContainer}>
-            <View style={styles.infoPosition}>
-              <TextInput placeholder={'Nombre completo'} style={styles.input}/>
-              <TextInput placeholder={'Email'} style={styles.input}/>
-              <TextInput placeholder={'Contraseña'} style={styles.input}/>
-              <TextInput placeholder={'Confirmar contraseña'} style={styles.input}/>
-            </View>
-          </View>
-        </KeyboardAvoidingView>     
-      </SafeAreaView>
-    );
-  }
-};
-
-class Login extends React.Component {
-  static navigationOptions = { title: 'Inicio de sesión'};
-  render(){
-    return(
-      <SafeAreaView style={styles.container}>
-        <KeyboardAvoidingView behavior='padding' 
-        style={styles.container}>
-          <View style={styles.logoContainer}>
-            <Image source={require('./main-logo.png')} 
-            style={styles.logo}/>
-          </View>
-
-          <View style={styles.infoContainer}>
-            <View style={styles.infoPosition}>
-              <TextInput placeholder={'Nombre completo'} style={styles.input}/>
-              <TextInput placeholder={'Email'} style={styles.input}/>
-            </View>
-          </View>
-        </KeyboardAvoidingView>     
-      </SafeAreaView>
-    );
-  }
-
-};
+const urlMainLogo = require('./src/assets/images/main-logo.png');
 
 class HomeScreen extends React.Component {
   static navigationOptions = { title: 'Welcome', header: null};
@@ -61,7 +14,7 @@ class HomeScreen extends React.Component {
     return (
       <View style={styles.wrapper}>
         <View style={styles.titleWrapper}>
-          <Image source={require('./main-logo.png')} style={styles.logo} />
+          <Image source={urlMainLogo} style={styles.logo} />
         </View>
 
         <View style={styles.subtitle}>
