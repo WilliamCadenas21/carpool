@@ -1,0 +1,4 @@
+  colors:{
+    orange: '#ECA228', 
+    blue: '#237EE7', 
+  }

@@ -1,41 +1,76 @@
 import React from 'react';
 import { Button, View, Text, Image, StyleSheet, TextInput,
-  TouchbleWithoutFeedback,StatusBar,SafeAreaView, 
-  Keyboard, ToachbleOpacity, KeyboardAvoidingView} from 'react-native';
-import { StackNavigator } from 'react-navigation'; // Version can be specified in package.json
+  TouchbleWithoutFeedback, StatusBar, SafeAreaView, 
+  Keyboard, TouchableOpacity, KeyboardAvoidingView} from 'react-native';
+
+import { createStackNavigator } from 'react-navigation';
 import SignIn from './src/components/SignIn';
 import Login from './src/components/Login';
+import Terms from './src/components/Terms';
+import Test from './src/components/Test';
+import Profile from './src/components/Profile';
 
 const urlMainLogo = require('./src/assets/images/main-logo.png');
 
 class HomeScreen extends React.Component {
-  static navigationOptions = { title: 'Welcome', header: null};
+  static navigationOptions = { title: 'Home', header: null};
+
   render() {
     return (
       <View style={styles.wrapper}>
+        <StatusBar barStyle='dark-content' backgroundColor='white'/>
         <View style={styles.titleWrapper}>
           <Image source={urlMainLogo} style={styles.logo} />
         </View>
-
-        <View style={styles.subtitle}>
+        <View style={styles.infoContainer}>
           <View style={styles.titleWrapperRow}>
-              <Button
-              color="#ECA228"
-              title="Iniciar Sesión"
-              onPress={() => this.props.navigation.navigate('Log_in')}
-              />
-              <Button
-              color="#237EE7"
-              title="Registrase"
-              onPress={() => this.props.navigation.navigate('Sign_in')}
-              />
-          </View>
-        </View> 
-        
+              <TouchableOpacity style={styles.button1}
+                onPress={() => this.props.navigation.navigate('Log_in')}>
+                <Text style={styles.buttonText}>Iniciar Sesión</Text>
+              </TouchableOpacity> 
+              <TouchableOpacity style={styles.button2}
+                onPress={() => this.props.navigation.navigate('Sign_in')}>
+                <Text style={styles.buttonText}>Registrarse</Text>
+              </TouchableOpacity> 
+          </View>      
+        </View>
       </View>
     );
   }
 }
+
+
+export default class App extends React.Component {
+  render() {
+    return <RootStack/>;
+  }
+}
+
+const RootStack = createStackNavigator(
+  {
+    Home: {
+      screen: HomeScreen,
+    },
+    Sign_in: {
+      screen: SignIn,
+    },
+    Log_in:{
+      screen: Login,
+    },
+    Terms:{
+      screen: Terms,
+    },
+    Test:{
+      screen: Test,
+    },
+    Profile:{
+      screen: Profile,
+    }
+  },
+  {
+    initialRouteName: 'Home',
+  },
+);
   
 const styles = StyleSheet.create({
   wrapper:{
@@ -43,16 +78,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
-  },
-  titleCar:{
-    color: '#ECA228', //orange
-    fontSize: 35,
-    fontWeight: 'bold'
-  },
-  titlePool:{
-    color: '#237EE7', // blue
-    fontSize: 35,
-    fontWeight: 'bold'
   },
   subtitle:{
     color:'black',
@@ -72,56 +97,29 @@ const styles = StyleSheet.create({
     height: 250,
     resizeMode: 'contain',
   },
-   container:{
-    flex: 1,
-    backgroundColor: 'white', 
-    flexDirection: 'column'
+  button1:{
+    backgroundColor:"#ECA228", //naranja
+    paddingVertical: 15
   },
-  logoContainer:{
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1
+  button2:{
+    backgroundColor:"#237EE7",//azul
+    paddingVertical: 15
+  },
+  buttonText:{
+    height: 20,
+    width: 190,
+    textAlign: 'center',
+    color:'white',
+    fontSize:15
   },
   infoContainer:{
     position: 'absolute',
     left: 0,
     right: 0,
     bottom: 0,
-    height: 200,
+    height: 100,
     padding:20,
   },
-  input:{
-    height: 50,
-    backgroundColor: 'rgba(255,255,255,0.2)',
-    borderColor: 'gray', 
-    borderWidth:1
-  },
-  infoPosition:{
-    flexDirection: 'column',
-    justifyContent: 'space-evenly',
-    flex:1
-  }
 });
 
-const RootStack = StackNavigator(
-  {
-    Home: {
-      screen: HomeScreen,
-    },
-    Sign_in: {
-      screen: SignIn,
-    },
-    Log_in:{
-      screen: Login,
-    }
-  },
-  {
-    initialRouteName: 'Home',
-  },
-);
 
-export default class App extends React.Component {
-  render() {
-    return <RootStack />;
-  }
-}
