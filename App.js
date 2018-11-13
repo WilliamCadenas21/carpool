@@ -4,8 +4,8 @@ import { Button, View, Text, Image, StyleSheet, TextInput,
   Keyboard, TouchableOpacity, KeyboardAvoidingView} from 'react-native';
 
 import { createStackNavigator } from 'react-navigation';
-import SignIn from './src/components/SignIn';
-import Login from './src/components/Login';
+import SignIn2 from './src/components/SignIn2';
+import Login2 from './src/components/Login2';
 import Terms from './src/components/Terms';
 import Test from './src/components/Test';
 import Profile from './src/components/Profile';
@@ -17,24 +17,26 @@ class HomeScreen extends React.Component {
 
   render() {
     return (
-      <View style={styles.wrapper}>
-        <StatusBar barStyle='dark-content' backgroundColor='white'/>
-        <View style={styles.titleWrapper}>
-          <Image source={urlMainLogo} style={styles.logo} />
+      <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
+          <StatusBar barStyle='dark-content' backgroundColor='white'/>
+
+          <View style={styles.logoContainer}>
+            <Image source={urlMainLogo} style={styles.logo} />
+          </View>
+
+          <TouchableOpacity style={styles.button1}
+            onPress={() => this.props.navigation.navigate('Log_in')}>
+              <Text style={styles.buttonText}>Iniciar Sesión</Text>
+          </TouchableOpacity> 
+
+          <TouchableOpacity style={styles.button2}
+            onPress={() => this.props.navigation.navigate('Sign_in')}>
+            <Text style={styles.buttonText}>Registrarse</Text>
+          </TouchableOpacity>   
+
         </View>
-        <View style={styles.infoContainer}>
-          <View style={styles.titleWrapperRow}>
-              <TouchableOpacity style={styles.button1}
-                onPress={() => this.props.navigation.navigate('Log_in')}>
-                <Text style={styles.buttonText}>Iniciar Sesión</Text>
-              </TouchableOpacity> 
-              <TouchableOpacity style={styles.button2}
-                onPress={() => this.props.navigation.navigate('Sign_in')}>
-                <Text style={styles.buttonText}>Registrarse</Text>
-              </TouchableOpacity> 
-          </View>      
-        </View>
-      </View>
+      </SafeAreaView>  
     );
   }
 }
@@ -52,10 +54,10 @@ const RootStack = createStackNavigator(
       screen: HomeScreen,
     },
     Sign_in: {
-      screen: SignIn,
+      screen: SignIn2,
     },
     Log_in:{
-      screen: Login,
+      screen: Login2,
     },
     Terms:{
       screen: Terms,
@@ -73,52 +75,39 @@ const RootStack = createStackNavigator(
 );
   
 const styles = StyleSheet.create({
-  wrapper:{
-    backgroundColor: 'white', 
+  container:{
     flex: 1,
+    backgroundColor: 'white', 
+    flexDirection: 'column',
+    justifyContent:'center',
+    paddingLeft:10,
+    paddingRight:10,
+  },
+  logoContainer:{
+    alignItems: 'center',
     justifyContent: 'center',
-    alignItems: 'center'
-  },
-  subtitle:{
-    color:'black',
-    fontSize: 20,
-    paddingBottom: 20,
-
-  },
-  titleWrapper:{
-    justifyContent: 'center',
-    flex:1
-  },
-  titleWrapperRow:{
-    flexDirection: 'row',
+    marginBottom:60,
   },
   logo: {
     width: 250,
     height: 250,
     resizeMode: 'contain',
+    marginBottom:0,
   },
   button1:{
-    backgroundColor:"#ECA228", //naranja
-    paddingVertical: 15
+    backgroundColor:"#ECA228",//naranja
+    paddingVertical: 15,
+    marginBottom:10,
   },
   button2:{
     backgroundColor:"#237EE7",//azul
-    paddingVertical: 15
+    paddingVertical: 15,
+    marginBottom:10,
   },
   buttonText:{
-    height: 20,
-    width: 190,
     textAlign: 'center',
     color:'white',
     fontSize:15
-  },
-  infoContainer:{
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
-    height: 100,
-    padding:20,
   },
 });
 
