@@ -10,6 +10,9 @@ import Terms from './src/components/Terms';
 import Test from './src/components/Test';
 import Profile from './src/components/Profile';
 
+
+//gradlew assembleRelease
+
 const urlMainLogo = require('./src/assets/images/main-logo.png');
 
 class HomeScreen extends React.Component {

@@ -7,7 +7,7 @@ import { Button, View, Text, Image, StyleSheet, TextInput,
 const urlMainLogo = require('../assets/images/main-logo.png');
 
 export default class Login2 extends React.Component {
-  static navigationOptions = { title: 'Inicio de sesión2'};
+  static navigationOptions = { title: 'Inicio de sesión'};
    
   constructor(props) {
     super(props);
@@ -70,10 +70,35 @@ export default class Login2 extends React.Component {
     );
   }
 
-  login = ()=>{
-    
-    fetch('')
+login = ()=>{
+    strEmail = this.state.email.split('@');
 
+    if(strEmail[1]=='uninorte.edu.co'){
+      fetch('https://carpool-back.herokuapp.com/users/login',{
+        method:'POST',
+        headers:{
+          'Accept':'application/json',
+          'Content-Type':'application/json',
+        },
+        body: JSON.stringify({
+          email_id: this.state.email,
+          password: this.state.password
+        })
+      })
+      .then( response => response.json())
+      .then( res =>{
+        if(res.success === true){ 
+          alert('bienvenido');
+          AsyncStorage.setItem('user', this.props.names);
+          this.props.navigation.navigate('Profile');
+        }else{
+          alert(res.message);
+        }
+      })
+      .done();
+    }else{
+      alert('su correo electronico debe pertenecer al dominio @uninorte.edu.co');
+    }
   }
 };
 

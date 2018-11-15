@@ -7,13 +7,16 @@ import { Button, View, Text, Image, StyleSheet, TextInput,
 const urlMainLogo = require('../assets/images/main-logo.png');
 
 export default class SignIn2 extends React.Component {
-  static navigationOptions = { title: 'Registro2'};
+  static navigationOptions = { title: 'Registro'};
   
   constructor(props) {
     super(props);
     this.state = {
+      names:'',
+      lastNames:'',
       email:'',
-      password:'',
+      password1:'',
+      password2:'',
     }
   }
 
@@ -44,32 +47,44 @@ export default class SignIn2 extends React.Component {
               </View>
 
               <TextInput placeholder={'Nombres'} style={styles.textInput}
-              returnKeyType='next'
-              autoCorrect={false}
-              onSubmitEditing={()=> this.refs.apellidos.focus()}/>
+                onChangeText={(names)=> this.setState({names})}
+                returnKeyType='next'
+                autoCorrect={false}
+                onSubmitEditing={()=> this.refs.txtApellidos.focus()}
+              />
 
               <TextInput placeholder={'Apellidos'} style={styles.textInput}
-              returnKeyType='next'
-              autoCorrect={false}
-              ref={"apellidos"}
-              onSubmitEditing={()=> this.refs.txtEmail.focus()}/>
+                onChangeText={(lastNames)=> this.setState({lastNames})}
+                returnKeyType='next'
+                autoCorrect={false}
+                ref={"txtApellidos"}
+                onSubmitEditing={()=> this.refs.txtEmail.focus()}
+              />
 
               <TextInput placeholder={'Email'} style={styles.textInput}
-              keyboardType='email-address'
-              returnKeyType='next'
-              autoCorrect={false}
-              ref={"txtEmail"}
-              onSubmitEditing={()=> this.refs.txtPassword1.focus()}/>
+                onChangeText={(email)=> this.setState({email})}
+                keyboardType='email-address'
+                returnKeyType='next'
+                autoCorrect={false}
+                ref={"txtEmail"}
+                onSubmitEditing={()=> this.refs.txtPassword1.focus()}
+              />
 
               <TextInput placeholder={'Contraseña'} style={styles.textInput}
-              returnKeyType='next'
-              autoCorrect={false}
-              ref={"txtPassword1"}
-              onSubmitEditing={()=> this.refs.txtPassword2.focus()}/>
+                onChangeText={(password1)=> this.setState({password1})}
+                returnKeyType='next'
+                autoCorrect={false}
+                ref={"txtPassword1"}
+                secureTextEntry={true}
+                onSubmitEditing={()=> this.refs.txtPassword2.focus()}
+              />
 
               <TextInput placeholder={'Confirmar contraseña'} style={styles.textInput}
-              autoCorrect={false}
-              ref={"txtPassword2"}/>
+                onChangeText={(password2)=> this.setState({password2})}
+                autoCorrect={false}
+                secureTextEntry={true}
+                ref={"txtPassword2"}
+              />
 
               <TouchableOpacity style={styles.button}
                 onPress={this.login}>
@@ -77,13 +92,15 @@ export default class SignIn2 extends React.Component {
               </TouchableOpacity>  
 
               <Text style={styles.footer}>Al crear una cuenta, aceptas nuestros 
-              <Text Style={styles.terms} 
-              onPress={() => this.props.navigation.navigate('Terms')}> terminos y condiciones</Text>
+                <Text Style={styles.terms} 
+                onPress={() => this.props.navigation.navigate('Terms')}> terminos y condiciones
+                </Text>
               </Text>
 
               <Text style={styles.footer}>¿Ya tienes una cuenta?
-              <Text Style={styles.terms} 
-              onPress={() => this.props.navigation.navigate('Log_in')}> Inicia sesión aquí</Text>
+                <Text Style={styles.terms} 
+                  onPress={() => this.props.navigation.navigate('Log_in')}> Inicia sesión aquí
+                </Text>
               </Text>
               
             </View>  
@@ -94,7 +111,40 @@ export default class SignIn2 extends React.Component {
     );
   }
   login = ()=>{
-    alert('test');
+    strEmail = this.state.email.split('@');
+    if(strEmail[1]=='uninorte.edu.co'){
+      if(this.state.password1 == this.state.password2){
+        fetch('https://carpool-back.herokuapp.com/users/create',{
+        //fetch('https://192.168.0.16:3000/users/create',{
+          method:'POST',
+          headers:{
+            'Accept':'application/json',
+            'Content-Type':'application/json'
+          },
+          body: JSON.stringify({
+            nombres: this.state.names,
+            apellidos: this.state.lastNames,
+            email_id: this.state.email,
+            contraseña: this.state.password1 
+          })
+        })
+        .then( response => response.json())
+        .then( res =>{
+          if(res.success === true){ 
+            alert('hi'+this.state.names,);
+            AsyncStorage.setItem('user', this.props.names);
+            this.props.navigation.navigate('Profile');
+          }else{
+            alert(res.message);
+          }
+        })
+        .done();
+      }else{
+        alert('la contraseñas no son iguales, por favor intentelo de nuevo'); 
+      }
+    }else{
+      alert('su correo electronico debe pertenecer al dominio @uninorte.edu.co');
+    }
   }
 };
 
