@@ -4,7 +4,7 @@ import { Button, View, Text, Image, StyleSheet, TextInput,
   Keyboard, TouchableOpacity, KeyboardAvoidingView,
   AsyncStorage} from 'react-native';
 
-const urlMainLogo = require('../assets/images/main-logo.png');
+const urlMainLogo = require('../assets/images/main_logo.jpg');
 
 export default class Login2 extends React.Component {
   static navigationOptions = { title: 'Inicio de sesión'};
@@ -71,8 +71,11 @@ export default class Login2 extends React.Component {
   }
 
 login = ()=>{
+  if(!this.state.email || !this.state.password){
+    alert('nigun campo puede estar vacio');
+  }else{
+    alert('por favor espere...');
     strEmail = this.state.email.split('@');
-
     if(strEmail[1]=='uninorte.edu.co'){
       fetch('https://carpool-back.herokuapp.com/users/login',{
         method:'POST',
@@ -89,8 +92,7 @@ login = ()=>{
       .then( res =>{
         if(res.success === true){ 
           alert('bienvenido');
-          AsyncStorage.setItem('user', this.props.names);
-          this.props.navigation.navigate('Profile');
+          this.props.navigation.navigate('Main');
         }else{
           alert(res.message);
         }
@@ -100,9 +102,8 @@ login = ()=>{
       alert('su correo electronico debe pertenecer al dominio @uninorte.edu.co');
     }
   }
+} 
 };
-
-
 const styles = StyleSheet.create({
   container:{ 
     flex: 1,

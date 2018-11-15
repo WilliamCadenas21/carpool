@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, View, TextInput, Text, StyleSheet,StatusBar,SafeAreaView, 
   ScrollView} from 'react-native';
 
-const urlMainLogo = require('../assets/images/main-logo.png');
+//const urlMainLogo = require('../assets/images/main_logo.jpg');
 
 export default class Test extends React.Component {
   static navigationOptions = { title: 'Test'};

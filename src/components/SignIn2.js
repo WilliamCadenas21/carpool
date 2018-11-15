@@ -4,10 +4,10 @@ import { Button, View, Text, Image, StyleSheet, TextInput,
   Keyboard, TouchableOpacity, KeyboardAvoidingView,
   AsyncStorage, ScrollView} from 'react-native';
 
-const urlMainLogo = require('../assets/images/main-logo.png');
+const urlMainLogo = require('../assets/images/main_logo.jpg');
 
 export default class SignIn2 extends React.Component {
-  static navigationOptions = { title: 'Registro'};
+  static navigationOptions = { title: 'Registro1'};
   
   constructor(props) {
     super(props);
@@ -111,11 +111,12 @@ export default class SignIn2 extends React.Component {
     );
   }
   login = ()=>{
+    
     strEmail = this.state.email.split('@');
     if(strEmail[1]=='uninorte.edu.co'){
       if(this.state.password1 == this.state.password2){
+        alert('por favor espere...');
         fetch('https://carpool-back.herokuapp.com/users/create',{
-        //fetch('https://192.168.0.16:3000/users/create',{
           method:'POST',
           headers:{
             'Accept':'application/json',
@@ -131,9 +132,8 @@ export default class SignIn2 extends React.Component {
         .then( response => response.json())
         .then( res =>{
           if(res.success === true){ 
-            alert('hi'+this.state.names,);
-            AsyncStorage.setItem('user', this.props.names);
-            this.props.navigation.navigate('Profile');
+            alert('El registro ha sido exitoso, ahora es momento de ir a su correo uninorte y validar su cuenta Carpool');
+            this.props.navigation.navigate('Home');
           }else{
             alert(res.message);
           }
@@ -146,6 +146,7 @@ export default class SignIn2 extends React.Component {
       alert('su correo electronico debe pertenecer al dominio @uninorte.edu.co');
     }
   }
+
 };
 
 const styles = StyleSheet.create({
