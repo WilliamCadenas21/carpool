@@ -7,7 +7,9 @@ import { Button, View, Text, Image, StyleSheet, TextInput,
 const urlMainLogo = require('../assets/images/main_logo.jpg');
 
 export default class SignIn2 extends React.Component {
-  static navigationOptions = { title: 'Registro1'};
+  static navigationOptions = {
+    headerTransparent: true,
+  };
   
   constructor(props) {
     super(props);
@@ -34,11 +36,11 @@ export default class SignIn2 extends React.Component {
 
   render() {
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={styles.container} >
         <StatusBar barStyle='dark-content' backgroundColor='white'/>
         <ScrollView>
         <KeyboardAvoidingView style={styles.container} behavior='padding' >
-          <TouchableWithoutFeedback style={styles.container} onPress={Keyboard.dismiss}>
+          <TouchableWithoutFeedback  style={styles.container} onPress={Keyboard.dismiss}>
             <View style={styles.container}> 
               
               <View style={styles.logoContainer}>
@@ -61,11 +63,12 @@ export default class SignIn2 extends React.Component {
                 onSubmitEditing={()=> this.refs.txtEmail.focus()}
               />
 
-              <TextInput placeholder={'Email'} style={styles.textInput}
+              <TextInput placeholder={'Email@uninorte.edu.co'} style={styles.textInput}
                 onChangeText={(email)=> this.setState({email})}
                 keyboardType='email-address'
                 returnKeyType='next'
                 autoCorrect={false}
+                autoCapitalize= 'none'
                 ref={"txtEmail"}
                 onSubmitEditing={()=> this.refs.txtPassword1.focus()}
               />
@@ -87,7 +90,8 @@ export default class SignIn2 extends React.Component {
               />
 
               <TouchableOpacity style={styles.button}
-                onPress={this.login}>
+                onPress={this.login}
+                >
                 <Text style={styles.buttonText}>Registrase</Text>
               </TouchableOpacity>  
 
@@ -104,7 +108,7 @@ export default class SignIn2 extends React.Component {
               </Text>
               
             </View>  
-          </TouchableWithoutFeedback>  
+         </TouchableWithoutFeedback>
         </KeyboardAvoidingView>   
         </ScrollView>     
       </SafeAreaView>
@@ -112,6 +116,7 @@ export default class SignIn2 extends React.Component {
   }
   login = ()=>{
     
+
     strEmail = this.state.email.split('@');
     if(strEmail[1]=='uninorte.edu.co'){
       if(this.state.password1 == this.state.password2){
@@ -154,7 +159,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white', 
     flexDirection: 'column',
-    justifyContent:'flex-end',
+    justifyContent:'center',
     paddingLeft:10,
     paddingRight:10,
   },
@@ -173,23 +178,26 @@ const styles = StyleSheet.create({
     borderColor: 'gray', 
     borderWidth:1,
     marginBottom:10,
+    paddingVertical: 10,
     paddingHorizontal: 16,
+    borderRadius: 15,
   },
   button:{
     alignSelf: 'stretch',
     backgroundColor:"#237EE7", //naranja
     padding: 15,
     alignItems:'center',
+    borderRadius: 15,
   },
   buttonText:{
     textAlign: 'center',
     color:'white',
-    fontSize:15,
+    fontSize:18,
   },
   footer:{
     color:'black',
     fontSize:13,
-    opacity: 0.6,
+    opacity: 0.4,
     textAlign: 'center',
     fontWeight: 'bold',
   },

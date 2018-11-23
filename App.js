@@ -13,6 +13,10 @@ export default class App extends React.Component {
     return <RootStack/>;
   }
 }
+//API key Google 
+//AIzaSyATDEQerU5jm_UjxvncQAdI0BXjTc7XoCs
+
+//build on android
 //gradlew assembleRelease
 const RootStack = createStackNavigator(
   {

@@ -2,12 +2,14 @@ import React from 'react';
 import { Button, View, Text, Image, StyleSheet, TextInput,
   TouchableWithoutFeedback,StatusBar,SafeAreaView, 
   Keyboard, TouchableOpacity, KeyboardAvoidingView,
-  AsyncStorage} from 'react-native';
+  AsyncStorage, ScrollView} from 'react-native';
 
 const urlMainLogo = require('../assets/images/main_logo.jpg');
 
 export default class Login2 extends React.Component {
-  static navigationOptions = { title: 'Inicio de sesión'};
+  static navigationOptions = {
+    headerTransparent: true,
+  };
    
   constructor(props) {
     super(props);
@@ -32,19 +34,21 @@ export default class Login2 extends React.Component {
     return(
       <SafeAreaView style={styles.container}>
         <StatusBar barStyle='dark-content' backgroundColor='white'/>
-        <KeyboardAvoidingView behavior='padding' style={styles.container}>
-          <TouchableWithoutFeedback  style={styles.container} onPress={Keyboard.dismiss}>
+
+        <KeyboardAvoidingView behavior='padding' style={styles.flex}>
+          <TouchableWithoutFeedback  style={styles.flex} onPress={Keyboard.dismiss}>
             <View style={styles.container} >
 
               <View style={styles.logoContainer}>  
                 <Image source={urlMainLogo} style={styles.logo}/>
               </View>
 
-              <TextInput placeholder={'Email'} 
+              <TextInput placeholder={'Email@uninorte.edu.co'} 
               style={styles.textInput}
               onChangeText={(email)=> this.setState({email})}
               keyboardType='email-address'
               returnKeyType='go'
+              autoCapitalize= 'none'
               autoCorrect={false}
               onSubmitEditing={()=> this.refs.txtPassword.focus()}
               />
@@ -65,7 +69,8 @@ export default class Login2 extends React.Component {
 
             </View>
           </TouchableWithoutFeedback>  
-        </KeyboardAvoidingView>      
+        </KeyboardAvoidingView>
+     
       </SafeAreaView>
     );
   }
@@ -113,6 +118,9 @@ const styles = StyleSheet.create({
     paddingLeft:10,
     paddingRight:10,
   },
+  flex:{
+    flex: 1,
+  },
   logoContainer:{
     alignItems: 'center',
     justifyContent: 'center',
@@ -122,7 +130,6 @@ const styles = StyleSheet.create({
     width: 250,
     height: 90,
     resizeMode: 'contain',
-    marginBottom:0,
   },
   textInput:{
     alignSelf: 'stretch',
@@ -130,17 +137,20 @@ const styles = StyleSheet.create({
     borderColor: 'gray', 
     borderWidth:1,
     marginBottom:10,
-    paddingLeft: 16,
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    borderRadius: 20,
   },
   button:{
     alignSelf: 'stretch',
     backgroundColor:"#237EE7", //naranja
     padding: 15,
     alignItems:'center',
+    borderRadius: 20,
   },
   buttonText:{
     textAlign: 'center',
     color:'white',
-    fontSize:15,
+    fontSize:18,
   },
 });

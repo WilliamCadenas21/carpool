@@ -58,16 +58,19 @@ const styles = StyleSheet.create({
     backgroundColor:"#ECA228",//naranja
     paddingVertical: 15,
     marginBottom:10,
+    borderRadius: 20,
   },
   button2:{
     backgroundColor:"#237EE7",//azul
     paddingVertical: 15,
     marginBottom:10,
+    borderRadius: 20,
   },
+
   buttonText:{
     textAlign: 'center',
     color:'white',
-    fontSize:15
+    fontSize:18,
   },
 });
 
