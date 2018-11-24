@@ -11,7 +11,7 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <View style={styles.container}>
+        <View>
           <StatusBar barStyle='dark-content' backgroundColor='white'/>
 
           <View style={styles.logoContainer}>
@@ -40,8 +40,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white', 
     flexDirection: 'column',
     justifyContent:'center',
-    paddingLeft:10,
-    paddingRight:10,
+    paddingHorizontal:20,
   },
   logoContainer:{
     alignItems: 'center',

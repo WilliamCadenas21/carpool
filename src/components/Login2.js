@@ -28,11 +28,8 @@ export default class Login2 extends React.Component {
     return(
       <SafeAreaView style={styles.container}>
         <StatusBar barStyle='dark-content' backgroundColor='white'/>
-
-        <KeyboardAvoidingView behavior='padding' style={styles.flex}>
-          <TouchableWithoutFeedback  style={styles.flex} onPress={Keyboard.dismiss}>
-            <View style={styles.container} >
-
+        <KeyboardAvoidingView behavior='padding'>
+            <View>
               <View style={styles.logoContainer}>  
                 <Image source={urlMainLogo} style={styles.logo}/>
               </View>
@@ -60,11 +57,8 @@ export default class Login2 extends React.Component {
                 onPress={this.login}>
                 <Text style={styles.buttonText}>Iniciar Sesión</Text>
               </TouchableOpacity> 
-
             </View>
-          </TouchableWithoutFeedback>  
         </KeyboardAvoidingView>
-     
       </SafeAreaView>
     );
   }
@@ -110,8 +104,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white', 
     flexDirection: 'column',
     justifyContent:'center',
-    paddingLeft:10,
-    paddingRight:10,
+    paddingHorizontal:20,
   },
   flex:{
     flex: 1,
