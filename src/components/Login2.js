@@ -2,7 +2,8 @@ import React from 'react';
 import { Button, View, Text, Image, StyleSheet, TextInput,
   TouchableWithoutFeedback,StatusBar,SafeAreaView, 
   Keyboard, TouchableOpacity, KeyboardAvoidingView,
-  AsyncStorage, ScrollView} from 'react-native';
+  AsyncStorage, ScrollView,
+} from 'react-native';
 
 const urlMainLogo = require('../assets/images/main_logo.jpg');
 
@@ -19,15 +20,8 @@ export default class Login2 extends React.Component {
     }
   }
 
-  componentDidMount() {
-    this._loadInitialState().done();
-  }
-
-  _loadInitialState = async () => {
-    var value = await AsyncStorage.getItem('user');
-    if (value !== null) {
-      this.props.navigation.navigate('Profile');
-    }
+  signIn = async () => {
+    await AsyncStorage.setItem('userToken', 'william');
   }
 
   render(){
@@ -97,6 +91,7 @@ login = ()=>{
       .then( res =>{
         if(res.success === true){ 
           alert('bienvenido');
+          this.signIn();
           this.props.navigation.navigate('App');
         }else{
           alert(res.message);

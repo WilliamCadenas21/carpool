@@ -14,6 +14,8 @@ import {
   View, 
   TouchableOpacity
 } from 'react-native';
+
+
 //API key Google 
 //AIzaSyATDEQerU5jm_UjxvncQAdI0BXjTc7XoCs
 
@@ -31,11 +33,32 @@ const AuthStackNavigator = createStackNavigator(
 const AppTabNavigator = createBottomTabNavigator({
   HomeScreen: {
     screen: Main,
+    navigationOptions: {
+      tabBarIcon: () => (
+        <Icon name="home" size={24} />
+      )
+    }
   },
   Settings: {
     screen: SettingsScreen,
+    navigationOptions: {
+      tabBarIcon: () => (
+        <Icon name="settings" size={24} />
+      )
+    }
   },
 });
+
+// AppTabNavigator.navigationOptions = ({ navigation }) => {
+//   let { routeName } = navigation.state.routes[navigation.state.index];
+
+//   // You can do whatever you like here to pick the title based on the route name
+//   let headerTitle = routeName;
+
+//   return {
+//     headerTitle,
+//   };
+// };
 
 const AppStackNavigator = createStackNavigator({
   AppTabNavigator: {
