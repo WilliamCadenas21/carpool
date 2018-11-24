@@ -1,24 +1,18 @@
 import React from 'react';
 import { Button, 
   View, 
-  TextInput, 
-  Text, 
   StyleSheet,
   StatusBar,
-  SafeAreaView, 
-  ScrollView} from 'react-native';
+} from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
 export default class Main extends React.Component {
-  static navigationOptions = { 
-    headerTransparent: true,
-  };
   render(){
     return(
         <View style={styles.container}>
-          <StatusBar barStyle='dark-content'/>
+          <StatusBar barStyle='dark-content' backgroundColor='white'/>
         	<MapView style={styles.map}
-        	provider={PROVIDER_GOOGLE} // remove if not using Google Maps
+          provider={PROVIDER_GOOGLE} // remove if not using Google Maps
         	region={{
 		        latitude: 37.78825,
 		        longitude: -122.4324,

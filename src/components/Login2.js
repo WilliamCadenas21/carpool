@@ -97,7 +97,7 @@ login = ()=>{
       .then( res =>{
         if(res.success === true){ 
           alert('bienvenido');
-          this.props.navigation.navigate('Main');
+          this.props.navigation.navigate('App');
         }else{
           alert(res.message);
         }

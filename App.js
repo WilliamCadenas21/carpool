@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStackNavigator } from 'react-navigation';
+import { createSwitchNavigator, createStackNavigator, createDrawerNavigator, createBottomTabNavigator } from 'react-navigation'
 import SignIn2 from './src/components/SignIn2';
 import Login2 from './src/components/Login2';
 import Terms from './src/components/Terms';
@@ -7,43 +7,58 @@ import Test from './src/components/Test';
 import Profile from './src/components/Profile';
 import HomeScreen from './src/components/HomeScreen';
 import Main from './src/components/Main';
-
-export default class App extends React.Component {
-  render() {
-    return <RootStack/>;
-  }
-}
+import AuthLoadingScreen from "./src/components/AuthLoadingScreen";
+import SettingsScreen from "./src/components/SettingsScreen";
+import {Icon} from 'native-base';
+import { 
+  View, 
+  TouchableOpacity
+} from 'react-native';
 //API key Google 
 //AIzaSyATDEQerU5jm_UjxvncQAdI0BXjTc7XoCs
 
 //build on android
 //gradlew assembleRelease
-const RootStack = createStackNavigator(
+const AuthStackNavigator = createStackNavigator(
   {
-    Home: {
-      screen: HomeScreen,
-    },
-    Sign_in: {
-      screen: SignIn2,
-    },
-    Log_in:{
-      screen: Login2,
-    },
-    Terms:{
-      screen: Terms,
-    },
-    Test:{
-      screen: Test,
-    },
-    Profile:{
-      screen: Profile,
-    },
-    Main:{
-      screen: Main,
-    }
-  },
-  {
-    initialRouteName: 'Home',
-  },
+    Home:  HomeScreen,
+    Sign_in: SignIn2,
+    Log_in: Login2,
+    Terms:Terms,
+  }
 );
-  
+
+const AppTabNavigator = createBottomTabNavigator({
+  HomeScreen: {
+    screen: Main,
+  },
+  Settings: {
+    screen: SettingsScreen,
+  },
+});
+
+const AppStackNavigator = createStackNavigator({
+  AppTabNavigator: {
+    screen: AppTabNavigator,
+    navigationOptions: ({ navigation }) => ({
+      headerLeft: (
+        <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
+          <View style={{ paddingHorizontal: 10 }}>
+            <Icon name="menu" />
+          </View>
+        </TouchableOpacity>
+      ),
+      headerTransparent: true,
+    })
+  }
+});
+
+const AppDrawerNavigator = createDrawerNavigator({
+  Home: AppStackNavigator
+});
+
+export default createSwitchNavigator({
+  AuthLoading: AuthLoadingScreen,
+  Auth: AuthStackNavigator,
+  App: AppDrawerNavigator
+});
