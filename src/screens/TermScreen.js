@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, View, Text, StyleSheet,StatusBar,SafeAreaView, 
   ScrollView} from 'react-native';
 
-export default class Terms extends React.Component {
+export default class TermScreen extends React.Component {
   static navigationOptions = { title: 'Terminos y condiciones de uso'};
   render(){
     return(

@@ -1,20 +1,19 @@
 import React from 'react';
 import { createSwitchNavigator, createStackNavigator, createDrawerNavigator, createBottomTabNavigator } from 'react-navigation'
-import SignIn2 from './src/components/SignIn2';
-import Login2 from './src/components/Login2';
-import Terms from './src/components/Terms';
-import Test from './src/components/Test';
-import Profile from './src/components/Profile';
-import HomeScreen from './src/components/HomeScreen';
-import Main from './src/components/Main';
-import AuthLoadingScreen from "./src/components/AuthLoadingScreen";
-import SettingsScreen from "./src/components/SettingsScreen";
+import SignIn2 from './src/screens/SignInScreen';
+import Login2 from './src/screens/LogInScreen';
+import Terms from './src/screens/TermScreen';
+import HomeScreen from './src/screens/HomeScreen';
+import Main from './src/screens/MainScreen';
+import AuthLoadingScreen from "./src/screens/AuthLoadingScreen";
+import SettingsScreen from "./src/screens/SettingsScreen";
+import ProfileScreen from "./src/screens/ProfileScreen";
 import {Icon} from 'native-base';
+
 import { 
   View, 
   TouchableOpacity
 } from 'react-native';
-
 
 //API key Google 
 //AIzaSyATDEQerU5jm_UjxvncQAdI0BXjTc7XoCs
@@ -44,6 +43,14 @@ const AppTabNavigator = createBottomTabNavigator({
     navigationOptions: {
       tabBarIcon: () => (
         <Icon name="settings" size={24} />
+      )
+    }
+  },
+  Profile: {
+    screen: ProfileScreen,
+    navigationOptions: {
+      tabBarIcon: () => (
+        <Icon name="person" size={24} />
       )
     }
   },

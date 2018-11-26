@@ -6,7 +6,7 @@ import { Button, View, Text, Image, StyleSheet, TextInput,
 
 const urlMainLogo = require('../assets/images/main_logo.jpg');
 
-export default class SignIn2 extends React.Component {
+export default class SignInScreen extends React.Component {
   static navigationOptions = {
     headerTransparent: true,
   };
@@ -35,12 +35,10 @@ export default class SignIn2 extends React.Component {
 
   render() {
     return (
-      <SafeAreaView style={styles.container} >
+      <SafeAreaView  style={styles.container}>
         <StatusBar barStyle='dark-content' backgroundColor='white'/>
         <ScrollView>
-        <KeyboardAvoidingView style={styles.container} behavior='padding' >
-          <TouchableWithoutFeedback  style={styles.container} onPress={Keyboard.dismiss}>
-            <View style={styles.container}> 
+            <View style={styles.innerContainer}> 
               
               <View style={styles.logoContainer}>
                 <Image source={urlMainLogo} 
@@ -106,16 +104,12 @@ export default class SignIn2 extends React.Component {
                 </Text>
               </Text>
               
-            </View>  
-         </TouchableWithoutFeedback>
-        </KeyboardAvoidingView>   
-        </ScrollView>     
+            </View>    
+        </ScrollView>
       </SafeAreaView>
     );
   }
   login = ()=>{
-    
-
     strEmail = this.state.email.split('@');
     if(strEmail[1]=='uninorte.edu.co'){
       if(this.state.password1 == this.state.password2){
@@ -159,8 +153,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'white', 
     flexDirection: 'column',
     justifyContent:'center',
-    paddingLeft:10,
-    paddingRight:10,
+  },
+  innerContainer:{ 
+    flex: 1,
+    backgroundColor: 'white', 
+    flexDirection: 'column',
+    justifyContent:'center',
+    paddingHorizontal:20,
   },
   logoContainer:{
     alignItems: 'center',
@@ -183,7 +182,7 @@ const styles = StyleSheet.create({
   },
   button:{
     alignSelf: 'stretch',
-    backgroundColor:"#237EE7", //naranja
+    backgroundColor:"#237EE7",
     padding: 15,
     alignItems:'center',
     borderRadius: 15,

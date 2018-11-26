@@ -7,7 +7,7 @@ import { Button, View, Text, Image, StyleSheet, TextInput,
 
 const urlMainLogo = require('../assets/images/main_logo.jpg');
 
-export default class Login2 extends React.Component {
+export default class LogInScreen extends React.Component {
   static navigationOptions = {
     headerTransparent: true,
   };

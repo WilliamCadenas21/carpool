@@ -6,7 +6,7 @@ import {
     AsyncStorage
 } from "react-native";
 
-class SettingsScreen extends Component {
+export default class SettingsScreen extends Component {
 
     signOut = async () => {
         AsyncStorage.clear()
@@ -20,7 +20,6 @@ class SettingsScreen extends Component {
         );
     }
 }
-export default SettingsScreen;
 
 const styles = StyleSheet.create({
     container: {
