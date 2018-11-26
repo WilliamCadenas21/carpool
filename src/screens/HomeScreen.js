@@ -1,12 +1,12 @@
 import React from 'react';
-import { Button, View, Text, Image, StyleSheet, TextInput,
-  TouchbleWithoutFeedback, StatusBar, SafeAreaView, 
-  Keyboard, TouchableOpacity, KeyboardAvoidingView} from 'react-native';
+import { View, Text, Image, StyleSheet, 
+  StatusBar, SafeAreaView, TouchableOpacity} from 'react-native';
+
+import {Button} from 'native-base';  
 
 const urlMainLogo = require('../assets/images/main_logo.jpg');
 
 export default class HomeScreen extends React.Component {
-  static navigationOptions = { title: 'Home', header: null};
 
   render() {
     return (
@@ -21,12 +21,12 @@ export default class HomeScreen extends React.Component {
           <TouchableOpacity style={styles.button1}
             onPress={() => this.props.navigation.navigate('Log_in')}>
               <Text style={styles.buttonText}>Iniciar Sesión</Text>
-          </TouchableOpacity> 
+          </TouchableOpacity>   
 
           <TouchableOpacity style={styles.button2}
             onPress={() => this.props.navigation.navigate('Sign_in')}>
             <Text style={styles.buttonText}>Registrarse</Text>
-          </TouchableOpacity>   
+          </TouchableOpacity>
 
         </View>
       </SafeAreaView>  
@@ -55,17 +55,16 @@ const styles = StyleSheet.create({
   },
   button1:{
     backgroundColor:"#ECA228",//naranja
-    paddingVertical: 15,
-    marginBottom:10,
+    paddingVertical:15,
+    marginBottom:15,
     borderRadius: 20,
   },
   button2:{
     backgroundColor:"#237EE7",//azul
-    paddingVertical: 15,
+    paddingVertical:15,
     marginBottom:10,
     borderRadius: 20,
   },
-
   buttonText:{
     textAlign: 'center',
     color:'white',

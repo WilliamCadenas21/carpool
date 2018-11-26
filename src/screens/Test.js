@@ -1,6 +1,5 @@
-import React from 'react';
-import { Button, View, TextInput, Text, StyleSheet,StatusBar,SafeAreaView, 
-  ScrollView} from 'react-native';
+import React, { Component } from 'react';
+import { Container, Header, Content, Button, Text } from 'native-base';
 
 //const urlMainLogo = require('../assets/images/main_logo.jpg');
 
@@ -8,50 +7,14 @@ export default class Test extends React.Component {
   static navigationOptions = { title: 'Test'};
   render(){
     return(
-      <ScrollView>
-      <TextInput placeholder={'Nombre completo'} style={styles.input}
-                  returnKeyType='next'
-                  autoCorrect={false}/>
-                  <TextInput placeholder={'Nombre completo'} style={styles.input}
-                  returnKeyType='next'
-                  autoCorrect={false}/>
-                  <TextInput placeholder={'Nombre completo'} style={styles.input}
-                  returnKeyType='next'
-                  autoCorrect={false}/>
-                  <TextInput placeholder={'Nombre completo'} style={styles.input}
-                  returnKeyType='next'
-                  autoCorrect={false}/>
-                  <TextInput placeholder={'Nombre completo'} style={styles.input}
-                  returnKeyType='next'
-                  autoCorrect={false}/>
-                  <TextInput placeholder={'Nombre completo'} style={styles.input}
-                  returnKeyType='next'
-                  autoCorrect={false}/>
-                  <TextInput placeholder={'Nombre completo'} style={styles.input}
-                  returnKeyType='next'
-                  autoCorrect={false}/>
-                  <TextInput placeholder={'Nombre completo'} style={styles.input}
-                  returnKeyType='next'
-                  autoCorrect={false}/>
-                  <TextInput placeholder={'Nombre completo'} style={styles.input}
-                  returnKeyType='next'
-                  autoCorrect={false}/>
-                  <TextInput placeholder={'Nombre completo'} style={styles.input}
-                  returnKeyType='next'
-                  autoCorrect={false}/>
-      </ScrollView>
+      <Container>
+        <Header />
+        <Content>
+          <Button>
+            <Text>Click Me!</Text>
+          </Button>
+        </Content>
+      </Container>
     );
   }
 };
-
-
-const styles = StyleSheet.create({
-  input:{
-    height: 50,
-    backgroundColor: 'rgba(255,255,255,0.2)',
-    borderColor: 'gray', 
-    borderWidth:1,
-    paddingHorizontal: 10,
-    marginBottom:20,
-  }
-});

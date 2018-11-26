@@ -1,9 +1,10 @@
 import React from 'react';
-import { Button, View, Text, Image, StyleSheet, TextInput,
+import { View, Text, Image, StyleSheet, TextInput,
   TouchableWithoutFeedback,StatusBar,SafeAreaView, 
   Keyboard, TouchableOpacity, KeyboardAvoidingView,
   AsyncStorage, ScrollView,
 } from 'react-native';
+import {Button} from 'native-base';  
 
 const urlMainLogo = require('../assets/images/main_logo.jpg');
 
@@ -55,8 +56,9 @@ export default class LogInScreen extends React.Component {
 
               <TouchableOpacity style={styles.button}
                 onPress={this.login}>
-                <Text style={styles.buttonText}>Iniciar Sesión</Text>
+                <Text style={styles.buttonText}>Registrarse</Text>
               </TouchableOpacity> 
+
             </View>
         </KeyboardAvoidingView>
       </SafeAreaView>
@@ -131,7 +133,7 @@ const styles = StyleSheet.create({
   },
   button:{
     alignSelf: 'stretch',
-    backgroundColor:"#237EE7", //naranja
+    backgroundColor:"#ECA228", //naranja
     padding: 15,
     alignItems:'center',
     borderRadius: 20,

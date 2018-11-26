@@ -1,8 +1,10 @@
 import React from 'react';
-import { Button, View, Text, Image, StyleSheet, TextInput,
+import { View, Text, Image, StyleSheet, TextInput,
   TouchableWithoutFeedback,StatusBar,SafeAreaView, 
   Keyboard, TouchableOpacity, KeyboardAvoidingView,
   AsyncStorage, ScrollView} from 'react-native';
+
+import {Button} from 'native-base';  
 
 const urlMainLogo = require('../assets/images/main_logo.jpg');
 
@@ -22,22 +24,11 @@ export default class SignInScreen extends React.Component {
     }
   }
 
-  componentDidMount() {
-    this._loadInitialState().done();
-  }
-
-  _loadInitialState = async () => {
-    var value = await AsyncStorage.getItem('user');
-    if (value !== null) {
-      this.props.navigation.navigate('Profile');
-    }
-  }
-
   render() {
     return (
       <SafeAreaView  style={styles.container}>
         <StatusBar barStyle='dark-content' backgroundColor='white'/>
-        <ScrollView>
+        <ScrollView keyboardShouldPersistTaps='always'>
             <View style={styles.innerContainer}> 
               
               <View style={styles.logoContainer}>
@@ -87,7 +78,7 @@ export default class SignInScreen extends React.Component {
               />
 
               <TouchableOpacity style={styles.button}
-                onPress={this.login}
+                onPress={this.singIn}
                 >
                 <Text style={styles.buttonText}>Registrase</Text>
               </TouchableOpacity>  
@@ -109,7 +100,7 @@ export default class SignInScreen extends React.Component {
       </SafeAreaView>
     );
   }
-  login = ()=>{
+  singIn = ()=>{
     strEmail = this.state.email.split('@');
     if(strEmail[1]=='uninorte.edu.co'){
       if(this.state.password1 == this.state.password2){
