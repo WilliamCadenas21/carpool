@@ -2,11 +2,10 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, 
   StatusBar, SafeAreaView, TouchableOpacity} from 'react-native';
 
-import {Button} from 'native-base';  
-
 const urlMainLogo = require('../assets/images/main_logo.jpg');
 
 export default class HomeScreen extends React.Component {
+  static navigationOptions = { title: 'Home1', header: null};
 
   render() {
     return (

@@ -1,10 +1,7 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TextInput,
-  TouchableWithoutFeedback,StatusBar,SafeAreaView, 
-  Keyboard, TouchableOpacity, KeyboardAvoidingView,
-  AsyncStorage, ScrollView} from 'react-native';
-
-import {Button} from 'native-base';  
+  StatusBar,SafeAreaView, TouchableOpacity,
+  ScrollView} from 'react-native';
 
 const urlMainLogo = require('../assets/images/main_logo.jpg');
 
@@ -84,16 +81,21 @@ export default class SignInScreen extends React.Component {
               </TouchableOpacity>  
 
               <Text style={styles.footer}>Al crear una cuenta, aceptas nuestros 
-                <Text Style={styles.terms} 
+                <Text style={styles.terms} 
                 onPress={() => this.props.navigation.navigate('Terms')}> terminos y condiciones
                 </Text>
               </Text>
 
+              
               <Text style={styles.footer}>¿Ya tienes una cuenta?
-                <Text Style={styles.terms} 
-                  onPress={() => this.props.navigation.navigate('Log_in')}> Inicia sesión aquí
-                </Text>
+              <Text style={styles.terms} 
+                onPress={() => this.props.navigation.navigate('Log_in')}> Inicia sesión aquí
               </Text>
+              </Text>
+              
+          
+              
+             
               
             </View>    
         </ScrollView>
@@ -191,6 +193,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   terms:{
-      textDecorationLine:'underline',
+    color:'blue',
+    textDecorationLine:'underline',
   },
 });
