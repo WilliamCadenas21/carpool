@@ -17,10 +17,10 @@ export default class FeedScreen extends Component {
     }
 }
 
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: 'white', 
         alignItems: 'center',
         justifyContent: 'center'
     }

@@ -16,7 +16,7 @@ export default class ProfileScreen extends Component {
         return (
             <View style={styles.container}>
                 <StatusBar barStyle='dark-content' backgroundColor='white'/>
-                <Text>better done than perfect</Text>
+                <Text>better done than perfect by Mauricio Pertuz</Text>
             </View>
         );
     }
@@ -25,6 +25,7 @@ export default class ProfileScreen extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: 'white', 
         alignItems: 'center',
         justifyContent: 'center',
     }

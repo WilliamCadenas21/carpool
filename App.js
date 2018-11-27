@@ -2,7 +2,7 @@ import React from 'react';
 import { createSwitchNavigator, 
   createStackNavigator, 
   createDrawerNavigator, 
-  createBottomTabNavigator } from 'react-navigation'
+} from 'react-navigation'
 import SignInScreen from './src/screens/SignInScreen';
 import LogInScreen from './src/screens/LogInScreen';
 import TermScreen from './src/screens/TermScreen';
@@ -19,10 +19,12 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-//redmi 4x
-//adb -s bccfda2c7d34 reverse tcp:8081 tcp:8081
-//react-native run-android --variant=release
-
+/*redmi 4x
+cd C:\Users\will\AppData\Local\Android\Sdk\platform-tools && adb -s bccfda2c7d34 reverse tcp:8081 tcp:8081
+&& cd C:\Users\will\Desktop\carpool
+adb -s bccfda2c7d34 reverse tcp:8081 tcp:8081
+react-native run-android --variant=release
+*/
 //API key Google 
 //AIzaSyATDEQerU5jm_UjxvncQAdI0BXjTc7XoCs
 
@@ -57,8 +59,33 @@ const AuthStackNavigator = createStackNavigator(
 
 const AppStackNavigator = createStackNavigator(
   {
-    Profile: {
+    Perfil: {
       screen: ProfileScreen,
+      navigationOptions: () => ({
+        headerTransparent: true,
+      }),
+    },
+    Map:{
+      screen: MapScreen,
+      navigationOptions: () => ({
+        headerTransparent: true,
+      }),
+    },
+    Terminos:{
+      screen: TermScreen,
+      navigationOptions: () => ({
+        headerTransparent: false,
+      }),
+    },
+    Setting:{
+      screen: SettingsScreen,
+      navigationOptions: () => ({
+        title: 'Cerrar Sesión',
+        headerTransparent: true,
+      })
+    },
+    Feed:{
+      screen: FeedScreen,
       navigationOptions: ({ navigation }) => ({
         headerLeft: (
           <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
@@ -69,37 +96,16 @@ const AppStackNavigator = createStackNavigator(
         ),
         headerTransparent: true,
       })
-    },
-    Map:{
-      screen: MapScreen,
-      navigationOptions: () => ({
-        headerTransparent: true,
-      }),
-    },
-    Terminos:{
-      screen: TermScreen
-    },
-    Setting:{
-      screen: SettingsScreen,
-      navigationOptions: () => ({
-        title: 'Cerrar Sesión',
-        headerTransparent: true,
-      })
-    },
-    Feed:{
-      screen: FeedScreen
     }
   },
   {
-    initialRouteName: 'Feed',
-    navigationOptions: () => ({
-      headerTransparent: true,
-    })
+    initialRouteName: 'Feed' 
   }
 );
 
 const AppDrawerNavigator = createDrawerNavigator({
-  Perfil: AppStackNavigator,
+  Feed: AppStackNavigator,
+  Perfil:ProfileScreen,
   Map:MapScreen,
   Terminos:TermScreen,
   Setting:SettingsScreen,
