@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import {
     View,
-    Text,
     StyleSheet,
     ActivityIndicator,
-    AsyncStorage
+    AsyncStorage,
+    Image
 } from "react-native";
 
+const urlMainLogo = require('../assets/images/main_logo.jpg');
 class AuthLoadingScreen extends Component {
 
     constructor() {
@@ -22,7 +23,12 @@ class AuthLoadingScreen extends Component {
 
     render() {
         return (
+            
             <View style={styles.container}>
+                <View style={styles.logoContainer}>
+                    <Image source={urlMainLogo} 
+                    style={styles.logo}/>
+                </View>
                 <ActivityIndicator />
             </View>
         );
@@ -35,5 +41,15 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center'
-    }
+    },
+    logoContainer:{
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom:60,
+    },
+    logo: {
+    width: 250,
+    height: 90,
+    resizeMode: 'contain',
+    },
 });

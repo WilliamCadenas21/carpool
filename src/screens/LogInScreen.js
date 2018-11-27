@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, TextInput,
-  TouchableWithoutFeedback,StatusBar,SafeAreaView, 
-  Keyboard, TouchableOpacity, KeyboardAvoidingView,
-  AsyncStorage, ScrollView,
+import { View, Text, Image, StyleSheet, TextInput
+  ,StatusBar,SafeAreaView,
+  TouchableOpacity, KeyboardAvoidingView,
+  AsyncStorage,Alert,
+  ActivityIndicator,
 } from 'react-native';
-import {Button} from 'native-base';  
 
 const urlMainLogo = require('../assets/images/main_logo.jpg');
 
@@ -16,8 +16,9 @@ export default class LogInScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email:'',
-      password:'',
+      email: '',
+      password: '',
+      charging: false,
     }
   }
 
@@ -33,6 +34,10 @@ export default class LogInScreen extends React.Component {
             <View>
               <View style={styles.logoContainer}>  
                 <Image source={urlMainLogo} style={styles.logo}/>
+              </View>
+
+              <View style={{alignItems: 'center', marginBottom: 10}}>
+                {this.state.charging ? <ActivityIndicator/>:<Text></Text>}
               </View>
 
               <TextInput placeholder={'Email@uninorte.edu.co'} 
@@ -64,42 +69,47 @@ export default class LogInScreen extends React.Component {
       </SafeAreaView>
     );
   }
-
-login = ()=>{
-  if(!this.state.email || !this.state.password){
-    alert('nigun campo puede estar vacio');
-  }else{
-    alert('por favor espere...');
-    strEmail = this.state.email.split('@');
-    if(strEmail[1]=='uninorte.edu.co'){
-      fetch('https://carpool-back.herokuapp.com/users/login',{
-        method:'POST',
-        headers:{
-          'Accept':'application/json',
-          'Content-Type':'application/json',
-        },
-        body: JSON.stringify({
-          email_id: this.state.email,
-          password: this.state.password
-        })
-      })
-      .then( response => response.json())
-      .then( res =>{
-        if(res.success === true){ 
-          alert('bienvenido');
-          this.signIn();
-          this.props.navigation.navigate('App');
-        }else{
-          alert(res.message);
-        }
-      })
-      .done();
+ 
+  login = ()=>{
+    if(!this.state.email || !this.state.password){
+      Alert.alert('Advertencia','nigun campo puede estar vacio',[{text: 'OK'},],)
     }else{
-      alert('su correo electronico debe pertenecer al dominio @uninorte.edu.co');
+      strEmail = this.state.email.split('@');
+      if(strEmail[1]=='uninorte.edu.co'){
+        this.setState(previousState => ({charging: true}))
+        fetch('https://carpool-back.herokuapp.com/users/login',{
+          method:'POST',
+          headers:{
+            'Accept':'application/json',
+            'Content-Type':'application/json',
+          },
+          body: JSON.stringify({
+            email_id: this.state.email,
+            password: this.state.password
+          })
+        })
+        .then( response => response.json())
+        .then( res =>{
+          if(res.success === true){ 
+            this.setState(previousState => ({charging: false}))
+            this.signIn();
+            this.props.navigation.navigate('App');
+          }else{
+            this.setState(previousState => ({charging: false}));
+            Alert.alert('Mensaje',res.message+'',[{text: 'OK'}],);
+          }
+        })
+        .done();
+      }else{
+        Alert.alert('Advertencia',
+        'su correo electronico debe pertenecer al dominio @uninorte.edu.co',
+        [{text: 'OK'},],)
+      }
     }
   }
-} 
 };
+
+
 const styles = StyleSheet.create({
   container:{ 
     flex: 1,

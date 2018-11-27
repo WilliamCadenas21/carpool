@@ -1,10 +1,9 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TextInput,
   StatusBar,SafeAreaView, TouchableOpacity,
-  ScrollView} from 'react-native';
+  ScrollView, Alert, ActivityIndicator} from 'react-native';
 
 const urlMainLogo = require('../assets/images/main_logo.jpg');
-
 export default class SignInScreen extends React.Component {
   static navigationOptions = {
     headerTransparent: true,
@@ -18,9 +17,10 @@ export default class SignInScreen extends React.Component {
       email:'',
       password1:'',
       password2:'',
+      charging: false,
     }
   }
-
+  
   render() {
     return (
       <SafeAreaView  style={styles.container}>
@@ -31,6 +31,10 @@ export default class SignInScreen extends React.Component {
               <View style={styles.logoContainer}>
                 <Image source={urlMainLogo} 
                 style={styles.logo}/>
+              </View>
+
+              <View style={{alignItems: 'center', marginBottom: 10}}>
+                {this.state.charging ? <ActivityIndicator/>:<Text></Text>}
               </View>
 
               <TextInput placeholder={'Nombres'} style={styles.textInput}
@@ -86,27 +90,23 @@ export default class SignInScreen extends React.Component {
                 </Text>
               </Text>
 
-              
               <Text style={styles.footer}>¿Ya tienes una cuenta?
               <Text style={styles.terms} 
                 onPress={() => this.props.navigation.navigate('Log_in')}> Inicia sesión aquí
               </Text>
               </Text>
-              
-          
-              
-             
-              
+
             </View>    
         </ScrollView>
       </SafeAreaView>
     );
   }
+
   singIn = ()=>{
     strEmail = this.state.email.split('@');
     if(strEmail[1]=='uninorte.edu.co'){
       if(this.state.password1 == this.state.password2){
-        alert('por favor espere...');
+        this.setState(previousState => ({charging: true}))
         fetch('https://carpool-back.herokuapp.com/users/create',{
           method:'POST',
           headers:{
@@ -122,19 +122,29 @@ export default class SignInScreen extends React.Component {
         })
         .then( response => response.json())
         .then( res =>{
-          if(res.success === true){ 
-            alert('El registro ha sido exitoso, ahora es momento de ir a su correo uninorte y validar su cuenta Carpool');
+          if(res.success === true){
+            this.setState(previousState => ({charging: false}))
+            Alert.alert('Mensaje',
+              'Registro exitoso, valide su correo para poder ingresar',
+              [{text: 'OK'},],)
             this.props.navigation.navigate('Home');
           }else{
-            alert(res.message);
+            this.setState(previousState => ({charging: false}))
+            Alert.alert('Mensaje',
+            res.message,
+            [{text: 'OK'},],)
           }
         })
         .done();
       }else{
-        alert('la contraseñas no son iguales, por favor intentelo de nuevo'); 
+        Alert.alert('Advertencia',
+        'la contraseñas no son iguales, por favor intentelo de nuevo',
+        [{text: 'OK'},],)
       }
     }else{
-      alert('su correo electronico debe pertenecer al dominio @uninorte.edu.co');
+      Alert.alert('Advertencia',
+        'su correo electronico debe pertenecer al dominio @uninorte.edu.co',
+        [{text: 'OK'},],)
     }
   }
 

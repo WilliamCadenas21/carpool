@@ -6,7 +6,7 @@ import { Button,
 } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
-export default class Main extends React.Component {
+export default class MapScreen extends React.Component {
   render(){
     return(
         <View style={styles.container}>

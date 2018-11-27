@@ -1,11 +1,15 @@
 import React from 'react';
-import { createSwitchNavigator, createStackNavigator, createDrawerNavigator, createBottomTabNavigator } from 'react-navigation'
-import SignIn2 from './src/screens/SignInScreen';
-import Login2 from './src/screens/LogInScreen';
-import Terms from './src/screens/TermScreen';
+import { createSwitchNavigator, 
+  createStackNavigator, 
+  createDrawerNavigator, 
+  createBottomTabNavigator } from 'react-navigation'
+import SignInScreen from './src/screens/SignInScreen';
+import LogInScreen from './src/screens/LogInScreen';
+import TermScreen from './src/screens/TermScreen';
 import HomeScreen from './src/screens/HomeScreen';
-import Main from './src/screens/MainScreen';
+import MapScreen from './src/screens/MapScreen';
 import AuthLoadingScreen from "./src/screens/AuthLoadingScreen";
+import FeedScreen from "./src/screens/FeedScreen";
 import SettingsScreen from "./src/screens/SettingsScreen";
 import ProfileScreen from "./src/screens/ProfileScreen";
 import {Icon} from 'native-base';
@@ -15,6 +19,10 @@ import {
   TouchableOpacity
 } from 'react-native';
 
+//redmi 4x
+//adb -s bccfda2c7d34 reverse tcp:8081 tcp:8081
+//react-native run-android --variant=release
+
 //API key Google 
 //AIzaSyATDEQerU5jm_UjxvncQAdI0BXjTc7XoCs
 
@@ -23,72 +31,82 @@ import {
 const AuthStackNavigator = createStackNavigator(
   {
     Home:  HomeScreen,
-    Sign_in: SignIn2,
-    Log_in: Login2,
-    Terms:Terms,
-  }
+    Sign_in: SignInScreen,
+    Log_in: LogInScreen,
+    Terms: TermScreen,
+  },
+  {
+    initialRouteName: 'Home',
+  },
 );
 
-const AppTabNavigator = createBottomTabNavigator({
-  HomeScreen: {
-    screen: Main,
-    navigationOptions: {
-      tabBarIcon: () => (
-        <Icon name="home" size={24} />
-      )
+// const AppOtherNavigator = createStackNavigator(
+//   {
+//     HomeScreen: {
+//       screen: Main,
+//     },
+//     Settings: {
+//       screen: SettingsScreen,
+//     },
+//     Profile: {
+//       screen: ProfileScreen,
+//     },
+//     AppDrawerNavigator: AppDrawerNavigator,
+//   }
+// );
+
+const AppStackNavigator = createStackNavigator(
+  {
+    Profile: {
+      screen: ProfileScreen,
+      navigationOptions: ({ navigation }) => ({
+        headerLeft: (
+          <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
+            <View style={{ paddingHorizontal: 10 }}>
+              <Icon name="menu" />
+            </View>
+          </TouchableOpacity>
+        ),
+        headerTransparent: true,
+      })
+    },
+    Map:{
+      screen: MapScreen,
+      navigationOptions: () => ({
+        headerTransparent: true,
+      }),
+    },
+    Terminos:{
+      screen: TermScreen
+    },
+    Setting:{
+      screen: SettingsScreen,
+      navigationOptions: () => ({
+        title: 'Cerrar Sesión',
+        headerTransparent: true,
+      })
+    },
+    Feed:{
+      screen: FeedScreen
     }
   },
-  Settings: {
-    screen: SettingsScreen,
-    navigationOptions: {
-      tabBarIcon: () => (
-        <Icon name="settings" size={24} />
-      )
-    }
-  },
-  Profile: {
-    screen: ProfileScreen,
-    navigationOptions: {
-      tabBarIcon: () => (
-        <Icon name="person" size={24} />
-      )
-    }
-  },
-});
-
-// AppTabNavigator.navigationOptions = ({ navigation }) => {
-//   let { routeName } = navigation.state.routes[navigation.state.index];
-
-//   // You can do whatever you like here to pick the title based on the route name
-//   let headerTitle = routeName;
-
-//   return {
-//     headerTitle,
-//   };
-// };
-
-const AppStackNavigator = createStackNavigator({
-  AppTabNavigator: {
-    screen: AppTabNavigator,
-    navigationOptions: ({ navigation }) => ({
-      headerLeft: (
-        <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
-          <View style={{ paddingHorizontal: 10 }}>
-            <Icon name="menu" />
-          </View>
-        </TouchableOpacity>
-      ),
+  {
+    initialRouteName: 'Feed',
+    navigationOptions: () => ({
       headerTransparent: true,
     })
   }
-});
+);
 
 const AppDrawerNavigator = createDrawerNavigator({
-  Home: AppStackNavigator
+  Perfil: AppStackNavigator,
+  Map:MapScreen,
+  Terminos:TermScreen,
+  Setting:SettingsScreen,
 });
 
 export default createSwitchNavigator({
   AuthLoading: AuthLoadingScreen,
   Auth: AuthStackNavigator,
-  App: AppDrawerNavigator
+  App: AppDrawerNavigator,
 });

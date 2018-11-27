@@ -1,31 +1,27 @@
 import React, { Component } from "react";
-import {
+import { 
     View,
-    StyleSheet,
     Text,
-    AsyncStorage,
-    TouchableOpacity,
+    StyleSheet,
     StatusBar
 } from "react-native";
 
-import {Icon, Header, Left, Right} from 'native-base';
-
-export default class ProfileScreen extends Component {
-
+export default class FeedScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
                 <StatusBar barStyle='dark-content' backgroundColor='white'/>
-                <Text>better done than perfect</Text>
+                <Text>FeedScreen</Text>
             </View>
         );
     }
 }
 
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     }
 });

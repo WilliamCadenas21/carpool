@@ -3,7 +3,7 @@ import { Button, View, Text, StyleSheet,StatusBar,SafeAreaView,
   ScrollView} from 'react-native';
 
 export default class TermScreen extends React.Component {
-  static navigationOptions = { title: 'Terminos y condiciones de uso'};
+  static navigationOptions = { title: 'Terminos y condiciones'};
   render(){
     return(
       <SafeAreaView style={styles.container}>
@@ -43,7 +43,6 @@ export default class TermScreen extends React.Component {
     );
   }
 };
-
 
 const styles = StyleSheet.create({
   container:{ 
