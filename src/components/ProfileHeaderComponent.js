@@ -7,7 +7,9 @@ import {
     StatusBar,
     Image
 } from 'react-native';
+
 const image = require('../assets/images/userImage.jpg');
+
 export default class ProfileScreen extends Component {
 
     constructor(props) {
@@ -20,10 +22,10 @@ export default class ProfileScreen extends Component {
     }
 
     loadInfo = async () => {
-        const names = await AsyncStorage.getItem('names');
-        const lastNames = await AsyncStorage.getItem('lastNames');
-        this.setState(() => ({ names: names }));
-        this.setState(() => ({ lastNames: lastNames }));
+        const namesStorage = await AsyncStorage.getItem('names');
+        const lastNamesStorage = await AsyncStorage.getItem('lastNames');
+        this.setState(() => ({ names: namesStorage }));
+        this.setState(() => ({ lastNames: lastNamesStorage }));
     }
 
     render() {
@@ -31,17 +33,14 @@ export default class ProfileScreen extends Component {
             <View style={styles.headerBackground}>
                 <StatusBar barStyle='dark-content' backgroundColor='white' />
                 <View style={styles.header}>
-                    <Text style={styles.name}>{this.state.names} {this.state.lastNames}</Text>
-                    <View style={styles.profilepicWrap}>
-                        <Image 
-                        style={styles.profilepic} 
-                        source={image} 
-                        />  
-                    </View>
+                    <Text style={styles.name}>{this.state.names} {this.state.lastNames}</Text>   
+                    <Image 
+                    style={styles.profilepic} 
+                    source={image} 
+                    />  
                     <Text style={styles.text}>direccion</Text>
                     <Text style={styles.text}>-barrio-</Text>
                 </View>
-
             </View> 
         );
     }
@@ -52,38 +51,32 @@ const styles = StyleSheet.create({
         flex: 1,
         width: null,
         alignSelf: 'stretch',
+        borderColor: '#8fbbfc',
+        borderWidth: 3,
     },
     header: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'grey',
-    },
-    profilepicwrap: {
-        width: 180,
-        height: 180,
-        borderRadius: 100,
-        borderColor: 'blue',
-        borferwidth: 16
+        backgroundColor: '#e3ebf7',
     },
     profilepic: {
-        flex: 1,
-        width: null,
-        alignSelf: 'stretch',
+        width: 150,
+        height: 150,
         borderRadius: 100,
         borderColor: 'blue',
-        borferwidth: 4
     },
     name: {
-        marginTop: 20,
+        marginTop: 0,
+        marginBottom: 5,
         fontSize: 16,
         color: 'black',
-        fontWeight: 'bold',
     },
     text: {
         fontSize: 14,
         color: 'black',
         fontWeight: '300',
-        fontStyle: 'italic'
+        fontStyle: 'italic',
+        opacity: 0.4,
     }
 });

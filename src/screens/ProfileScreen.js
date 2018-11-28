@@ -9,30 +9,33 @@ import {
 } from "react-native";
 
 import {Icon, Header, Left, Right} from 'native-base';
+import ProfileHeaderComponent from '../components/ProfileHeaderComponent';
+import ProfileInfoComponent from '../components/ProfileInfoComponent';
 
 export default class ProfileScreen extends Component {
 
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
-            names:'',
-            lastNames:'',
-        }
-        this.loadInfo()
+            names: '',
+            lastNames: '',
+        };
+        this.loadInfo();
     }
 
     loadInfo = async () => {
         const names = await AsyncStorage.getItem('names');
         const lastNames = await AsyncStorage.getItem('lastNames');
-        this.setState(previousState => ({names: names}));
-        this.setState(previousState => ({lastNames: lastNames}));
+        this.setState(() => ({ names: names }));
+        this.setState(() => ({ lastNames: lastNames }));
     }
 
     render() {
         return (
             <View style={styles.container}>
                 <StatusBar barStyle='dark-content' backgroundColor='white'/>
-                <Text>better done than perfect by {this.state.names} {this.state.lastNames}</Text>
+                <ProfileHeaderComponent />
+                <ProfileInfoComponent />
             </View>
         );
     }

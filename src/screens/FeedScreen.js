@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import { 
     View,
     Text,
     StyleSheet,
     StatusBar
-} from "react-native";
+} from 'react-native';
 
 export default class FeedScreen extends Component {
     render() {

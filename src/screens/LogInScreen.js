@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TextInput
-  ,StatusBar,SafeAreaView,
+  , StatusBar, SafeAreaView,
   TouchableOpacity, KeyboardAvoidingView,
-  AsyncStorage,Alert,
+  AsyncStorage, Alert,
   ActivityIndicator,
 } from 'react-native';
 
@@ -19,34 +19,74 @@ export default class LogInScreen extends React.Component {
       email: '',
       password: '',
       charging: false,
-    }
+    };
   }
 
   signIn = async (res) => {
-    try{
+    try {
       await AsyncStorage.setItem('userToken', 'william');
       await AsyncStorage.setItem('names', res.names);
-      await AsyncStorage.setItem('lastNames',res.lastNames);
-      await AsyncStorage.setItem('email', res.email_id);
-      await AsyncStorage.setItem('semestre',  res.semestre);
-      await AsyncStorage.setItem('age',  res.age);
-      await AsyncStorage.setItem('placa',  res.placa);
-    }catch(error){
-      alert(error)
+      await AsyncStorage.setItem('lastNames', res.lastNames);
+      await AsyncStorage.setItem('email', res.email);
+      await AsyncStorage.setItem('semestre', res.semestre.toString());
+      await AsyncStorage.setItem('age', res.age.toString());
+      await AsyncStorage.setItem('carrera', res.carrera);
+      await AsyncStorage.setItem('placa', res.placa + '');
+    } catch (error) {
+      alert(error);
     }
   }
 
-  render(){
-    return(
+  login = ()=>{
+    if(!this.state.email || !this.state.password){
+      Alert.alert('Advertencia','nigun campo puede estar vacio',[{text: 'OK'},],)
+    }else{
+      strEmail = this.state.email.split('@');
+      if(strEmail[1]=='uninorte.edu.co'){
+        this.setState(previousState => ({charging: true }));
+        fetch('https://carpool-back.herokuapp.com/users/login', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email_id: this.state.email,
+            password: this.state.password
+          })
+        })
+        .then( response => response.json())
+        .then( res =>{
+          if(res.success === true){ 
+            this.setState(previousState => ({charging: false}))
+            alert(res.carrera);
+            this.signIn(res);
+            this.props.navigation.navigate('App');
+          }else{
+            this.setState(previousState => ({charging: false}));
+            Alert.alert('Mensaje',res.message+'',[{text: 'OK'}],);
+          }
+        })
+        .done();
+      }else{
+        Alert.alert('Advertencia',
+        'su correo electronico debe pertenecer al dominio @uninorte.edu.co',
+        [{ text: 'OK' },   ], );
+      }
+    }
+  }
+
+  render() {
+    return (
       <SafeAreaView style={styles.container}>
-        <StatusBar barStyle='dark-content' backgroundColor='white'/>
+        <StatusBar barStyle='dark-content' backgroundColor='white' />
         <KeyboardAvoidingView behavior='padding'>
             <View>
               <View style={styles.logoContainer}>  
-                <Image source={urlMainLogo} style={styles.logo}/>
+                <Image source={urlMainLogo} style={styles.logo} />
               </View>
 
-              <View style={{alignItems: 'center', marginBottom: 10}}>
+              <View style={{ alignItems: 'center', marginBottom: 10 }}>
                 {this.state.charging ? <ActivityIndicator/>:<Text></Text>}
               </View>
 
@@ -79,88 +119,49 @@ export default class LogInScreen extends React.Component {
       </SafeAreaView>
     );
   }
- 
-  login = ()=>{
-    if(!this.state.email || !this.state.password){
-      Alert.alert('Advertencia','nigun campo puede estar vacio',[{text: 'OK'},],)
-    }else{
-      strEmail = this.state.email.split('@');
-      if(strEmail[1]=='uninorte.edu.co'){
-        this.setState(previousState => ({charging: true}))
-        fetch('https://carpool-back.herokuapp.com/users/login',{
-          method:'POST',
-          headers:{
-            'Accept':'application/json',
-            'Content-Type':'application/json',
-          },
-          body: JSON.stringify({
-            email_id: this.state.email,
-            password: this.state.password
-          })
-        })
-        .then( response => response.json())
-        .then( res =>{
-          if(res.success === true){ 
-            this.setState(previousState => ({charging: false}))
-            this.signIn(res);
-            this.props.navigation.navigate('App');
-          }else{
-            this.setState(previousState => ({charging: false}));
-            Alert.alert('Mensaje',res.message+'',[{text: 'OK'}],);
-          }
-        })
-        .done();
-      }else{
-        Alert.alert('Advertencia',
-        'su correo electronico debe pertenecer al dominio @uninorte.edu.co',
-        [{text: 'OK'},],)
-      }
-    }
-  }
-};
-
+}
 
 const styles = StyleSheet.create({
-  container:{ 
+  container: { 
     flex: 1,
     backgroundColor: 'white', 
     flexDirection: 'column',
-    justifyContent:'center',
-    paddingHorizontal:20,
+    justifyContent: 'center',
+    paddingHorizontal: 20,
   },
-  flex:{
+  flex: {
     flex: 1,
   },
-  logoContainer:{
+  logoContainer: { 
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom:60,
+    marginBottom: 60,
   },
   logo: {
     width: 250,
     height: 90,
     resizeMode: 'contain',
   },
-  textInput:{
+  textInput: {
     alignSelf: 'stretch',
     backgroundColor: 'rgba(255,255,255,0.2)',
     borderColor: 'gray', 
-    borderWidth:1,
-    marginBottom:10,
+    borderWidth: 1,
+    marginBottom: 10,
     paddingVertical: 10,
     paddingHorizontal: 16,
     borderRadius: 20,
   },
-  button:{
+  button: {
     alignSelf: 'stretch',
-    backgroundColor:"#ECA228", //naranja
+    backgroundColor: '#ECA228', //naranja
     padding: 15,
-    alignItems:'center',
+    alignItems: 'center',
     borderRadius: 20,
   },
-  buttonText:{
+  buttonText: {
     textAlign: 'center',
-    color:'white',
-    fontSize:18,
+    color: 'white',
+    fontSize: 18,
   },
 });

@@ -183,21 +183,21 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     borderRadius: 15,
   },
-  button:{
+  button: {
     alignSelf: 'stretch',
-    backgroundColor:"#237EE7",
+    backgroundColor: '#237EE7',
     padding: 15,
-    alignItems:'center',
+    alignItems: 'center',
     borderRadius: 15,
   },
-  buttonText:{
+  buttonText: {
     textAlign: 'center',
-    color:'white',
-    fontSize:18,
+    color: 'white',
+    fontSize: 18,
   },
-  footer:{
-    color:'black',
-    fontSize:13,
+  footer: {
+    color: 'black',
+    fontSize: 13,
     opacity: 0.4,
     textAlign: 'center',
     fontWeight: 'bold',
