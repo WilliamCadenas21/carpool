@@ -1,24 +1,21 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
     View,
     StyleSheet,
     Text,
     AsyncStorage,
-    TouchableOpacity,
     StatusBar
-} from "react-native";
-
-import {Icon, Header, Left, Right} from 'native-base';
+} from 'react-native';
 
 export default class ProfileScreen extends Component {
 
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
-            names:'',
-            lastNames:'',
-        }
-        this.loadInfo()
+            names: '',
+            lastNames: '',
+        };
+        this.loadInfo();
     }
 
     loadInfo = async () => {

@@ -22,8 +22,18 @@ export default class LogInScreen extends React.Component {
     }
   }
 
-  signIn = async () => {
-    await AsyncStorage.setItem('userToken', 'william');
+  signIn = async (res) => {
+    try{
+      await AsyncStorage.setItem('userToken', 'william');
+      await AsyncStorage.setItem('names', res.names);
+      await AsyncStorage.setItem('lastNames',res.lastNames);
+      await AsyncStorage.setItem('email', res.email_id);
+      await AsyncStorage.setItem('semestre',  res.semestre);
+      await AsyncStorage.setItem('age',  res.age);
+      await AsyncStorage.setItem('placa',  res.placa);
+    }catch(error){
+      alert(error)
+    }
   }
 
   render(){
@@ -92,7 +102,7 @@ export default class LogInScreen extends React.Component {
         .then( res =>{
           if(res.success === true){ 
             this.setState(previousState => ({charging: false}))
-            this.signIn();
+            this.signIn(res);
             this.props.navigation.navigate('App');
           }else{
             this.setState(previousState => ({charging: false}));

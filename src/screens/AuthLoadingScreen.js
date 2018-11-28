@@ -17,13 +17,11 @@ class AuthLoadingScreen extends Component {
 
     loadApp = async () => {
         const userToken = await AsyncStorage.getItem('userToken')
-
         this.props.navigation.navigate(userToken ? 'App' : 'Auth')
     }
 
     render() {
         return (
-            
             <View style={styles.container}>
                 <View style={styles.logoContainer}>
                     <Image source={urlMainLogo} 
