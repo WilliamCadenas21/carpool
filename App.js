@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { createSwitchNavigator, 
   createStackNavigator, 
   createDrawerNavigator,
@@ -40,6 +40,16 @@ AIzaSyATDEQerU5jm_UjxvncQAdI0BXjTc7XoCs
 build on android
 cd C:\Users\will\Desktop\carpool\android && gradlew assembleRelease
 */
+
+export default class App extends Component {
+
+  render() {
+      return (
+        <SwitchNavigator />
+      );
+  }
+}
+
 const AuthStackNavigator = createStackNavigator(
   {
     Home: HomeScreen,
@@ -109,7 +119,7 @@ const AppDrawerNavigator = createDrawerNavigator({
   contentComponent: CustomDrawerContentComponent,
 });
 
-export default createSwitchNavigator({
+const SwitchNavigator = createSwitchNavigator({
   AuthLoading: AuthLoadingScreen,
   Auth: AuthStackNavigator,
   App: AppDrawerNavigator,
