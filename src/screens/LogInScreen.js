@@ -31,6 +31,8 @@ export default class LogInScreen extends React.Component {
       await AsyncStorage.setItem('semestre', res.semestre.toString());
       await AsyncStorage.setItem('age', res.age.toString());
       await AsyncStorage.setItem('carrera', res.carrera);
+      await AsyncStorage.setItem('direccion', res.direccion);
+      await AsyncStorage.setItem('barrio', res.barrio);
       await AsyncStorage.setItem('placa', res.placa + '');
     } catch (error) {
       alert(error);
@@ -86,29 +88,32 @@ export default class LogInScreen extends React.Component {
               </View>
 
               <View style={{ alignItems: 'center', marginBottom: 10 }}>
-                {this.state.charging ? <ActivityIndicator/>:<Text></Text>}
+                {this.state.charging ? <ActivityIndicator /> : <Text />}
               </View>
 
-              <TextInput placeholder={'Email@uninorte.edu.co'} 
-              style={styles.textInput}
-              onChangeText={(email)=> this.setState({email})}
-              keyboardType='email-address'
-              returnKeyType='go'
-              autoCapitalize= 'none'
-              autoCorrect={false}
-              onSubmitEditing={()  => this.refs.txtPassword.focus()}
+              <TextInput 
+                placeholder={'Email@uninorte.edu.co'} 
+                style={styles.textInput}
+                onChangeText={(email) => this.setState({ email })}
+                keyboardType='email-address'
+                returnKeyType='go'
+                autoCapitalize='none'
+                autoCorrect={false}
+                onSubmitEditing={() => this.refs.txtPassword.focus()}
               />
 
-              <TextInput placeholder={'Contraseña'} 
-              style={styles.textInput}
-              onChangeText={(password) => this.setState({ password })}
-              returnKeyType='go'
-              secureTextEntry={true}
-              autoCorrect={false}
-              ref={'txtPassword'}
+              <TextInput 
+                placeholder={'Contraseña'} 
+                style={styles.textInput}
+                onChangeText={(password) => this.setState({ password })}
+                returnKeyType='go'
+                secureTextEntry={true}
+                autoCorrect={false}
+                ref={'txtPassword'}
               /> 
 
-              <TouchableOpacity style={styles.button}
+              <TouchableOpacity 
+                style={styles.button}
                 onPress={this.login}>
                 <Text style={styles.buttonText}>Registrarse</Text>
               </TouchableOpacity> 

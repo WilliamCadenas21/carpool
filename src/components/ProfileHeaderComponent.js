@@ -12,34 +12,18 @@ const image = require('../assets/images/userImage.jpg');
 
 export default class ProfileScreen extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            names: '',
-            lastNames: '',
-        };
-        this.loadInfo();
-    }
-
-    loadInfo = async () => {
-        const namesStorage = await AsyncStorage.getItem('names');
-        const lastNamesStorage = await AsyncStorage.getItem('lastNames');
-        this.setState(() => ({ names: namesStorage }));
-        this.setState(() => ({ lastNames: lastNamesStorage }));
-    }
-
     render() {
         return (
             <View style={styles.headerBackground}>
                 <StatusBar barStyle='dark-content' backgroundColor='white' />
                 <View style={styles.header}>
-                    <Text style={styles.name}>{this.state.names} {this.state.lastNames}</Text>   
+                    <Text style={styles.name}>{this.props.names} {this.props.lastNames}</Text>   
                     <Image 
                     style={styles.profilepic} 
                     source={image} 
                     />  
-                    <Text style={styles.text}>direccion</Text>
-                    <Text style={styles.text}>-barrio-</Text>
+                    <Text style={styles.text}>{this.props.direccion}</Text>
+                    <Text style={styles.text}>{this.props.barrio}</Text>
                 </View>
             </View> 
         );
@@ -48,11 +32,11 @@ export default class ProfileScreen extends Component {
 
 const styles = StyleSheet.create({
     headerBackground: {
-        flex: 1,
         width: null,
         alignSelf: 'stretch',
         borderColor: '#8fbbfc',
-        borderWidth: 3,
+        borderWidth: 0,
+        height: 250,
     },
     header: {
         flex: 1,
@@ -64,10 +48,12 @@ const styles = StyleSheet.create({
         width: 150,
         height: 150,
         borderRadius: 100,
-        borderColor: 'blue',
+        borderColor: '#ECA228',
+        marginBottom: 5,
+        borderWidth: 5,
     },
     name: {
-        marginTop: 0,
+        marginTop: 10,
         marginBottom: 5,
         fontSize: 16,
         color: 'black',
@@ -78,5 +64,6 @@ const styles = StyleSheet.create({
         fontWeight: '300',
         fontStyle: 'italic',
         opacity: 0.4,
+        marginBottom: 5,
     }
 });

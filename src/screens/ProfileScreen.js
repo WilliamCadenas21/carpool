@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import {
     View,
     StyleSheet,
-    Text,
+    ScrollView,
     AsyncStorage,
-    TouchableOpacity,
     StatusBar
 } from "react-native";
 
@@ -19,23 +18,52 @@ export default class ProfileScreen extends Component {
         this.state = {
             names: '',
             lastNames: '',
+            direccion: '',
+            barrio: '',
+            email: '',
+            carrera: '',
+            semestre: '',
+            editable: false,
         };
         this.loadInfo();
     }
 
     loadInfo = async () => {
-        const names = await AsyncStorage.getItem('names');
-        const lastNames = await AsyncStorage.getItem('lastNames');
-        this.setState(() => ({ names: names }));
-        this.setState(() => ({ lastNames: lastNames }));
+        const namesStorage = await AsyncStorage.getItem('names');
+        const lastNamesStorage = await AsyncStorage.getItem('lastNames');
+        const direccionStorage = await AsyncStorage.getItem('direccion');
+        const barrioStorage = await AsyncStorage.getItem('barrio');
+        const emailStorage = await AsyncStorage.getItem('email');
+        const carreraStorage = await AsyncStorage.getItem('carrera');
+        const semestreStorage = await AsyncStorage.getItem('semestre');
+        this.setState(() => ({ names: namesStorage }));
+        this.setState(() => ({ lastNames: lastNamesStorage }));
+        this.setState(() => ({ direccion: direccionStorage }));
+        this.setState(() => ({ barrio: barrioStorage }));
+        this.setState(() => ({ email: emailStorage }));
+        this.setState(() => ({ carrera: carreraStorage }));
+        this.setState(() => ({ semestre: semestreStorage }));
     }
 
     render() {
         return (
             <View style={styles.container}>
-                <StatusBar barStyle='dark-content' backgroundColor='white'/>
-                <ProfileHeaderComponent />
-                <ProfileInfoComponent />
+                <StatusBar barStyle='dark-content' backgroundColor='white' />
+                    <ProfileHeaderComponent 
+                        names={this.state.names} 
+                        lastNames={this.state.lastNames}
+                        direccion={this.state.direccion} 
+                        barrio={this.state.barrio}            
+                    />
+                    <ProfileInfoComponent 
+                        names={this.state.names} 
+                        lastNames={this.state.lastNames}
+                        direccion={this.state.direccion} 
+                        barrio={this.state.barrio}
+                        email={this.state.email}
+                        carrera={this.state.carrera} 
+                        semestre={this.state.semestre} 
+                    />
             </View>
         );
     }
@@ -45,7 +73,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white', 
-        alignItems: 'center',
+        alignSelf: 'stretch',
         justifyContent: 'center',
     }
 });
