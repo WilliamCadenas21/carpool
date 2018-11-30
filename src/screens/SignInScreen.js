@@ -1,9 +1,10 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TextInput,
-  StatusBar,SafeAreaView, TouchableOpacity,
-  ScrollView, Alert, ActivityIndicator} from 'react-native';
+  StatusBar, SafeAreaView, TouchableOpacity,
+  ScrollView, Alert, ActivityIndicator } from 'react-native';
 
 const urlMainLogo = require('../assets/images/main_logo.jpg');
+
 export default class SignInScreen extends React.Component {
   static navigationOptions = {
     headerTransparent: true,
@@ -12,12 +13,58 @@ export default class SignInScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      names:'',
-      lastNames:'',
-      email:'',
-      password1:'',
-      password2:'',
+      names: '',
+      lastNames: '',
+      email: '',
+      password1: '',
+      password2: '',
       charging: false,
+    };
+  }
+
+  singIn = ()=>{
+    strEmail = this.state.email.split('@');
+    if(strEmail[1]=='uninorte.edu.co'){
+      if(this.state.password1 == this.state.password2){
+        this.setState(previousState => ({charging: true}))
+        fetch('https://carpool-back.herokuapp.com/users/create',{
+          method:'POST',
+          headers:{
+            'Accept':'application/json',
+            'Content-Type':'application/json'
+          },
+          body: JSON.stringify({
+            nombres: this.state.names,
+            apellidos: this.state.lastNames,
+            email_id: this.state.email,
+            contraseña: this.state.password1 
+          })
+        })
+        .then( response => response.json())
+        .then( res =>{
+          if(res.success === true){
+            this.setState(previousState => ({charging: false}))
+            Alert.alert('Mensaje',
+              'Registro exitoso, valide su correo para poder ingresar',
+              [{text: 'OK'},],)
+            this.props.navigation.navigate('Home');
+          }else{
+            this.setState(previousState => ({charging: false}))
+            Alert.alert('Mensaje',
+            res.message,
+            [{text: 'OK'},],)
+          }
+        })
+        .done();
+      }else{
+        Alert.alert('Advertencia',
+        'la contraseñas no son iguales, por favor intentelo de nuevo',
+        [{text: 'OK'},],)
+      }
+    }else{
+      Alert.alert('Advertencia',
+        'su correo electronico debe pertenecer al dominio @uninorte.edu.co',
+        [{text: 'OK'},],)
     }
   }
   
@@ -102,83 +149,37 @@ export default class SignInScreen extends React.Component {
     );
   }
 
-  singIn = ()=>{
-    strEmail = this.state.email.split('@');
-    if(strEmail[1]=='uninorte.edu.co'){
-      if(this.state.password1 == this.state.password2){
-        this.setState(previousState => ({charging: true}))
-        fetch('https://carpool-back.herokuapp.com/users/create',{
-          method:'POST',
-          headers:{
-            'Accept':'application/json',
-            'Content-Type':'application/json'
-          },
-          body: JSON.stringify({
-            nombres: this.state.names,
-            apellidos: this.state.lastNames,
-            email_id: this.state.email,
-            contraseña: this.state.password1 
-          })
-        })
-        .then( response => response.json())
-        .then( res =>{
-          if(res.success === true){
-            this.setState(previousState => ({charging: false}))
-            Alert.alert('Mensaje',
-              'Registro exitoso, valide su correo para poder ingresar',
-              [{text: 'OK'},],)
-            this.props.navigation.navigate('Home');
-          }else{
-            this.setState(previousState => ({charging: false}))
-            Alert.alert('Mensaje',
-            res.message,
-            [{text: 'OK'},],)
-          }
-        })
-        .done();
-      }else{
-        Alert.alert('Advertencia',
-        'la contraseñas no son iguales, por favor intentelo de nuevo',
-        [{text: 'OK'},],)
-      }
-    }else{
-      Alert.alert('Advertencia',
-        'su correo electronico debe pertenecer al dominio @uninorte.edu.co',
-        [{text: 'OK'},],)
-    }
-  }
-
-};
+}
 
 const styles = StyleSheet.create({
-  container:{ 
+  container: { 
     flex: 1,
     backgroundColor: 'white', 
     flexDirection: 'column',
-    justifyContent:'center',
+    justifyContent: 'center',
   },
-  innerContainer:{ 
+  innerContainer: { 
     flex: 1,
     backgroundColor: 'white', 
     flexDirection: 'column',
-    justifyContent:'center',
-    paddingHorizontal:20,
+    justifyContent: 'center',
+    paddingHorizontal: 20,
   },
-  logoContainer:{
+  logoContainer: {
     alignItems: 'center',
-    marginBottom:0,
+    marginBottom: 0,
   },
   logo: {
     width: 250,
     height: 150,
     resizeMode: 'contain',
   },
-  textInput:{
+  textInput: {
     alignSelf: 'stretch',
     backgroundColor: 'rgba(255,255,255,0.2)',
     borderColor: 'gray', 
-    borderWidth:1,
-    marginBottom:10,
+    borderWidth: 1,
+    marginBottom: 10,
     paddingVertical: 10,
     paddingHorizontal: 16,
     borderRadius: 15,
@@ -202,8 +203,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
   },
-  terms:{
-    color:'blue',
-    textDecorationLine:'underline',
+  terms: {
+    color: 'blue',
+    textDecorationLine: 'underline',
   },
 });

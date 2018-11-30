@@ -12,7 +12,7 @@ export default class LogInScreen extends React.Component {
   static navigationOptions = {
     headerTransparent: true,
   };
-   
+
   constructor(props) {
     super(props);
     this.state = {
@@ -21,7 +21,7 @@ export default class LogInScreen extends React.Component {
       charging: false,
     };
   }
-
+  
   signIn = async (res) => {
     try {
       await AsyncStorage.setItem('userToken', 'william');
@@ -36,7 +36,7 @@ export default class LogInScreen extends React.Component {
       alert(error);
     }
   }
-
+  
   login = ()=>{
     if(!this.state.email || !this.state.password){
       Alert.alert('Advertencia','nigun campo puede estar vacio',[{text: 'OK'},],)
@@ -57,12 +57,11 @@ export default class LogInScreen extends React.Component {
         })
         .then( response => response.json())
         .then( res =>{
-          if(res.success === true){ 
-            this.setState(previousState => ({charging: false}))
-            alert(res.carrera);
+          if (res.success === true){ 
+            this.setState(() => ({ charging: false }));
             this.signIn(res);
             this.props.navigation.navigate('App');
-          }else{
+          } else {
             this.setState(previousState => ({charging: false}));
             Alert.alert('Mensaje',res.message+'',[{text: 'OK'}],);
           }
@@ -97,16 +96,16 @@ export default class LogInScreen extends React.Component {
               returnKeyType='go'
               autoCapitalize= 'none'
               autoCorrect={false}
-              onSubmitEditing={()=> this.refs.txtPassword.focus()}
+              onSubmitEditing={()  => this.refs.txtPassword.focus()}
               />
 
               <TextInput placeholder={'Contraseña'} 
               style={styles.textInput}
-              onChangeText={(password)=> this.setState({password})}
+              onChangeText={(password) => this.setState({ password })}
               returnKeyType='go'
               secureTextEntry={true}
               autoCorrect={false}
-              ref={"txtPassword"}
+              ref={'txtPassword'}
               /> 
 
               <TouchableOpacity style={styles.button}

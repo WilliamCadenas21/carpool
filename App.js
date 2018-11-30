@@ -16,12 +16,12 @@ import LogInScreen from './src/screens/LogInScreen';
 import TermScreen from './src/screens/TermScreen';
 import HomeScreen from './src/screens/HomeScreen';
 import MapScreen from './src/screens/MapScreen';
-import AuthLoadingScreen from "./src/screens/AuthLoadingScreen";
-import FeedScreen from "./src/screens/FeedScreen";
-import SettingsScreen from "./src/screens/SettingsScreen";
-import ProfileScreen from "./src/screens/ProfileScreen";
+import AuthLoadingScreen from './src/screens/AuthLoadingScreen';
+import FeedScreen from './src/screens/FeedScreen';
+import SettingsScreen from './src/screens/SettingsScreen';
+import ProfileScreen from './src/screens/ProfileScreen';
 //componets
-import CustomDrawerContentComponent from "./src/components/CustomDrawerContentComponent";
+import CustomDrawerContentComponent from './src/components/CustomDrawerContentComponent';
 
 /*
 git stash //for stash any change in your repo 
@@ -38,7 +38,7 @@ AIzaSyATDEQerU5jm_UjxvncQAdI0BXjTc7XoCs
 */
 /* 
 build on android
-gradlew assembleRelease
+cd C:\Users\will\Desktop\carpool\android && gradlew assembleRelease
 */
 const AuthStackNavigator = createStackNavigator(
   {

@@ -5,7 +5,8 @@ import {
     Text,
     AsyncStorage,
     StatusBar,
-    TouchableOpacity
+    TouchableOpacity,
+    TextInput
 } from 'react-native';
 
 export default class ProfilInfoComponent extends Component {
@@ -34,9 +35,28 @@ export default class ProfilInfoComponent extends Component {
             <View style={styles.headerBackground}>
                 <StatusBar barStyle='dark-content' backgroundColor='white' />
                 <View style={styles.header}>
-                    <Text style={styles.text}>{this.state.email}</Text>
-                    <Text style={styles.text}>{this.state.carrera}</Text>
-                    <Text style={styles.text}>{this.state.semestre} Semestre</Text>
+                    
+                    <TextInput 
+                        value={this.state.email} style={styles.textInput}
+                        onChangeText={(email) => this.setState({ email })}
+                        returnKeyType='next'
+                        autoCorrect={false}
+                        editable={false}
+                    />
+                    <TextInput 
+                        value={this.state.carrera} style={styles.textInput}
+                        onChangeText={(carrera) => this.setState({ carrera })}
+                        returnKeyType='next'
+                        autoCorrect={false}
+                        editable={false}
+                    />
+                    <TextInput 
+                        value={this.state.semestre} style={styles.textInput}
+                        onChangeText={(semestre) => this.setState({ semestre })}
+                        returnKeyType='next'
+                        autoCorrect={false}
+                        editable={false}
+                    />
                     <View style={styles.footer}>
                         <TouchableOpacity style={styles.button1}>
                             <Text style={styles.buttonText}>Agregar Horario</Text>
@@ -45,6 +65,7 @@ export default class ProfilInfoComponent extends Component {
                             <Text style={styles.buttonText}>Agregar Ubicacion</Text> 
                         </TouchableOpacity>
                     </View>
+                    
                 </View>
             </View> 
         );
