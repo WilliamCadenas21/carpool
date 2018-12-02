@@ -24,8 +24,9 @@ export default class ProfileScreen extends Component {
             carrera: '',
             semestre: '',
             editable: false,
+            firstCharge: true,
         };
-        this.loadInfo();
+        if (this.state.firstCharge === true) this.loadInfo();
     }
 
     loadInfo = async () => {
