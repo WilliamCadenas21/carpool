@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, 
+import {
   View, 
   StyleSheet,
   StatusBar,
@@ -10,13 +10,13 @@ export default class MapScreen extends React.Component {
   render() {
     return (
         <View style={styles.container}>
-          <StatusBar barStyle='dark-content' backgroundColor='white'/>
+          <StatusBar barStyle='dark-content' backgroundColor='white' />
           <MapView 
             style={styles.map}
             provider={PROVIDER_GOOGLE} // remove if not using Google Maps
             region={{
               latitude: 11.004107,
-              longitude: -74.806984,
+              longitude: -74.806984, 
               latitudeDelta: 0.015,
               longitudeDelta: 0.0121, 
             }}
@@ -24,7 +24,7 @@ export default class MapScreen extends React.Component {
         </View>
     ); 
   }
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -36,11 +36,12 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'center',
   },
-  map:{
+  map: {
     position: 'absolute',
     top: 0,
     left: 0,
     bottom: 0,
     right: 0,
   },
-}) ;
+});
+

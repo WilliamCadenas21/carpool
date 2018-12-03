@@ -4,9 +4,6 @@ import {
     StyleSheet,
     Text,
     StatusBar,
-    TouchableOpacity,
-    TextInput,
-    Picker,
     ScrollView,
 } from 'react-native';
 
@@ -22,39 +19,27 @@ export default class ProfilInfoComponent extends Component {
                             <Text style={styles.textForInput}>
                                 Correo:
                             </Text>
-                            <TextInput 
-                                value={this.props.email} style={styles.textInput}
-                                onChangeText={(email) => this.setState({ email })}
-                                returnKeyType='next'
-                                autoCorrect={false}
-                                editable={false}
-                            />
+                            <Text style={styles.textForInput}>
+                                {this.props.email}
+                            </Text>
                         </View>
     
                         <View style={styles.row}>
                             <Text style={styles.textForInput}>
                                 Carrera:
                             </Text>
-                            <TextInput 
-                                value={this.props.carrera} style={styles.textInput}
-                                onChangeText={(carrera) => this.setState({ carrera })}
-                                returnKeyType='next'
-                                autoCorrect={false}
-                                editable={false}
-                            />
+                            <Text style={styles.textForInput}>
+                                {this.props.carrera}
+                            </Text>
                         </View>
 
                         <View style={styles.row}>
                             <Text style={styles.textForInput}>
                                 Semestre:
                             </Text>
-                            <TextInput 
-                                value={this.props.semestre} style={styles.textInput}
-                                onChangeText={(semestre) => this.setState({ semestre })}
-                                returnKeyType='next'
-                                autoCorrect={false}
-                                editable={false}
-                            />
+                            <Text style={styles.textForInput}>
+                                {this.props.semestre}
+                            </Text>
                             {/*<Picker
                                 selectedValue={this.state.language}
                                 style={{ height: 50, width: 100 }}
@@ -78,41 +63,19 @@ export default class ProfilInfoComponent extends Component {
                             <Text style={styles.textForInput}>
                                 Dirección:
                             </Text>
-                            <TextInput 
-                                value={this.props.direccion} style={styles.textInput}
-                                onChangeText={(direccion) => this.setState({ direccion })}
-                                returnKeyType='next'
-                                autoCorrect={false}
-                                editable={false}
-                            />
+                            <Text style={styles.textForInput}>
+                                {this.props.direccion}
+                            </Text>
                         </View>
 
                         <View style={styles.row}>
                             <Text style={styles.textForInput}>
                                 Barrio:
                             </Text>
-                            <TextInput 
-                                value={this.props.barrio} style={styles.textInput}
-                                onChangeText={(barrio) => this.setState({ barrio })}
-                                returnKeyType='next'
-                                autoCorrect={false}
-                                editable={false}
-                            />
+                            <Text style={styles.textForInput}>
+                                {this.props.barrio}
+                            </Text>
                         </View>
-
-                        <View style={styles.footer}>
-                            <TouchableOpacity style={styles.button1}>
-                                <Text style={styles.buttonText}>Agregar Horario</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.button2} >
-                                <Text style={styles.buttonText}>Agregar Ubicacion</Text> 
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.button2} >
-                                <Text style={styles.buttonText}>Editar</Text> 
-                            </TouchableOpacity>
-                        </View>
-
-
                     </ScrollView>
                 </View>
             </View> 
@@ -143,6 +106,7 @@ const styles = StyleSheet.create({
     },
     textForInput: {
         paddingTop: 15,
+        paddingRight: 10,
     },
     footer: {
         marginTop: 30,

@@ -1,18 +1,18 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
     View,
     StyleSheet,
-    ScrollView,
     AsyncStorage,
-    StatusBar
-} from "react-native";
+    StatusBar,
+    TouchableOpacity,
+    Text,
+} from 'react-native';
 
-import {Icon, Header, Left, Right} from 'native-base';
 import ProfileHeaderComponent from '../components/ProfileHeaderComponent';
 import ProfileInfoComponent from '../components/ProfileInfoComponent';
 
 export default class ProfileScreen extends Component {
-
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -23,12 +23,10 @@ export default class ProfileScreen extends Component {
             email: '',
             carrera: '',
             semestre: '',
-            editable: false,
-            firstCharge: true,
         };
-        if (this.state.firstCharge === true) this.loadInfo();
+        this.loadInfo();
     }
-
+    
     loadInfo = async () => {
         const namesStorage = await AsyncStorage.getItem('names');
         const lastNamesStorage = await AsyncStorage.getItem('lastNames');
@@ -44,13 +42,14 @@ export default class ProfileScreen extends Component {
         this.setState(() => ({ email: emailStorage }));
         this.setState(() => ({ carrera: carreraStorage }));
         this.setState(() => ({ semestre: semestreStorage }));
+        this.setState(() => ({ firstCharge: false }));
     }
-
     render() {
         return (
             <View style={styles.container}>
                 <StatusBar barStyle='dark-content' backgroundColor='white' />
                     <ProfileHeaderComponent 
+                        navigation={this.props.navigation}
                         names={this.state.names} 
                         lastNames={this.state.lastNames}
                         direccion={this.state.direccion} 
@@ -65,6 +64,14 @@ export default class ProfileScreen extends Component {
                         carrera={this.state.carrera} 
                         semestre={this.state.semestre} 
                     />
+                    <View style={styles.footer}>
+                        <TouchableOpacity style={styles.button1}>
+                            <Text style={styles.buttonText}>Agregar Horario</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.button2} >
+                            <Text style={styles.buttonText}>Agregar Ubicacion</Text> 
+                        </TouchableOpacity>
+                    </View>
             </View>
         );
     }
@@ -76,5 +83,31 @@ const styles = StyleSheet.create({
         backgroundColor: 'white', 
         alignSelf: 'stretch',
         justifyContent: 'center',
-    }
+    },
+    buttonText: {
+        textAlign: 'center',
+        color: 'white',
+        fontSize: 14,
+    },
+    footer: {
+        backgroundColor: 'white', 
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        marginBottom: 10,
+    },
+    button1: {
+        backgroundColor: '#ECA228', //naranja
+        padding: 15,
+        alignItems: 'center',
+        borderRadius: 20, 
+        height: 50,
+        
+    },
+    button2: {
+        backgroundColor: '#237EE7', //naranja
+        padding: 15,
+        alignItems: 'center',
+        borderRadius: 20,
+        height: 50,
+    },
 });

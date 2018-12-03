@@ -2,7 +2,7 @@ import { createSwitchNavigator,
     createStackNavigator, 
     createDrawerNavigator,
     DrawerItems, 
-} from 'react-navigation'
+} from 'react-navigation';
 
 import { 
     View, 
@@ -18,7 +18,7 @@ import {
     Content,
     Header,
     Body,
-} from 'native-base'
+} from 'native-base';
 import React from 'react';
 
 const CustomDrawerContentComponent = (props) => (

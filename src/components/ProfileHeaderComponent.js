@@ -4,19 +4,29 @@ import {
     StyleSheet,
     Text,
     StatusBar,
-    Image
+    Image,
+    TouchableOpacity,
 } from 'react-native';
+import { Icon } from 'native-base';
 
 const image = require('../assets/images/userImage.jpg');
 
-export default class ProfileScreen extends Component {
+export default class ProfileHeaderComponent extends Component {
 
     render() {
         return (
             <View style={styles.headerBackground}>
                 <StatusBar barStyle='dark-content' backgroundColor='white' />
                 <View style={styles.header}>
-                    <Text style={styles.name}>{this.props.names} {this.props.lastNames}</Text>   
+                    <View style={styles.row}>                    
+                        <TouchableOpacity 
+                            style={styles.create} 
+                            onPress={() => this.props.navigation.navigate('Edit')}
+                        >
+                            <Icon name="create" />
+                        </TouchableOpacity>
+                    </View>
+                    <Text style={styles.name}>{this.props.names} {this.props.lastNames}</Text> 
                     <Image 
                     style={styles.profilepic} 
                     source={image} 
@@ -36,6 +46,23 @@ const styles = StyleSheet.create({
         borderColor: '#8fbbfc',
         borderWidth: 0,
         height: 250,
+    },
+    row: {
+        flex: 1,
+        alignSelf: 'flex-end',
+        flexDirection: 'row',
+    },
+    create: {
+        paddingBottom: 40,
+        paddingLeft: 10,
+        paddingTop: 10,
+        paddingRight: 10,
+        marginHorizontal: 5,
+    },
+    buttonText: {
+        textAlign: 'center',
+        color: 'white',
+        fontSize: 14,
     },
     header: {
         flex: 1,

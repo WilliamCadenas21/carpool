@@ -11,6 +11,7 @@ import {
 import { 
   Icon
 } from 'native-base';
+//Screens
 import SignInScreen from './src/screens/SignInScreen';
 import LogInScreen from './src/screens/LogInScreen';
 import TermScreen from './src/screens/TermScreen';
@@ -20,8 +21,10 @@ import AuthLoadingScreen from './src/screens/AuthLoadingScreen';
 import FeedScreen from './src/screens/FeedScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
+import EditScreen from './src/screens/EditScreen';
 //componets
 import CustomDrawerContentComponent from './src/components/CustomDrawerContentComponent';
+
 
 /*
 git stash //for stash any change in your repo 
@@ -66,6 +69,12 @@ const AppStackNavigator = createStackNavigator(
   {
     Perfil: {
       screen: ProfileScreen,
+      navigationOptions: () => ({
+        headerTransparent: true,
+      }),
+    },
+    Edit: {
+      screen: EditScreen,
       navigationOptions: () => ({
         headerTransparent: true,
       }),

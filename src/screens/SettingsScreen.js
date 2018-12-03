@@ -1,17 +1,18 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
     View,
     StyleSheet,
     Button,
     AsyncStorage,
     StatusBar
-} from "react-native";
+} from 'react-native';
 
 export default class SettingsScreen extends Component {
-    static navigationOptions = { title: 'Cerrar Sesión'};
+    static navigationOptions = { title: 'Cerrar Sesión'} ;
+    
     signOut = async () => {
-        AsyncStorage.clear()
-        this.props.navigation.navigate('AuthLoading')
+        AsyncStorage.clear();
+        this.props.navigation.navigate('AuthLoading');
     }
 
     render() {
