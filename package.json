@@ -5,7 +5,10 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
-    "postinstall": "./node_modules/react-native-maps/enable-google-maps ./ios"
+    "postinstall": "./node_modules/react-native-maps/enable-google-maps ./ios",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "redmi4x": "cd C:/Users/will/AppData/Local/Android/Sdk/platform-tools && adb -s bccfda2c7d34 reverse tcp:8081 tcp:8081"
   },
   "dependencies": {
     "native-base": "^2.8.1",
@@ -19,7 +22,7 @@
     "eslint-config-rallycoding": "^3.2.0",
     "jest": "23.6.0",
     "metro-react-native-babel-preset": "0.49.0",
-    "react-test-renderer": "16.6.0-alpha.8af6728",
+    "react-test-renderer": "16.6.3",
     "solidarity": "^2.1.0",
     "solidarity-react-native": "^2.0.2"
   },

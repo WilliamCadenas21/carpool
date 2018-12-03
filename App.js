@@ -23,12 +23,12 @@ import FeedScreen from './src/screens/FeedScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
 import EditScreen from './src/screens/EditScreen';
-//componets
+//components
 import CustomDrawerContentComponent from './src/components/CustomDrawerContentComponent';
 
 
 /*
-git stash //for stash any change in your repo 
+git stash //for stash any change in your repository 
 */
 /*redmi 4x
 cd C:\Users\will\AppData\Local\Android\Sdk\platform-tools && adb -s bccfda2c7d34 reverse tcp:8081 tcp:8081
