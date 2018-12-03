@@ -18,23 +18,23 @@ export default class ProfileHeaderComponent extends Component {
             <View style={styles.headerBackground}>
                 <StatusBar barStyle='dark-content' backgroundColor='white' />
                 <View style={styles.header}>
-                    <View style={styles.row}>                    
-                        <TouchableOpacity 
-                            style={styles.create} 
+                    <View style={styles.row}>
+                        <TouchableOpacity
+                            style={styles.create}
                             onPress={() => this.props.navigation.navigate('Edit')}
                         >
                             <Icon name="create" />
                         </TouchableOpacity>
                     </View>
-                    <Text style={styles.name}>{this.props.names} {this.props.lastNames}</Text> 
-                    <Image 
-                    style={styles.profilepic} 
-                    source={image} 
-                    />  
+                    <Text style={styles.name}>{this.props.names} {this.props.lastNames}</Text>
+                    <Image
+                        style={styles.profilepic}
+                        source={image}
+                    />
                     <Text style={styles.text}>{this.props.direccion}</Text>
                     <Text style={styles.text}>{this.props.barrio}</Text>
                 </View>
-            </View> 
+            </View>
         );
     }
 }
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
         borderRadius: 100,
         borderColor: '#ECA228',
         marginBottom: 5,
-        borderWidth: 5,
+        borderWidth: 2,
     },
     name: {
         marginTop: 10,

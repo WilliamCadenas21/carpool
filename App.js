@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import { createSwitchNavigator, 
-  createStackNavigator, 
+import {
+  createSwitchNavigator,
+  createStackNavigator,
   createDrawerNavigator,
 } from 'react-navigation';
-import { 
-  View, 
+import {
+  View,
   TouchableOpacity,
 } from 'react-native';
 
-import { 
+import {
   Icon
 } from 'native-base';
 //Screens
@@ -47,9 +48,9 @@ cd C:\Users\will\Desktop\carpool\android && gradlew assembleRelease
 export default class App extends Component {
 
   render() {
-      return (
-        <SwitchNavigator />
-      );
+    return (
+      <SwitchNavigator />
+    );
   }
 }
 
@@ -113,7 +114,7 @@ const AppStackNavigator = createStackNavigator(
     }
   },
   {
-    initialRouteName: 'Feed' 
+    initialRouteName: 'Feed'
   }
 );
 
@@ -123,10 +124,10 @@ const AppDrawerNavigator = createDrawerNavigator({
   Map: MapScreen,
   Terminos: TermScreen,
   Setting: SettingsScreen,
-}, 
-{
-  contentComponent: CustomDrawerContentComponent,
-});
+},
+  {
+    contentComponent: CustomDrawerContentComponent,
+  });
 
 const SwitchNavigator = createSwitchNavigator({
   AuthLoading: AuthLoadingScreen,
