@@ -19,6 +19,7 @@ export default class ProfileHeaderComponent extends Component {
                 <StatusBar barStyle='dark-content' backgroundColor='white' />
                 <View style={styles.header}>
                     <View style={styles.row}>
+                    
                         <TouchableOpacity
                             style={styles.create}
                             onPress={() => this.props.navigation.navigate('Edit')}
@@ -27,10 +28,14 @@ export default class ProfileHeaderComponent extends Component {
                         </TouchableOpacity>
                     </View>
                     <Text style={styles.name}>{this.props.names} {this.props.lastNames}</Text>
-                    <Image
-                        style={styles.profilepic}
-                        source={image}
-                    />
+                    <View style={styles.profilePicWrapper}>
+                                <TouchableOpacity>
+                                    <Image
+                                        style={styles.profilePic}
+                                        source={image}
+                                    />
+                                </TouchableOpacity>
+                            </View>
                     <Text style={styles.text}>{this.props.direccion}</Text>
                     <Text style={styles.text}>{this.props.barrio}</Text>
                 </View>
@@ -70,13 +75,22 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: '#e3ebf7',
     },
-    profilepic: {
+    profilePic: {
         width: 150,
         height: 150,
         borderRadius: 100,
         borderColor: '#ECA228',
-        marginBottom: 5,
         borderWidth: 2,
+    },
+    profilePicWrapper: {
+        width: 160,
+        height: 160,
+        borderRadius: 100,
+        borderColor: '#237EE7',
+        marginBottom: 5,
+        borderWidth: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     name: {
         marginTop: 10,

@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 export default class SettingsScreen extends Component {
-    static navigationOptions = { title: 'Cerrar Sesión'} ;
+    static navigationOptions = { title: 'Cerrar Sesión' } ;
     
     signOut = async () => {
         AsyncStorage.clear();

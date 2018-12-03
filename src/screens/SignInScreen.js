@@ -25,51 +25,60 @@ export default class SignInScreen extends React.Component {
     };
   }
 
-  singIn = () => {
+  validate = () => {
     Keyboard.dismiss();
-    const strEmail = this.state.email.split('@');
-    if (strEmail[1] === 'uninorte.edu.co') {
-      if (this.state.password1 === this.state.password2) {
-        this.setState(() => ({ charging: true }));
-        fetch('https://carpool-back.herokuapp.com/users/create', {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            nombres: this.state.names,
-            apellidos: this.state.lastNames,
-            email_id: this.state.email,
-            contraseña: this.state.password1
-          })
-        })
-          .then(response => response.json())
-          .then(res => {
-            if (res.success === true) {
-              this.setState(() => ({ charging: false }));
-              Alert.alert('Mensaje',
-                'Registro exitoso, valide su correo para poder ingresar',
-                [{ text: 'OK' }]);
-              this.props.navigation.navigate('Home');
-            } else {
-              this.setState(() => ({ charging: false }));
-              Alert.alert('Mensaje',
-                res.message,
-                [{ text: 'OK' }]);
-            }
-          })
-          .done();
-      } else {
-        Alert.alert('Advertencia',
-          'la contraseñas no son iguales, por favor intentelo de nuevo',
-          [{ text: 'OK' }]);
-      }
+    if (!this.state.email || !this.state.password1 || !this.state.password2
+      || !this.state.names || !this.state.lastNames) {
+      Alert.alert('Advertencia', 'ningún campo puede estar vacío', [{ text: 'OK' }]);
     } else {
-      Alert.alert('Advertencia',
-        'su correo electronico debe pertenecer al dominio @uninorte.edu.co',
-        [{ text: 'OK' }]);
+      const strEmail = this.state.email.split('@');
+      if (strEmail[1] !== 'uninorte.edu.co') {
+        Alert.alert('Advertencia',
+          'su correo electronico debe pertenecer al dominio @uninorte.edu.co',
+          [{ text: 'OK' }]);
+      } else if (this.state.password1 !== this.state.password2) {
+        Alert.alert('Advertencia',
+          'la contraseñas no son iguales, por favor intentalo de nuevo',
+          [{ text: 'OK' }]);
+          this.setState(() => ({ password1: '' }));
+          this.setState(() => ({ password2: '' }));
+      } else {
+        this.singIn();
+      }
     }
+  }
+
+  singIn = () => {
+    this.setState(() => ({ charging: true }));
+    fetch('https://carpool-back.herokuapp.com/users/create', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        nombres: this.state.names,
+        apellidos: this.state.lastNames,
+        email_id: this.state.email,
+        contraseña: this.state.password1
+      })
+    })
+      .then(response => response.json())
+      .then(res => {
+        if (res.success === true) {
+          this.setState(() => ({ charging: false }));
+          Alert.alert('Mensaje',
+            'Registro exitoso, valide su correo para poder ingresar',
+            [{ text: 'OK' }]);
+          this.props.navigation.navigate('Home');
+        } else {
+          this.setState(() => ({ charging: false }));
+          Alert.alert('Mensaje',
+            res.message,
+            [{ text: 'OK' }]);
+        }
+      })
+      .done();
   }
 
   render() {
@@ -87,7 +96,7 @@ export default class SignInScreen extends React.Component {
             </View>
 
             <View style={{ alignItems: 'center', marginBottom: 10 }}>
-              {this.state.charging ? <ActivityIndicator /> : <Text></Text>}
+              {this.state.charging && <ActivityIndicator />}
             </View>
 
             <TextInput
@@ -103,7 +112,7 @@ export default class SignInScreen extends React.Component {
               onChangeText={(lastNames) => this.setState({ lastNames })}
               returnKeyType='next'
               autoCorrect={false}
-              ref={"txtApellidos"}
+              ref={'txtApellidos'}
               onSubmitEditing={() => this.refs.txtEmail.focus()}
             />
 
@@ -114,7 +123,7 @@ export default class SignInScreen extends React.Component {
               returnKeyType='next'
               autoCorrect={false}
               autoCapitalize='none'
-              ref={"txtEmail"}
+              ref={'txtEmail'}
               onSubmitEditing={() => this.refs.txtPassword1.focus()}
             />
 
@@ -123,8 +132,9 @@ export default class SignInScreen extends React.Component {
               onChangeText={(password1) => this.setState({ password1 })}
               returnKeyType='next'
               autoCorrect={false}
-              ref={"txtPassword1"}
-              secureTextEntry={true}
+              value={this.state.password1}
+              ref={'txtPassword1'}
+              secureTextEntry
               onSubmitEditing={() => this.refs.txtPassword2.focus()}
             />
 
@@ -132,32 +142,33 @@ export default class SignInScreen extends React.Component {
               placeholder={'Confirmar contraseña'} style={styles.textInput}
               onChangeText={(password2) => this.setState({ password2 })}
               autoCorrect={false}
-              secureTextEntry={true}
-              ref={"txtPassword2"}
-              onSubmitEditing={this.singIn}
+              secureTextEntry
+              value={this.state.password2}
+              ref={'txtPassword2'}
+              onSubmitEditing={this.validate}
             />
 
             <TouchableOpacity
               style={styles.button}
-              onPress={this.singIn}
+              onPress={this.validate}
             >
               <Text style={styles.buttonText}>Registrase</Text>
             </TouchableOpacity>
 
             <Text style={styles.footer}>Al crear una cuenta, aceptas nuestros
                 <Text
-                  style={styles.terms}
-                  onPress={() => this.props.navigation.navigate('Terms')}
-                >
-                terminos y condiciones
+                style={styles.terms}
+                onPress={() => this.props.navigation.navigate('Terms')}
+              >
+                términos y condiciones
                 </Text>
             </Text>
 
             <Text style={styles.footer}>¿Ya tienes una cuenta?
                 <Text
-                  style={styles.terms}
-                  onPress={() => this.props.navigation.navigate('Log_in')}
-                > 
+                style={styles.terms}
+                onPress={() => this.props.navigation.navigate('Log_in')}
+              >
                 Inicia sesión aquí
                 </Text>
             </Text>

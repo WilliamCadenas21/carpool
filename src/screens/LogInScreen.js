@@ -24,7 +24,7 @@ export default class LogInScreen extends React.Component {
     };
   }
 
-  signIn = async (res) => {
+  setInfo = async (res) => {
     try {
       await AsyncStorage.setItem('userToken', 'william');
       await AsyncStorage.setItem('names', res.names);
@@ -38,48 +38,53 @@ export default class LogInScreen extends React.Component {
       await AsyncStorage.setItem('placa', res.placa + '');
     } catch (error) {
       Alert.alert('Advertencia',
-        'ocurrio un error al cargar la informcacion del usuario',
+        'ocurrió un error al cargar la información del usuario',
         [{ text: 'OK' }]);
     }
   }
 
-  logIn = () => {
+  validate = () => {
     Keyboard.dismiss();
     if (!this.state.email || !this.state.password) {
-      Alert.alert('Advertencia', 'nigun campo puede estar vacio', [{ text: 'OK' }]);
+      Alert.alert('Advertencia', 'ningún campo puede estar vacío', [{ text: 'OK' }]);
     } else {
       const strEmail = this.state.email.split('@');
-      if (strEmail[1] === 'uninorte.edu.co') {
-        this.setState(() => ({ charging: true }));
-        fetch('https://carpool-back.herokuapp.com/users/login', {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email_id: this.state.email,
-            password: this.state.password
-          })
-        })
-          .then(response => response.json())
-          .then(res => {
-            if (res.success === true) {
-              this.setState(() => ({ charging: false }));
-              this.signIn(res);
-              this.props.navigation.navigate('App');
-            } else {
-              this.setState(() => ({ charging: false }));
-              Alert.alert('Mensaje', res.message + '', [{ text: 'OK' }]);
-            }
-          })
-          .done();
-      } else {
+      if (!(strEmail[1] === 'uninorte.edu.co')) {
         Alert.alert('Advertencia',
           'su correo electronico debe pertenecer al dominio @uninorte.edu.co',
           [{ text: 'OK' }]);
+      } else {
+        this.logIn();
       }
     }
+  }
+
+  logIn = () => {
+
+    this.setState(() => ({ charging: true }));
+    fetch('https://carpool-back.herokuapp.com/users/login', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email_id: this.state.email,
+        password: this.state.password
+      })
+    })
+      .then(response => response.json())
+      .then(res => {
+        if (res.success === true) {
+          this.setState(() => ({ charging: false }));
+          this.setInfo(res);
+          this.props.navigation.navigate('App');
+        } else {
+          this.setState(() => ({ charging: false }));
+          Alert.alert('Mensaje', res.message + '', [{ text: 'OK' }]);
+        }
+      })
+      .done();
   }
 
   render() {
@@ -93,7 +98,7 @@ export default class LogInScreen extends React.Component {
             </View>
 
             <View style={{ alignItems: 'center', marginBottom: 10 }}>
-              {this.state.charging ? <ActivityIndicator /> : <Text />}
+              {this.state.charging && <ActivityIndicator />}
             </View>
 
             <TextInput
@@ -101,7 +106,7 @@ export default class LogInScreen extends React.Component {
               style={styles.textInput}
               onChangeText={(email) => this.setState({ email })}
               keyboardType='email-address'
-              returnKeyType='go'
+              returnKeyType='next'
               autoCapitalize='none'
               autoCorrect={false}
               onSubmitEditing={() => this.refs.txtPassword.focus()}
@@ -111,16 +116,15 @@ export default class LogInScreen extends React.Component {
               placeholder={'Contraseña'}
               style={styles.textInput}
               onChangeText={(password) => this.setState({ password })}
-              returnKeyType='go'
               secureTextEntry={true}
               autoCorrect={false}
               ref={'txtPassword'}
-              onSubmitEditing={this.logIn}
+              onSubmitEditing={this.validate}
             />
 
             <TouchableOpacity
               style={styles.button}
-              onPress={this.logIn}
+              onPress={this.validate}
             >
               <Text style={styles.buttonText}>Registrarse</Text>
             </TouchableOpacity>

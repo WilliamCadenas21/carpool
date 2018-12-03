@@ -23,6 +23,7 @@ export default class ProfileScreen extends Component {
             email: '',
             carrera: '',
             semestre: '',
+            age: ''
         };
         this.loadInfo();
     }
@@ -35,6 +36,7 @@ export default class ProfileScreen extends Component {
         const emailStorage = await AsyncStorage.getItem('email');
         const carreraStorage = await AsyncStorage.getItem('carrera');
         const semestreStorage = await AsyncStorage.getItem('semestre');
+        const ageStorage = await AsyncStorage.getItem('age');
         this.setState(() => ({ names: namesStorage }));
         this.setState(() => ({ lastNames: lastNamesStorage }));
         this.setState(() => ({ direccion: direccionStorage }));
@@ -42,8 +44,9 @@ export default class ProfileScreen extends Component {
         this.setState(() => ({ email: emailStorage }));
         this.setState(() => ({ carrera: carreraStorage }));
         this.setState(() => ({ semestre: semestreStorage }));
-        this.setState(() => ({ firstCharge: false }));
+        this.setState(() => ({ age: ageStorage }));
     }
+
     render() {
         return (
             <View style={styles.container}>
@@ -62,14 +65,15 @@ export default class ProfileScreen extends Component {
                         barrio={this.state.barrio}
                         email={this.state.email}
                         carrera={this.state.carrera} 
-                        semestre={this.state.semestre} 
+                        semestre={this.state.semestre}
+                        age={this.state.age}
                     />
                     <View style={styles.footer}>
                         <TouchableOpacity style={styles.button1}>
                             <Text style={styles.buttonText}>Agregar Horario</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.button2} >
-                            <Text style={styles.buttonText}>Agregar Ubicacion</Text> 
+                            <Text style={styles.buttonText}>Agregar Ubicación</Text> 
                         </TouchableOpacity>
                     </View>
             </View>
