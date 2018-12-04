@@ -18,25 +18,6 @@
 		11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		12BD1EA0838F4DD9A469417D /* Roboto_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ACE2961FA751468AB306089E /* Roboto_medium.ttf */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
-		13734E1221B3480F00761650 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13734E1121B3480C00761650 /* GoogleMaps.framework */; };
-		13734E1421B3482200761650 /* GoogleMapsCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13734E1321B3482100761650 /* GoogleMapsCore.framework */; };
-		13734E1621B3484700761650 /* GoogleMapsBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13734E1521B3484600761650 /* GoogleMapsBase.framework */; };
-		13734E1821B3495600761650 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 13734E1721B3495600761650 /* GoogleMaps.bundle */; };
-		13734E1A21B34A3B00761650 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13734E1921B34A3A00761650 /* Accelerate.framework */; };
-		13734E1C21B34A4E00761650 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13734E1B21B34A4E00761650 /* CoreData.framework */; };
-		13734E1E21B34A5800761650 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13734E1D21B34A5800761650 /* CoreGraphics.framework */; };
-		13734E2021B34A6200761650 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13734E1F21B34A6100761650 /* CoreImage.framework */; };
-		13734E2221B34A6C00761650 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13734E2121B34A6B00761650 /* CoreLocation.framework */; };
-		13734E2421B34A7A00761650 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13734E2321B34A7A00761650 /* CoreTelephony.framework */; };
-		13734E2621B34A8300761650 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13734E2521B34A8200761650 /* CoreText.framework */; };
-		13734E2821B34A9100761650 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13734E2721B34A9100761650 /* GLKit.framework */; };
-		13734E2A21B34AA400761650 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13734E2921B34AA400761650 /* ImageIO.framework */; };
-		13734E2C21B34AC900761650 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 13734E2B21B34AC900761650 /* libc++.tbd */; };
-		13734E2E21B34B0C00761650 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 13734E2D21B34B0C00761650 /* libz.tbd */; };
-		13734E3021B34B2000761650 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13734E2F21B34B2000761650 /* OpenGLES.framework */; };
-		13734E3221B34B2B00761650 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13734E3121B34B2B00761650 /* QuartzCore.framework */; };
-		13734E3421B34B3A00761650 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13734E3321B34B3A00761650 /* SystemConfiguration.framework */; };
-		13734E3621B34B4700761650 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13734E3521B34B4600761650 /* UIKit.framework */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
@@ -59,6 +40,7 @@
 		2DCD954D1E0B4F2C00145EB5 /* carpoolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* carpoolTests.m */; };
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		2E0B57F5E9C3483EAC6A217B /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DEAF2DAB47FB4EB790C424D8 /* Zocial.ttf */; };
+		34EB58F6EE311EB71A530094 /* libPods-carpool-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 368F59FF7D64AC03C905F791 /* libPods-carpool-tvOS.a */; };
 		3E3467BFE717405EA441C4A4 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 12DC28C7B4A0428797E3B03C /* Ionicons.ttf */; };
 		3EB6AFF2456541CEA2846259 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09EEE7EA3C2A4952A147CDEA /* Entypo.ttf */; };
 		4221579CF95B4D7F965616C8 /* Roboto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 274A8FD93B9246B79108FB1E /* Roboto.ttf */; };
@@ -68,8 +50,9 @@
 		916E99BDED03472C918940EB /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6089B47692084A04B6DB4E70 /* Foundation.ttf */; };
 		A1BB5827F9344CE49AD3D47D /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F443B9DD23784911B26B8BA1 /* Feather.ttf */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
-		B761B4D18D414F36B3BA00A4 /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 406C1482BE6C46B9BFABAB9C /* libAirMaps.a */; };
 		D00B2504700747AFAD8E6888 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6E720D5271342CAA2D441B5 /* MaterialCommunityIcons.ttf */; };
+		EB9592C1E2C6B750FF67F262 /* libPods-carpool.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F9F07333D448497DF65A4C3 /* libPods-carpool.a */; };
+		EE66FB2179351F3FAF27180F /* libPods-carpool-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F145BA63F7E86C317A849C25 /* libPods-carpool-tvOSTests.a */; };
 		F2B0ECD590294951852CB898 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC280719A6D94CADB4427CAA /* MaterialIcons.ttf */; };
 		FF42031AF53347B2A9B85932 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CDFFC3574E0B43779FF8B8D0 /* FontAwesome.ttf */; };
 /* End PBXBuildFile section */
@@ -123,13 +106,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RCTSettings;
-		};
-		1399243C21B325CA00ECB4F4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8A14FE831C8245DE8295D54E /* AirMaps.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 11FA5C511C4A1296003AC2EE;
-			remoteInfo = AirMaps;
 		};
 		139FDEF31B06529B00C62182 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -368,26 +344,8 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* carpoolTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = carpoolTests.m; sourceTree = "<group>"; };
 		09EEE7EA3C2A4952A147CDEA /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/native-base/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
+		0F9155D278513479E616984F /* Pods-carpool-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-carpool-tvOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-carpool-tvOSTests/Pods-carpool-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		12DC28C7B4A0428797E3B03C /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/native-base/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
-		13734E1121B3480C00761650 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = "../../../../Downloads/GoogleMaps-2.7.0/Maps/Frameworks/GoogleMaps.framework"; sourceTree = "<group>"; };
-		13734E1321B3482100761650 /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsCore.framework; path = "../../../../Downloads/GoogleMaps-2.7.0/Maps/Frameworks/GoogleMapsCore.framework"; sourceTree = "<group>"; };
-		13734E1521B3484600761650 /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsBase.framework; path = "../../../../Downloads/GoogleMaps-2.7.0/Base/Frameworks/GoogleMapsBase.framework"; sourceTree = "<group>"; };
-		13734E1721B3495600761650 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = "../../../../Downloads/GoogleMaps-2.7.0/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle"; sourceTree = "<group>"; };
-		13734E1921B34A3A00761650 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		13734E1B21B34A4E00761650 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		13734E1D21B34A5800761650 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		13734E1F21B34A6100761650 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
-		13734E2121B34A6B00761650 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		13734E2321B34A7A00761650 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
-		13734E2521B34A8200761650 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
-		13734E2721B34A9100761650 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
-		13734E2921B34AA400761650 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
-		13734E2B21B34AC900761650 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
-		13734E2D21B34B0C00761650 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		13734E2F21B34B2000761650 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		13734E3121B34B2B00761650 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		13734E3321B34B3A00761650 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		13734E3521B34B4600761650 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* carpool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = carpool.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -398,17 +356,22 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = carpool/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = carpool/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		220636350EB18E818B82DE59 /* Pods-carpool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-carpool.debug.xcconfig"; path = "Pods/Target Support Files/Pods-carpool/Pods-carpool.debug.xcconfig"; sourceTree = "<group>"; };
 		274A8FD93B9246B79108FB1E /* Roboto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto.ttf; path = "../node_modules/native-base/Fonts/Roboto.ttf"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* carpool-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "carpool-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* carpool-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "carpool-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		406C1482BE6C46B9BFABAB9C /* libAirMaps.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libAirMaps.a; sourceTree = "<group>"; };
+		368F59FF7D64AC03C905F791 /* libPods-carpool-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-carpool-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		43843ED4B2FEBB12A1A5DDDF /* Pods-carpool-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-carpool-tvOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-carpool-tvOSTests/Pods-carpool-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		6089B47692084A04B6DB4E70 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/native-base/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
+		68CBCB1F3EA5B696E805A8AA /* Pods-carpool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-carpool.release.xcconfig"; path = "Pods/Target Support Files/Pods-carpool/Pods-carpool.release.xcconfig"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
-		8A14FE831C8245DE8295D54E /* AirMaps.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = AirMaps.xcodeproj; path = "../node_modules/react-native-maps/lib/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; };
 		8AC3F78678A446ED844AE5E7 /* rubicon-icon-font.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "rubicon-icon-font.ttf"; path = "../node_modules/native-base/Fonts/rubicon-icon-font.ttf"; sourceTree = "<group>"; };
+		912E4B0F290FB9675699AD75 /* Pods-carpool-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-carpool-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-carpool-tvOS/Pods-carpool-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		99572DEDC291311A169EC1B6 /* Pods-carpool-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-carpool-tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-carpool-tvOS/Pods-carpool-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		9F9F07333D448497DF65A4C3 /* libPods-carpool.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-carpool.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACE2961FA751468AB306089E /* Roboto_medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto_medium.ttf; path = "../node_modules/native-base/Fonts/Roboto_medium.ttf"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		BC280719A6D94CADB4427CAA /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/native-base/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
@@ -416,6 +379,7 @@
 		DEAF2DAB47FB4EB790C424D8 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/native-base/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		E6E720D5271342CAA2D441B5 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/native-base/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		EAA5F4EDCF304BE287F98452 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/native-base/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
+		F145BA63F7E86C317A849C25 /* libPods-carpool-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-carpool-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F443B9DD23784911B26B8BA1 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/native-base/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		F8673F0098C94715AF2C8A7D /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/native-base/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		F9E7B989897745A887D6228D /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/native-base/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
@@ -434,21 +398,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13734E3621B34B4700761650 /* UIKit.framework in Frameworks */,
-				13734E3421B34B3A00761650 /* SystemConfiguration.framework in Frameworks */,
-				13734E3221B34B2B00761650 /* QuartzCore.framework in Frameworks */,
-				13734E3021B34B2000761650 /* OpenGLES.framework in Frameworks */,
-				13734E2E21B34B0C00761650 /* libz.tbd in Frameworks */,
-				13734E2C21B34AC900761650 /* libc++.tbd in Frameworks */,
-				13734E2A21B34AA400761650 /* ImageIO.framework in Frameworks */,
-				13734E2821B34A9100761650 /* GLKit.framework in Frameworks */,
-				13734E2621B34A8300761650 /* CoreText.framework in Frameworks */,
-				13734E2421B34A7A00761650 /* CoreTelephony.framework in Frameworks */,
-				13734E2221B34A6C00761650 /* CoreLocation.framework in Frameworks */,
-				13734E2021B34A6200761650 /* CoreImage.framework in Frameworks */,
-				13734E1E21B34A5800761650 /* CoreGraphics.framework in Frameworks */,
-				13734E1C21B34A4E00761650 /* CoreData.framework in Frameworks */,
-				13734E1A21B34A3B00761650 /* Accelerate.framework in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
@@ -456,15 +405,12 @@
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
-				13734E1421B3482200761650 /* GoogleMapsCore.framework in Frameworks */,
 				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
-				13734E1221B3480F00761650 /* GoogleMaps.framework in Frameworks */,
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
-				13734E1621B3484700761650 /* GoogleMapsBase.framework in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				B761B4D18D414F36B3BA00A4 /* libAirMaps.a in Frameworks */,
+				EB9592C1E2C6B750FF67F262 /* libPods-carpool.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,6 +426,7 @@
 				2D02E4C61E0B4AEC006451C7 /* libRCTSettings-tvOS.a in Frameworks */,
 				2D02E4C71E0B4AEC006451C7 /* libRCTText-tvOS.a in Frameworks */,
 				2D02E4C81E0B4AEC006451C7 /* libRCTWebSocket-tvOS.a in Frameworks */,
+				34EB58F6EE311EB71A530094 /* libPods-carpool-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,6 +435,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */,
+				EE66FB2179351F3FAF27180F /* libPods-carpool-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -565,17 +513,8 @@
 		1399243821B31FDF00ECB4F4 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				406C1482BE6C46B9BFABAB9C /* libAirMaps.a */,
 			);
 			name = "Recovered References";
-			sourceTree = "<group>";
-		};
-		1399243921B325CA00ECB4F4 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				1399243D21B325CA00ECB4F4 /* libAirMaps.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		139FDEE71B06529A00C62182 /* Products */ = {
@@ -629,26 +568,10 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				13734E3521B34B4600761650 /* UIKit.framework */,
-				13734E3321B34B3A00761650 /* SystemConfiguration.framework */,
-				13734E3121B34B2B00761650 /* QuartzCore.framework */,
-				13734E2F21B34B2000761650 /* OpenGLES.framework */,
-				13734E2D21B34B0C00761650 /* libz.tbd */,
-				13734E2B21B34AC900761650 /* libc++.tbd */,
-				13734E2921B34AA400761650 /* ImageIO.framework */,
-				13734E2721B34A9100761650 /* GLKit.framework */,
-				13734E2521B34A8200761650 /* CoreText.framework */,
-				13734E2321B34A7A00761650 /* CoreTelephony.framework */,
-				13734E2121B34A6B00761650 /* CoreLocation.framework */,
-				13734E1F21B34A6100761650 /* CoreImage.framework */,
-				13734E1D21B34A5800761650 /* CoreGraphics.framework */,
-				13734E1B21B34A4E00761650 /* CoreData.framework */,
-				13734E1921B34A3A00761650 /* Accelerate.framework */,
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
-				13734E1721B3495600761650 /* GoogleMaps.bundle */,
-				13734E1521B3484600761650 /* GoogleMapsBase.framework */,
-				13734E1321B3482100761650 /* GoogleMapsCore.framework */,
-				13734E1121B3480C00761650 /* GoogleMaps.framework */,
+				9F9F07333D448497DF65A4C3 /* libPods-carpool.a */,
+				368F59FF7D64AC03C905F791 /* libPods-carpool-tvOS.a */,
+				F145BA63F7E86C317A849C25 /* libPods-carpool-tvOSTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -660,6 +583,19 @@
 				5E9157351DD0AC6500FF2AA8 /* libRCTAnimation.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		68A58398A172433CAEA14652 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				220636350EB18E818B82DE59 /* Pods-carpool.debug.xcconfig */,
+				68CBCB1F3EA5B696E805A8AA /* Pods-carpool.release.xcconfig */,
+				912E4B0F290FB9675699AD75 /* Pods-carpool-tvOS.debug.xcconfig */,
+				99572DEDC291311A169EC1B6 /* Pods-carpool-tvOS.release.xcconfig */,
+				0F9155D278513479E616984F /* Pods-carpool-tvOSTests.debug.xcconfig */,
+				43843ED4B2FEBB12A1A5DDDF /* Pods-carpool-tvOSTests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		78C398B11ACF4ADC00677621 /* Products */ = {
@@ -686,7 +622,6 @@
 				832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */,
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
-				8A14FE831C8245DE8295D54E /* AirMaps.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -710,6 +645,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				AC469E96610649149BB472AE /* Resources */,
 				1399243821B31FDF00ECB4F4 /* Recovered References */,
+				68A58398A172433CAEA14652 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -782,6 +718,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "carpool" */;
 			buildPhases = (
+				51525CCA30B1DDBA6E60717A /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
@@ -800,6 +737,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "carpool-tvOS" */;
 			buildPhases = (
+				44C03FF2E5AAC65C37645BA1 /* [CP] Check Pods Manifest.lock */,
 				2D02E4771E0B4A5D006451C7 /* Sources */,
 				2D02E4781E0B4A5D006451C7 /* Frameworks */,
 				2D02E4791E0B4A5D006451C7 /* Resources */,
@@ -818,6 +756,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "carpool-tvOSTests" */;
 			buildPhases = (
+				B98A3A6C4C5752221C321370 /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
 				2D02E48D1E0B4A5D006451C7 /* Frameworks */,
 				2D02E48E1E0B4A5D006451C7 /* Resources */,
@@ -871,10 +810,6 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
-				{
-					ProductGroup = 1399243921B325CA00ECB4F4 /* Products */;
-					ProjectRef = 8A14FE831C8245DE8295D54E /* AirMaps.xcodeproj */;
-				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
@@ -975,13 +910,6 @@
 			fileType = archive.ar;
 			path = libRCTSettings.a;
 			remoteRef = 139105C01AF99BAD00B5F7CC /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		1399243D21B325CA00ECB4F4 /* libAirMaps.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libAirMaps.a;
-			remoteRef = 1399243C21B325CA00ECB4F4 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		139FDEF41B06529B00C62182 /* libRCTWebSocket.a */ = {
@@ -1216,7 +1144,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				13734E1821B3495600761650 /* GoogleMaps.bundle in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				3EB6AFF2456541CEA2846259 /* Entypo.ttf in Resources */,
 				457E9FDB9B70496094D58065 /* EvilIcons.ttf in Resources */,
@@ -1280,6 +1207,72 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+		};
+		44C03FF2E5AAC65C37645BA1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-carpool-tvOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		51525CCA30B1DDBA6E60717A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-carpool-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B98A3A6C4C5752221C321370 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-carpool-tvOSTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1403,6 +1396,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 220636350EB18E818B82DE59 /* Pods-carpool.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1427,6 +1421,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 68CBCB1F3EA5B696E805A8AA /* Pods-carpool.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1450,6 +1445,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 912E4B0F290FB9675699AD75 /* Pods-carpool-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1484,6 +1480,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 99572DEDC291311A169EC1B6 /* Pods-carpool-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1518,6 +1515,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0F9155D278513479E616984F /* Pods-carpool-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1551,6 +1549,7 @@
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 43843ED4B2FEBB12A1A5DDDF /* Pods-carpool-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
