@@ -126,7 +126,7 @@ export default class LogInScreen extends React.Component {
               style={styles.button}
               onPress={this.validate}
             >
-              <Text style={styles.buttonText}>Registrarse</Text>
+              <Text style={styles.buttonText}>Iniciar Sesión</Text>
             </TouchableOpacity>
 
           </View>
