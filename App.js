@@ -17,7 +17,7 @@ import SignInScreen from './src/screens/SignInScreen';
 import LogInScreen from './src/screens/LogInScreen';
 import TermScreen from './src/screens/TermScreen';
 import HomeScreen from './src/screens/HomeScreen';
-//import MapScreen from './src/screens/MapScreen';
+import MapScreen from './src/screens/MapScreen';
 import AuthLoadingScreen from './src/screens/AuthLoadingScreen';
 import FeedScreen from './src/screens/FeedScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
@@ -80,6 +80,12 @@ const AppStackNavigator = createStackNavigator(
         headerTransparent: true,
       }),
     },
+    Map: {
+      screen: MapScreen,
+      navigationOptions: () => ({
+        headerTransparent: true,
+      }),
+    },
     Terminos: {
       screen: TermScreen,
       navigationOptions: () => ({
@@ -115,6 +121,7 @@ const AppStackNavigator = createStackNavigator(
 const AppDrawerNavigator = createDrawerNavigator({
   Feed: AppStackNavigator,
   Perfil: ProfileScreen,
+  Map: MapScreen,
   Terminos: TermScreen,
   Setting: SettingsScreen,
 },

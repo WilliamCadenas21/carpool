@@ -60,7 +60,6 @@ export default class LogInScreen extends React.Component {
   }
 
   logIn = () => {
-
     this.setState(() => ({ charging: true }));
     fetch('https://carpool-back.herokuapp.com/users/login', {
       method: 'POST',
