@@ -1,12 +1,12 @@
 import React from 'react';
 import {
-  View, Text, Image, StyleSheet, TextInput
-  , StatusBar, SafeAreaView,
+  View, Text, Image, StyleSheet, StatusBar, SafeAreaView,
   TouchableOpacity, KeyboardAvoidingView,
   AsyncStorage, Alert,
   ActivityIndicator,
-  Keyboard
+  Keyboard, fetch
 } from 'react-native';
+import { Input } from '../components/common/';
 
 const urlMainLogo = require('../assets/images/main_logo.jpg');
 
@@ -100,9 +100,8 @@ export default class LogInScreen extends React.Component {
               {this.state.charging && <ActivityIndicator />}
             </View>
 
-            <TextInput
+            <Input
               placeholder={'Email@uninorte.edu.co'}
-              style={styles.textInput}
               onChangeText={(email) => this.setState({ email })}
               keyboardType='email-address'
               returnKeyType='next'
@@ -111,14 +110,14 @@ export default class LogInScreen extends React.Component {
               onSubmitEditing={() => this.refs.txtPassword.focus()}
             />
 
-            <TextInput
+            <Input
               placeholder={'Contraseña'}
-              style={styles.textInput}
               onChangeText={(password) => this.setState({ password })}
-              secureTextEntry={true}
+              secureTextEntry
               autoCorrect={false}
               ref={'txtPassword'}
               onSubmitEditing={this.validate}
+              id={'txtPassword'}
             />
 
             <TouchableOpacity
@@ -155,16 +154,6 @@ const styles = StyleSheet.create({
     width: 250,
     height: 90,
     resizeMode: 'contain',
-  },
-  textInput: {
-    alignSelf: 'stretch',
-    backgroundColor: 'rgba(255,255,255,0.2)',
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 10,
-    paddingVertical: 10,
-    paddingHorizontal: 16,
-    borderRadius: 20,
   },
   button: {
     alignSelf: 'stretch',

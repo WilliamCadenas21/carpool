@@ -3,7 +3,7 @@ import {
   View, Text, Image, StyleSheet, TextInput,
   StatusBar, SafeAreaView, TouchableOpacity,
   ScrollView, Alert, ActivityIndicator,
-  Keyboard,
+  Keyboard, fetch
 } from 'react-native';
 
 const urlMainLogo = require('../assets/images/main_logo.jpg');
@@ -40,8 +40,8 @@ export default class SignInScreen extends React.Component {
         Alert.alert('Advertencia',
           'la contraseñas no son iguales, por favor intentalo de nuevo',
           [{ text: 'OK' }]);
-          this.setState(() => ({ password1: '' }));
-          this.setState(() => ({ password2: '' }));
+        this.setState(() => ({ password1: '' }));
+        this.setState(() => ({ password2: '' }));
       } else {
         this.singIn();
       }
@@ -156,21 +156,21 @@ export default class SignInScreen extends React.Component {
             </TouchableOpacity>
 
             <Text style={styles.footer}>Al crear una cuenta, aceptas nuestros
-                <Text
+              <Text
                 style={styles.terms}
                 onPress={() => this.props.navigation.navigate('Terms')}
               >
                 términos y condiciones
-                </Text>
+              </Text>
             </Text>
 
             <Text style={styles.footer}>¿Ya tienes una cuenta?
-                <Text
+              <Text
                 style={styles.terms}
                 onPress={() => this.props.navigation.navigate('Log_in')}
               >
                 Inicia sesión aquí
-                </Text>
+              </Text>
             </Text>
 
           </View>
