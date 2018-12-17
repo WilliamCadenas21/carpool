@@ -7,7 +7,7 @@ import {
     ScrollView,
 } from 'react-native';
 
-export default class ProfileInfoComponent extends Component {
+class ProfileInfo extends Component {
 
     render() {
         return (
@@ -75,6 +75,8 @@ export default class ProfileInfoComponent extends Component {
         );
     }
 }
+
+export { ProfileInfo };
 
 const styles = StyleSheet.create({
     headerBackground: {

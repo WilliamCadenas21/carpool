@@ -1,10 +1,11 @@
 import React from 'react';
 import {
   View, Text, Image, StyleSheet, TextInput,
-  StatusBar, SafeAreaView, TouchableOpacity,
+  StatusBar, SafeAreaView,
   ScrollView, Alert, ActivityIndicator,
-  Keyboard, fetch
+  Keyboard
 } from 'react-native';
+import { Button } from '../components';
 
 const urlMainLogo = require('../assets/images/main_logo.jpg');
 
@@ -78,7 +79,12 @@ export default class SignInScreen extends React.Component {
             [{ text: 'OK' }]);
         }
       })
-      .done();
+      .catch(err => {
+        this.setState(() => ({ charging: false }));
+        Alert.alert('Mensaje',
+          `Error en la conección: ${err}`,
+          [{ text: 'OK' }]);
+      });
   }
 
   render() {
@@ -147,13 +153,11 @@ export default class SignInScreen extends React.Component {
               ref={'txtPassword2'}
               onSubmitEditing={this.validate}
             />
-
-            <TouchableOpacity
-              style={styles.button}
+            <Button
               onPress={this.validate}
             >
-              <Text style={styles.buttonText}>Registrase</Text>
-            </TouchableOpacity>
+              Registrase
+            </Button>
 
             <Text style={styles.footer}>Al crear una cuenta, aceptas nuestros
               <Text
@@ -212,19 +216,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     paddingVertical: 10,
     paddingHorizontal: 16,
-    borderRadius: 15,
-  },
-  button: {
-    alignSelf: 'stretch',
-    backgroundColor: '#237EE7',
-    padding: 15,
-    alignItems: 'center',
-    borderRadius: 15,
-  },
-  buttonText: {
-    textAlign: 'center',
-    color: 'white',
-    fontSize: 18,
+    borderRadius: 4,
   },
   footer: {
     color: 'black',

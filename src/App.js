@@ -13,18 +13,18 @@ import {
   Icon
 } from 'native-base';
 //Screens
-import SignInScreen from './src/screens/SignInScreen';
-import LogInScreen from './src/screens/LogInScreen';
-import TermScreen from './src/screens/TermScreen';
-import HomeScreen from './src/screens/HomeScreen';
-import MapScreen from './src/screens/MapScreen';
-import AuthLoadingScreen from './src/screens/AuthLoadingScreen';
-import FeedScreen from './src/screens/FeedScreen';
-import SettingsScreen from './src/screens/SettingsScreen';
-import ProfileScreen from './src/screens/ProfileScreen';
-import EditScreen from './src/screens/EditScreen';
+import SignInScreen from './screens/SignInScreen';
+import LogInScreen from './screens/LogInScreen';
+import TermScreen from './screens/TermScreen';
+import HomeScreen from './screens/HomeScreen';
+import MapScreen from './screens/MapScreen';
+import AuthLoadingScreen from './screens/AuthLoadingScreen';
+import FeedScreen from './screens/FeedScreen';
+import SettingsScreen from './screens/SettingsScreen';
+import ProfileScreen from './screens/ProfileScreen';
+import EditScreen from './screens/EditScreen';
 //components
-import CustomDrawerContentComponent from './src/components/CustomDrawerContentComponent';
+import { CustomDrawer } from './components';
 
 
 /*
@@ -130,7 +130,7 @@ const AppDrawerNavigator = createDrawerNavigator({
   Setting: SettingsScreen,
 },
   {
-    contentComponent: CustomDrawerContentComponent,
+    contentComponent: CustomDrawer,
   });
 
 const SwitchNavigator = createSwitchNavigator({

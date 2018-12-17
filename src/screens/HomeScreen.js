@@ -1,6 +1,9 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, 
-  StatusBar, SafeAreaView, TouchableOpacity } from 'react-native';
+import {
+  View, Image, StyleSheet,
+  StatusBar, SafeAreaView
+} from 'react-native';
+import { Button } from '../components';
 
 const urlMainLogo = require('../assets/images/main_logo.jpg');
 
@@ -17,22 +20,21 @@ export default class HomeScreen extends React.Component {
             <Image source={urlMainLogo} style={styles.logo} />
           </View>
 
-          <TouchableOpacity
-            style={styles.button1}
+          <Button
             onPress={() => this.props.navigation.navigate('Log_in')}
+            style={{ backgroundColor: '#ECA228' }}
           >
-            <Text style={styles.buttonText}>Iniciar Sesión</Text>
-          </TouchableOpacity>   
+            Iniciar Sesión
+          </Button>
 
-          <TouchableOpacity
-            style={styles.button2}
+          <Button
             onPress={() => this.props.navigation.navigate('Sign_in')}
           >
-            <Text style={styles.buttonText}>Registrarse</Text>
-          </TouchableOpacity>
+            Registrarse
+          </Button>
 
         </View>
-      </SafeAreaView>  
+      </SafeAreaView>
     );
   }
 }
@@ -40,7 +42,7 @@ export default class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white', 
+    backgroundColor: 'white',
     flexDirection: 'column',
     justifyContent: 'center',
     paddingHorizontal: 20,
@@ -55,23 +57,6 @@ const styles = StyleSheet.create({
     height: 250,
     resizeMode: 'contain',
     marginBottom: 0,
-  },
-  button1: {
-    backgroundColor: '#ECA228', //naranja
-    paddingVertical: 15,
-    marginBottom: 15,
-    borderRadius: 20,
-  },
-  button2: {
-    backgroundColor: '#237EE7', //azul
-    paddingVertical: 15,
-    marginBottom: 10,
-    borderRadius: 20,
-  },
-  buttonText: {
-    textAlign: 'center',
-    color: 'white',
-    fontSize: 18,
-  },
+  }
 });
 

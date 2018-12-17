@@ -8,8 +8,7 @@ import {
     Text,
 } from 'react-native';
 
-import ProfileHeaderComponent from '../components/ProfileHeaderComponent';
-import ProfileInfoComponent from '../components/ProfileInfoComponent';
+import { ProfileHeader, ProfileInfo } from '../components';
 
 export default class ProfileScreen extends Component {
 
@@ -55,14 +54,14 @@ export default class ProfileScreen extends Component {
         return (
             <View style={styles.container}>
                 <StatusBar barStyle='dark-content' backgroundColor='white' />
-                <ProfileHeaderComponent
+                <ProfileHeader
                     navigation={this.props.navigation}
                     names={this.state.names}
                     lastNames={this.state.lastNames}
                     direccion={this.state.direccion}
                     barrio={this.state.barrio}
                 />
-                <ProfileInfoComponent
+                <ProfileInfo
                     names={this.state.names}
                     lastNames={this.state.lastNames}
                     direccion={this.state.direccion}

@@ -1,12 +1,12 @@
 import React from 'react';
 import {
-  View, Text, Image, StyleSheet, StatusBar, SafeAreaView,
-  TouchableOpacity, KeyboardAvoidingView,
+  View, Image, StyleSheet, StatusBar, SafeAreaView,
+  KeyboardAvoidingView,
   AsyncStorage, Alert,
   ActivityIndicator,
-  Keyboard, fetch
+  Keyboard, TextInput
 } from 'react-native';
-import { Input } from '../components/common/';
+import { Button } from '../components';
 
 const urlMainLogo = require('../assets/images/main_logo.jpg');
 
@@ -83,7 +83,12 @@ export default class LogInScreen extends React.Component {
           Alert.alert('Mensaje', res.message + '', [{ text: 'OK' }]);
         }
       })
-      .done();
+      .catch(err => {
+        this.setState(() => ({ charging: false }));
+        Alert.alert('Mensaje',
+          `Error en la conexión: ${err}`,
+          [{ text: 'OK' }]);
+      });
   }
 
   render() {
@@ -100,7 +105,8 @@ export default class LogInScreen extends React.Component {
               {this.state.charging && <ActivityIndicator />}
             </View>
 
-            <Input
+            <TextInput
+              style={styles.textInput}
               placeholder={'Email@uninorte.edu.co'}
               onChangeText={(email) => this.setState({ email })}
               keyboardType='email-address'
@@ -110,7 +116,8 @@ export default class LogInScreen extends React.Component {
               onSubmitEditing={() => this.refs.txtPassword.focus()}
             />
 
-            <Input
+            <TextInput
+              style={styles.textInput}
               placeholder={'Contraseña'}
               onChangeText={(password) => this.setState({ password })}
               secureTextEntry
@@ -120,12 +127,12 @@ export default class LogInScreen extends React.Component {
               id={'txtPassword'}
             />
 
-            <TouchableOpacity
-              style={styles.button}
+            <Button
               onPress={this.validate}
+              style={{ backgroundColor: '#ECA228' }}
             >
-              <Text style={styles.buttonText}>Iniciar Sesión</Text>
-            </TouchableOpacity>
+              Iniciar Sesión
+            </Button>
 
           </View>
         </KeyboardAvoidingView>
@@ -155,16 +162,14 @@ const styles = StyleSheet.create({
     height: 90,
     resizeMode: 'contain',
   },
-  button: {
+  textInput: {
     alignSelf: 'stretch',
-    backgroundColor: '#ECA228', //naranja
-    padding: 15,
-    alignItems: 'center',
-    borderRadius: 20,
-  },
-  buttonText: {
-    textAlign: 'center',
-    color: 'white',
-    fontSize: 18,
+    backgroundColor: 'rgba(255,255,255,0.2)',
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    borderRadius: 4,
   },
 });

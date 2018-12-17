@@ -11,7 +11,7 @@ import { Icon } from 'native-base';
 
 const image = require('../assets/images/userImage.jpg');
 
-export default class ProfileHeaderComponent extends Component {
+class ProfileHeader extends Component {
 
     render() {
         return (
@@ -43,6 +43,8 @@ export default class ProfileHeaderComponent extends Component {
         );
     }
 }
+
+export { ProfileHeader };
 
 const styles = StyleSheet.create({
     headerBackground: {
