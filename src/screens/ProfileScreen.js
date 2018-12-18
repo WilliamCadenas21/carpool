@@ -4,11 +4,10 @@ import {
     StyleSheet,
     AsyncStorage,
     StatusBar,
-    TouchableOpacity,
-    Text,
+    Alert,
 } from 'react-native';
 
-import { ProfileHeader, ProfileInfo } from '../components';
+import { ProfileHeader, ProfileInfo, Button } from '../components';
 
 export default class ProfileScreen extends Component {
 
@@ -27,27 +26,27 @@ export default class ProfileScreen extends Component {
     }
 
     componentWillMount() {
-        console.log('info update');
         this.loadInfo();
     }
 
     loadInfo = async () => {
-        const namesStorage = await AsyncStorage.getItem('names');
-        const lastNamesStorage = await AsyncStorage.getItem('lastNames');
-        const direccionStorage = await AsyncStorage.getItem('direccion');
-        const barrioStorage = await AsyncStorage.getItem('barrio');
-        const emailStorage = await AsyncStorage.getItem('email');
-        const carreraStorage = await AsyncStorage.getItem('carrera');
-        const semestreStorage = await AsyncStorage.getItem('semestre');
-        const ageStorage = await AsyncStorage.getItem('age');
-        this.setState(() => ({ names: namesStorage }));
-        this.setState(() => ({ lastNames: lastNamesStorage }));
-        this.setState(() => ({ direccion: direccionStorage }));
-        this.setState(() => ({ barrio: barrioStorage }));
-        this.setState(() => ({ email: emailStorage }));
-        this.setState(() => ({ carrera: carreraStorage }));
-        this.setState(() => ({ semestre: semestreStorage }));
-        this.setState(() => ({ age: ageStorage }));
+        try {
+            const json = await AsyncStorage.getItem('user');
+            const user = JSON.parse(json);
+            console.log(user);
+            this.setState(() => ({ names: user.names }));
+            this.setState(() => ({ lastNames: user.lastNames }));
+            this.setState(() => ({ direccion: user.direccion }));
+            this.setState(() => ({ barrio: user.barrio }));
+            this.setState(() => ({ email: user.email }));
+            this.setState(() => ({ carrera: user.carrera }));
+            this.setState(() => ({ semestre: user.semestre }));
+            this.setState(() => ({ age: user.age }));
+        } catch (error) {
+            Alert.alert('Advertencia',
+            `error: ${error}`,
+            [{ text: 'OK' }]);
+        }
     }
 
     render() {
@@ -72,12 +71,18 @@ export default class ProfileScreen extends Component {
                     age={this.state.age}
                 />
                 <View style={styles.footer}>
-                    <TouchableOpacity style={styles.button1}>
-                        <Text style={styles.buttonText}>Agregar Horario</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.button2} >
-                        <Text style={styles.buttonText}>Agregar Ubicación</Text>
-                    </TouchableOpacity>
+                    <Button
+                        ParentStyle={styles.button2}
+                        ParentTextStyle={{ fontSize: 14 }}
+                    >
+                        Agregar Horario
+                    </Button>
+                    <Button
+                        ParentStyle={styles.button2}
+                        ParentTextStyle={{ fontSize: 14 }}
+                    >
+                        Agregar Ubicación
+                    </Button>
                 </View>
             </View>
         );
@@ -102,19 +107,11 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         marginBottom: 10,
     },
-    button1: {
-        backgroundColor: '#ECA228', //naranja
-        padding: 15,
-        alignItems: 'center',
-        borderRadius: 20,
-        height: 50,
-
-    },
     button2: {
         backgroundColor: '#237EE7', //naranja
         padding: 15,
         alignItems: 'center',
-        borderRadius: 20,
+        borderRadius: 4,
         height: 50,
     },
 });

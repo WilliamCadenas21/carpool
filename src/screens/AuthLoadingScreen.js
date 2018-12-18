@@ -4,7 +4,8 @@ import {
     StyleSheet,
     ActivityIndicator,
     AsyncStorage,
-    Image
+    Image,
+    StatusBar
 } from 'react-native';
 
 const urlMainLogo = require('../assets/images/main_logo.jpg');
@@ -17,13 +18,19 @@ class AuthLoadingScreen extends Component {
     }
 
     loadApp = async () => {
-        const userToken = await AsyncStorage.getItem('userToken');
-        this.props.navigation.navigate(userToken ? 'App' : 'Auth');
+        try {
+            const token = await AsyncStorage.getItem('token');
+            this.props.navigation.navigate(token ? 'App' : 'Auth');
+        } catch (error) {
+            this.props.navigation.navigate('Auth');
+        }
+
     }
 
     render() {
         return (
             <View style={styles.container}>
+                <StatusBar barStyle='dark-content' backgroundColor='white' />
                 <View style={styles.logoContainer}>
                     <Image
                         source={urlMainLogo}
@@ -40,6 +47,7 @@ export default AuthLoadingScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: 'white',
         alignItems: 'center',
         justifyContent: 'center'
     },

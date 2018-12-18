@@ -24,21 +24,25 @@ export default class LogInScreen extends React.Component {
     };
   }
 
+  //Implement Redux please 
   setInfo = async (res) => {
     try {
-      await AsyncStorage.setItem('userToken', 'william');
-      await AsyncStorage.setItem('names', res.names);
-      await AsyncStorage.setItem('lastNames', res.lastNames);
-      await AsyncStorage.setItem('email', res.email);
-      await AsyncStorage.setItem('semestre', res.semestre.toString());
-      await AsyncStorage.setItem('age', res.age.toString());
-      await AsyncStorage.setItem('carrera', res.carrera);
-      await AsyncStorage.setItem('direccion', res.direccion);
-      await AsyncStorage.setItem('barrio', res.barrio);
-      await AsyncStorage.setItem('placa', res.placa + '');
+      const user = {
+        names: res.names,
+        lastNames: res.lastNames,
+        email: res.email,
+        semestre: res.semestre,
+        carrera: res.carrera,
+        direccion: res.direccion,
+        age: res.age.toString(),
+        barrio: res.barrio,
+        Token: 'William'
+      };
+      await AsyncStorage.setItem('user', JSON.stringify(user));
+      await AsyncStorage.setItem('token', 'William');
     } catch (error) {
       Alert.alert('Advertencia',
-        'ocurrió un error al cargar la información del usuario',
+        `ocurrió un error al cargar la información del usuario: ${error}`,
         [{ text: 'OK' }]);
     }
   }

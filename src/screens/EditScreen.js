@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-undef */
 import React, { Component } from 'react';
 import {
     View,
@@ -60,28 +59,31 @@ export default class EditScreen extends Component {
             await AsyncStorage.setItem('barrio', this.state.barrio);
         } catch (error) {
             Alert.alert('Advertencia',
-                'ocurrió un error al cargar la información del usuario',
-                [{ text: 'OK' }]);
+                `error: ${error}`,
+                [{ text: 'OK' }]
+            );
         }
     }
 
     loadInfo = async () => {
-        const namesStorage = await AsyncStorage.getItem('names');
-        const lastNamesStorage = await AsyncStorage.getItem('lastNames');
-        const direccionStorage = await AsyncStorage.getItem('direccion');
-        const barrioStorage = await AsyncStorage.getItem('barrio');
-        const carreraStorage = await AsyncStorage.getItem('carrera');
-        const semestreStorage = await AsyncStorage.getItem('semestre');
-        const ageStorage = await AsyncStorage.getItem('age');
-        const emailStorage = await AsyncStorage.getItem('email');
-        this.setState(() => ({ names: namesStorage }));
-        this.setState(() => ({ lastNames: lastNamesStorage }));
-        this.setState(() => ({ direccion: direccionStorage }));
-        this.setState(() => ({ barrio: barrioStorage }));
-        this.setState(() => ({ carrera: carreraStorage }));
-        this.setState(() => ({ semestre: semestreStorage }));
-        this.setState(() => ({ age: ageStorage }));
-        this.setState(() => ({ email: emailStorage }));
+        try {
+            const json = await AsyncStorage.getItem('user');
+            const user = JSON.parse(json);
+            this.setState(() => ({ names: user.names }));
+            this.setState(() => ({ lastNames: user.lastNames }));
+            this.setState(() => ({ direccion: user.direccion }));
+            this.setState(() => ({ barrio: user.barrio }));
+            this.setState(() => ({ carrera: user.carrera }));
+            this.setState(() => ({ semestre: user.semestre }));
+            this.setState(() => ({ age: user.age }));
+            this.setState(() => ({ email: user.email }));
+        } catch (error) {
+            Alert.alert('Advertencia',
+                `error: ${error}`,
+                [{ text: 'OK' }]
+            );
+        }
+
     }
 
     validate = () => {
@@ -189,19 +191,6 @@ export default class EditScreen extends Component {
                                 keyboardType='numeric'
                                 onFocus={() => this.onChanged('')}
                             />
-                            {/*<Picker
-                                selectedValue={this.state.semestre}
-                                style={{ height: 50, width: 100 }}
-                                onValueChange={(ageChange) =>
-                                    this.setState({ age: ageChange })}
-                            >
-                                {this.state.semestreData.map((item, index) => (
-                                    <Picker.Item
-                                        label={item}
-                                        value={index}
-                                    />
-                                ))}
-                            </Picker>*/}
                         </View>
 
                         <TextInput
@@ -266,7 +255,7 @@ export default class EditScreen extends Component {
 
                     </View>
                 </ScrollView>
-            </SafeAreaView >
+            </SafeAreaView>
         );
     }
 }
@@ -311,14 +300,14 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         paddingVertical: 10,
         paddingHorizontal: 16,
-        borderRadius: 15,
+        borderRadius: 4,
     },
     button: {
         alignSelf: 'stretch',
         backgroundColor: '#237EE7',
         padding: 15,
         alignItems: 'center',
-        borderRadius: 15,
+        borderRadius: 4,
     },
     buttonText: {
         textAlign: 'center',
