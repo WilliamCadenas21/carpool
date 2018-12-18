@@ -4,7 +4,7 @@ import {
   ScrollView
 } from 'react-native';
 
-export default class TermScreen extends React.Component {
+class TermScreen extends React.Component {
   static navigationOptions = { title: 'Terminos y condiciones' };
   render() {
     return (
@@ -43,7 +43,9 @@ export default class TermScreen extends React.Component {
       </SafeAreaView>
     );
   }
-};
+}
+
+export { TermScreen };
 
 const styles = StyleSheet.create({
   container: {

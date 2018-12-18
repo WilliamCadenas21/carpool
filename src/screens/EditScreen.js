@@ -18,7 +18,7 @@ import {
 
 const image = require('../assets/images/userImage.jpg');
 
-export default class EditScreen extends Component {
+class EditScreen extends Component {
 
     constructor(props) {
         super(props);
@@ -259,6 +259,8 @@ export default class EditScreen extends Component {
         );
     }
 }
+
+export { EditScreen };
 
 const styles = StyleSheet.create({
     container: {

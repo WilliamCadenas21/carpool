@@ -6,6 +6,7 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "postinstall": "./node_modules/react-native-maps/enable-google-maps ./ios",
+    "build": "cd C:/Users/will/Desktop/carpool/android && gradlew assembleRelease",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "redmi4x": "cd C:/Users/will/AppData/Local/Android/Sdk/platform-tools && adb -s bccfda2c7d34 reverse tcp:8081 tcp:8081"

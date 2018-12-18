@@ -9,7 +9,7 @@ import { Button } from '../components';
 
 const urlMainLogo = require('../assets/images/main_logo.jpg');
 
-export default class SignInScreen extends React.Component {
+class SignInScreen extends React.Component {
   static navigationOptions = {
     headerTransparent: true,
   };
@@ -182,8 +182,9 @@ export default class SignInScreen extends React.Component {
       </SafeAreaView>
     );
   }
-
 }
+
+export { SignInScreen };
 
 const styles = StyleSheet.create({
   container: {

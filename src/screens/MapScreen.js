@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
-export default class MapScreen extends React.Component {
+class MapScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
@@ -28,27 +28,29 @@ export default class MapScreen extends React.Component {
             }}
           />
         </MapView>
-        </View>
-        );
-      }
-    }
-    
+      </View>
+    );
+  }
+}
+
+export { MapScreen };
+
 const styles = StyleSheet.create({
-          container: {
-          position: 'absolute',
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-      },
+  container: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
   map: {
-          position: 'absolute',
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0,
-      },
-    });
-    
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+  },
+});
+

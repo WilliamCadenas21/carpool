@@ -7,7 +7,7 @@ import {
     StatusBar
 } from 'react-native';
 
-export default class SettingsScreen extends Component {
+class SettingsScreen extends Component {
     static navigationOptions = { title: 'Cerrar Sesión' } ;
     
     signOut = async () => {
@@ -24,6 +24,8 @@ export default class SettingsScreen extends Component {
         );
     }
 }
+
+export { SettingsScreen };
 
 const styles = StyleSheet.create({
     container: {

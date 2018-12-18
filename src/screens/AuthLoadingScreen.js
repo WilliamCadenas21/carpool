@@ -42,7 +42,7 @@ class AuthLoadingScreen extends Component {
         );
     }
 }
-export default AuthLoadingScreen;
+export { AuthLoadingScreen };
 
 const styles = StyleSheet.create({
     container: {

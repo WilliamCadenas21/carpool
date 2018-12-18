@@ -6,7 +6,7 @@ import {
     StatusBar
 } from 'react-native';
 
-export default class FeedScreen extends Component {
+class FeedScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
@@ -16,6 +16,8 @@ export default class FeedScreen extends Component {
         );
     }
 }
+
+export { FeedScreen };
 
 const styles = StyleSheet.create({
     container: {

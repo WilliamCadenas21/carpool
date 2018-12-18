@@ -10,7 +10,7 @@ import { Button } from '../components';
 
 const urlMainLogo = require('../assets/images/main_logo.jpg');
 
-export default class LogInScreen extends React.Component {
+class LogInScreen extends React.Component {
   static navigationOptions = {
     headerTransparent: true,
   };
@@ -144,6 +144,8 @@ export default class LogInScreen extends React.Component {
     );
   }
 }
+
+export { LogInScreen };
 
 const styles = StyleSheet.create({
   container: {

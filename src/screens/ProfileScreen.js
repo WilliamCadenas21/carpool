@@ -9,7 +9,7 @@ import {
 
 import { ProfileHeader, ProfileInfo, Button } from '../components';
 
-export default class ProfileScreen extends Component {
+class ProfileScreen extends Component {
 
     constructor(props) {
         super(props);
@@ -88,6 +88,8 @@ export default class ProfileScreen extends Component {
         );
     }
 }
+
+export { ProfileScreen };
 
 const styles = StyleSheet.create({
     container: {

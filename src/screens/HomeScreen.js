@@ -7,7 +7,7 @@ import { Button } from '../components';
 
 const urlMainLogo = require('../assets/images/main_logo.jpg');
 
-export default class HomeScreen extends React.Component {
+class HomeScreen extends React.Component {
   static navigationOptions = { title: 'Home1', header: null };
 
   render() {
@@ -38,6 +38,8 @@ export default class HomeScreen extends React.Component {
     );
   }
 }
+
+export { HomeScreen };
 
 const styles = StyleSheet.create({
   container: {
