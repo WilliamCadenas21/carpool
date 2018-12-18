@@ -19,6 +19,8 @@ const Button = ({ onPress, children, ParentStyle, ParentTextStyle }) => {
     );
 };
 
+export { Button };
+
 const styles = StyleSheet.create({
     buttonStyle: {
         alignSelf: 'stretch',
@@ -42,4 +44,3 @@ const styles = StyleSheet.create({
     },
 });
 
-export { Button };

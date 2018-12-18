@@ -14,13 +14,14 @@ import {
 } from 'native-base';
 //Screens
 import {
-    SignInScreen, LogInScreen,
+    LogInScreen,
     TermScreen, HomeScreen,
     MapScreen, AuthLoadingScreen,
     FeedScreen, SettingsScreen,
     ProfileScreen, EditScreen
 } from './screens';
 //components
+import SignInScreen from './screens/SignInScreen';
 import { CustomDrawer } from './components';
 
 const AuthStackNavigator = createStackNavigator(

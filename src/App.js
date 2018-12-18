@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import ReduxThunk from 'redux-thunk';
+import reducers from './reducers';
 import SwitchNavigator from './Navigator';
 
 /*
@@ -14,10 +18,16 @@ watchman watch-del-allBundle Debug Build
 react-native bundle --dev false --platform android --entry-file index.android.js --bundle-output ./android/app/build/intermediates/assets/debug/index.android.bundle --assets-dest ./android/app/build/intermediates/res/merged/debug
 */
 
-export default class App extends Component {
+class App extends Component {
   render() {
+    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
+
     return (
-      <SwitchNavigator />
+      <Provider store={store}>
+        <SwitchNavigator />
+      </Provider>
     );
   }
 }
+
+export default App;

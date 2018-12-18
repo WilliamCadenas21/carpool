@@ -5,7 +5,9 @@ import {
   ScrollView, Alert, ActivityIndicator,
   Keyboard
 } from 'react-native';
+import { connect } from 'react-redux';
 import { Button } from '../components';
+import { userUpdate } from '../actions';
 
 const urlMainLogo = require('../assets/images/main_logo.jpg');
 
@@ -17,7 +19,6 @@ class SignInScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      names: '',
       lastNames: '',
       email: '',
       password1: '',
@@ -29,13 +30,13 @@ class SignInScreen extends React.Component {
   validate = () => {
     Keyboard.dismiss();
     if (!this.state.email || !this.state.password1 || !this.state.password2
-      || !this.state.names || !this.state.lastNames) {
+      || !this.props.names || !this.state.lastNames) {
       Alert.alert('Advertencia', 'ningún campo puede estar vacío', [{ text: 'OK' }]);
     } else {
       const strEmail = this.state.email.split('@');
       if (strEmail[1] !== 'uninorte.edu.co') {
         Alert.alert('Advertencia',
-          'su correo electronico debe pertenecer al dominio @uninorte.edu.co',
+          'su correo electrónico debe pertenecer al dominio @uninorte.edu.co',
           [{ text: 'OK' }]);
       } else if (this.state.password1 !== this.state.password2) {
         Alert.alert('Advertencia',
@@ -58,7 +59,7 @@ class SignInScreen extends React.Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        nombres: this.state.names,
+        nombres: this.props.names,
         apellidos: this.state.lastNames,
         email_id: this.state.email,
         contraseña: this.state.password1
@@ -107,10 +108,10 @@ class SignInScreen extends React.Component {
 
             <TextInput
               placeholder={'Nombres'} style={styles.textInput}
-              onChangeText={(names) => this.setState({ names })}
               returnKeyType='next'
               autoCorrect={false}
               onSubmitEditing={() => this.refs.txtApellidos.focus()}
+              onChangeText={value => this.props.userUpdate({ prop: 'names', value })}
             />
 
             <TextInput
@@ -184,7 +185,17 @@ class SignInScreen extends React.Component {
   }
 }
 
-export { SignInScreen };
+const mapStateToProps = ({ auth }) => {
+  const { 
+    names,
+  } = auth;
+  console.log(names);
+  return { 
+    names,
+  };
+};
+
+export default connect(mapStateToProps, { userUpdate })(SignInScreen);
 
 const styles = StyleSheet.create({
   container: {
