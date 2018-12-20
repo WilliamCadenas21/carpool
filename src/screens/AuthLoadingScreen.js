@@ -5,16 +5,28 @@ import {
     ActivityIndicator,
     AsyncStorage,
     Image,
-    StatusBar
+    StatusBar,
 } from 'react-native';
+import { connect } from 'react-redux';
+import { userUpdate } from '../actions';
 
 const urlMainLogo = require('../assets/images/main_logo.jpg');
 
 class AuthLoadingScreen extends Component {
 
-    constructor() {
-        super();
+    componentWillMount() {
+        this.loadInfo();
         this.loadApp();
+    }
+
+    loadInfo = async () => {
+        try {
+            const json = await AsyncStorage.getItem('user');
+            const user = JSON.parse(json);
+            this.props.userUpdate(user);
+        } catch (error) {
+            console.log('the information dosent exist');
+        }
     }
 
     loadApp = async () => {
@@ -24,7 +36,6 @@ class AuthLoadingScreen extends Component {
         } catch (error) {
             this.props.navigation.navigate('Auth');
         }
-
     }
 
     render() {
@@ -42,7 +53,8 @@ class AuthLoadingScreen extends Component {
         );
     }
 }
-export { AuthLoadingScreen };
+
+export default connect(null, { userUpdate })(AuthLoadingScreen);
 
 const styles = StyleSheet.create({
     container: {

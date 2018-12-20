@@ -19,6 +19,7 @@ react-native bundle --dev false --platform android --entry-file index.android.js
 */
 
 class App extends Component {
+
   render() {
     const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
 

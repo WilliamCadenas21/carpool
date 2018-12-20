@@ -6,7 +6,9 @@ import {
   ActivityIndicator,
   Keyboard, TextInput
 } from 'react-native';
+import { connect } from 'react-redux';
 import { Button } from '../components';
+import { userUpdate } from '../actions';
 
 const urlMainLogo = require('../assets/images/main_logo.jpg');
 
@@ -27,19 +29,11 @@ class LogInScreen extends React.Component {
   //Implement Redux please 
   setInfo = async (res) => {
     try {
-      const user = {
-        names: res.names,
-        lastNames: res.lastNames,
-        email: res.email,
-        semestre: res.semestre,
-        carrera: res.carrera,
-        direccion: res.direccion,
-        age: res.age.toString(),
-        barrio: res.barrio,
-        Token: 'William'
-      };
+      const user = res.user;
       await AsyncStorage.setItem('user', JSON.stringify(user));
       await AsyncStorage.setItem('token', 'William');
+      console.log(user);
+      this.props.userUpdate(user);
     } catch (error) {
       Alert.alert('Advertencia',
         `ocurrió un error al cargar la información del usuario: ${error}`,
@@ -145,7 +139,7 @@ class LogInScreen extends React.Component {
   }
 }
 
-export { LogInScreen };
+export default connect(null, { userUpdate })(LogInScreen);
 
 const styles = StyleSheet.create({
   container: {

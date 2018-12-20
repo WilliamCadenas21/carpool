@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { 
+import {
     View,
     Text,
     StyleSheet,
@@ -10,7 +10,7 @@ class FeedScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <StatusBar barStyle='dark-content' backgroundColor='white'/>
+                <StatusBar barStyle='dark-content' backgroundColor='white' />
                 <Text>FeedScreen</Text>
             </View>
         );
@@ -22,7 +22,7 @@ export { FeedScreen };
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'white', 
+        backgroundColor: 'white',
         alignItems: 'center',
         justifyContent: 'center'
     }

@@ -38,7 +38,7 @@ class ProfileInfo extends Component {
                                 Carrera:
                             </Text>
                             <Text style={styles.textForInput}>
-                                {this.props.carrera}
+                                {this.props.degree}
                             </Text>
                         </View>
 
@@ -47,7 +47,7 @@ class ProfileInfo extends Component {
                                 Semestre:
                             </Text>
                             <Text style={styles.textForInput}>
-                                {this.props.semestre}
+                                {this.props.semester}
                             </Text>
                         </View>
 
@@ -56,7 +56,7 @@ class ProfileInfo extends Component {
                                 Dirección:
                             </Text>
                             <Text style={styles.textForInput}>
-                                {this.props.direccion}
+                                {this.props.address}
                             </Text>
                         </View>
 
@@ -65,7 +65,7 @@ class ProfileInfo extends Component {
                                 Barrio:
                             </Text>
                             <Text style={styles.textForInput}>
-                                {this.props.barrio}
+                                {this.props.neighborhood}
                             </Text>
                         </View>
                         

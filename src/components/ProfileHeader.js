@@ -7,7 +7,7 @@ import {
     Image,
     TouchableOpacity,
 } from 'react-native';
-import { Icon } from 'native-base';
+
 
 const image = require('../assets/images/userImage.jpg');
 
@@ -18,15 +18,6 @@ class ProfileHeader extends Component {
             <View style={styles.headerBackground}>
                 <StatusBar barStyle='dark-content' backgroundColor='white' />
                 <View style={styles.header}>
-                    <View style={styles.row}>
-                    
-                        <TouchableOpacity
-                            style={styles.create}
-                            onPress={() => this.props.navigation.navigate('Edit')}
-                        >
-                            <Icon name="create" />
-                        </TouchableOpacity>
-                    </View>
                     <Text style={styles.name}>{this.props.names} {this.props.lastNames}</Text>
                     <View style={styles.profilePicWrapper}>
                                 <TouchableOpacity>
@@ -36,8 +27,8 @@ class ProfileHeader extends Component {
                                     />
                                 </TouchableOpacity>
                             </View>
-                    <Text style={styles.text}>{this.props.direccion}</Text>
-                    <Text style={styles.text}>{this.props.barrio}</Text>
+                    <Text style={styles.text}>{this.props.address}</Text>
+                    <Text style={styles.text}>{this.props.neighborhood}</Text>
                 </View>
             </View>
         );
@@ -58,13 +49,6 @@ const styles = StyleSheet.create({
         flex: 1,
         alignSelf: 'flex-end',
         flexDirection: 'row',
-    },
-    create: {
-        paddingBottom: 40,
-        paddingLeft: 10,
-        paddingTop: 10,
-        paddingRight: 10,
-        marginHorizontal: 5,
     },
     buttonText: {
         textAlign: 'center',

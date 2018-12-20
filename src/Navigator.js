@@ -14,14 +14,17 @@ import {
 } from 'native-base';
 //Screens
 import {
-    LogInScreen,
     TermScreen, HomeScreen,
-    MapScreen, AuthLoadingScreen,
-    FeedScreen, SettingsScreen,
-    ProfileScreen, EditScreen
+    MapScreen,
+    FeedScreen, SettingsScreen, 
+    EditScreen
 } from './screens';
 //components
 import SignInScreen from './screens/SignInScreen';
+import AuthLoadingScreen from './screens/AuthLoadingScreen';
+import ProfileScreen from './screens/ProfileScreen';
+import LogInScreen from './screens/LogInScreen';
+
 import { CustomDrawer } from './components';
 
 const AuthStackNavigator = createStackNavigator(
@@ -40,9 +43,6 @@ const AppStackNavigator = createStackNavigator(
     {
         Perfil: {
             screen: ProfileScreen,
-            navigationOptions: () => ({
-                headerTransparent: true,
-            }),
         },
         Edit: {
             screen: EditScreen,

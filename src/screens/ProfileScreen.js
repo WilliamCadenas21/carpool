@@ -1,74 +1,58 @@
 import React, { Component } from 'react';
 import {
     View,
+    TouchableOpacity,
     StyleSheet,
-    AsyncStorage,
     StatusBar,
-    Alert,
 } from 'react-native';
+import { connect } from 'react-redux';
+import { Icon } from 'native-base';
 
 import { ProfileHeader, ProfileInfo, Button } from '../components';
 
 class ProfileScreen extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            names: '',
-            lastNames: '',
-            direccion: '',
-            barrio: '',
-            email: '',
-            carrera: '',
-            semestre: '',
-            age: ''
-        };
-    }
-
-    componentWillMount() {
-        this.loadInfo();
-    }
-
-    loadInfo = async () => {
-        try {
-            const json = await AsyncStorage.getItem('user');
-            const user = JSON.parse(json);
-            console.log(user);
-            this.setState(() => ({ names: user.names }));
-            this.setState(() => ({ lastNames: user.lastNames }));
-            this.setState(() => ({ direccion: user.direccion }));
-            this.setState(() => ({ barrio: user.barrio }));
-            this.setState(() => ({ email: user.email }));
-            this.setState(() => ({ carrera: user.carrera }));
-            this.setState(() => ({ semestre: user.semestre }));
-            this.setState(() => ({ age: user.age }));
-        } catch (error) {
-            Alert.alert('Advertencia',
-            `error: ${error}`,
-            [{ text: 'OK' }]);
-        }
-    }
-
+    static navigationOptions = ({ navigation }) => ({
+        headerTransparent: true,
+        headerRight: (
+            <TouchableOpacity
+                style={{ marginRight: 10 }}
+                onPress={() => navigation.navigate('Edit')}
+            >
+                <Icon name="create" />
+            </TouchableOpacity>
+        )
+    });
     render() {
+        const {
+            names,
+            lastNames,
+            email,
+            age,
+            address,
+            neighborhood,
+            degree,
+            semester
+        } = this.props.user;
+
         return (
             <View style={styles.container}>
                 <StatusBar barStyle='dark-content' backgroundColor='white' />
                 <ProfileHeader
                     navigation={this.props.navigation}
-                    names={this.state.names}
-                    lastNames={this.state.lastNames}
-                    direccion={this.state.direccion}
-                    barrio={this.state.barrio}
+                    names={names}
+                    lastNames={lastNames}
+                    address={address}
+                    neighborhood={neighborhood}
                 />
                 <ProfileInfo
-                    names={this.state.names}
-                    lastNames={this.state.lastNames}
-                    direccion={this.state.direccion}
-                    barrio={this.state.barrio}
-                    email={this.state.email}
-                    carrera={this.state.carrera}
-                    semestre={this.state.semestre}
-                    age={this.state.age}
+                    names={names}
+                    lastNames={lastNames}
+                    address={address}
+                    neighborhood={neighborhood}
+                    email={email}
+                    degree={degree}
+                    semester={semester}
+                    age={age}
                 />
                 <View style={styles.footer}>
                     <Button
@@ -76,20 +60,22 @@ class ProfileScreen extends Component {
                         ParentTextStyle={{ fontSize: 14 }}
                     >
                         Agregar Horario
-                    </Button>
+                        </Button>
                     <Button
                         ParentStyle={styles.button2}
                         ParentTextStyle={{ fontSize: 14 }}
                     >
                         Agregar Ubicación
-                    </Button>
+                        </Button>
                 </View>
             </View>
         );
     }
 }
 
-export { ProfileScreen };
+const mapStateToProps = (state) => ({ user: state.userInfo });
+
+export default connect(mapStateToProps)(ProfileScreen);
 
 const styles = StyleSheet.create({
     container: {

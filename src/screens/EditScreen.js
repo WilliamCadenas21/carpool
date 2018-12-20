@@ -39,7 +39,6 @@ class EditScreen extends Component {
 
     onChanged = (text) => {
         let newText = '';
-
         if (text.length <= 2) {
             const re = new RegExp('^[0-9]+$');
             const no = new RegExp('');
