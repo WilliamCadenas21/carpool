@@ -16,30 +16,41 @@ import {
   Body,
 } from 'native-base';
 import React from 'react';
+import { connect } from 'react-redux';
 
-const CustomDrawer = (props) => (
+const CustomDrawer = ({ user, ownProps }) => (
   <Container>
     <SafeAreaView style={styles.safeArea}>
       <Header style={styles.drawerHeader}>
         <Body>
-          <Text>Aquí va el nombre</Text>
+          <Text style={styles.text} >{user.names} {user.lastNames}</Text>
+          <Text style={[styles.text, { fontSize: 12 }]} >{user.email}</Text>
         </Body>
       </Header>
 
       <Content>
         <StatusBar barStyle='dark-content' backgroundColor='white' />
-        <DrawerItems {...props} />
+        <DrawerItems {...ownProps} />
       </Content>
     </SafeAreaView>
   </Container>
 );
 
-export { CustomDrawer };
+const mapStateToProps = (state, ownProps) => {
+  const user = state.userInfo;
+  return { user, ownProps };
+};
+
+export default connect(mapStateToProps)(CustomDrawer);
 
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: 'white'
+  },
+  text: {
+    color: 'white',
+    fontSize: 18
   },
   container: {
     flex: 1,

@@ -32,7 +32,6 @@ class LogInScreen extends React.Component {
       const user = res.user;
       await AsyncStorage.setItem('user', JSON.stringify(user));
       await AsyncStorage.setItem('token', 'William');
-      console.log(user);
       this.props.userUpdate(user);
     } catch (error) {
       Alert.alert('Advertencia',
@@ -127,7 +126,7 @@ class LogInScreen extends React.Component {
 
             <Button
               onPress={this.validate}
-              style={{ backgroundColor: '#ECA228' }}
+              ParentStyle={{ backgroundColor: '#ECA228' }}
             >
               Iniciar Sesión
             </Button>

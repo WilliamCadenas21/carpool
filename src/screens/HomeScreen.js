@@ -22,7 +22,7 @@ class HomeScreen extends React.Component {
 
           <Button
             onPress={() => this.props.navigation.navigate('Log_in')}
-            style={{ backgroundColor: '#ECA228' }}
+            ParentStyle={{ backgroundColor: '#ECA228' }}
           >
             Iniciar Sesión
           </Button>

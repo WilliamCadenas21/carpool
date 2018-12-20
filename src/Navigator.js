@@ -17,15 +17,15 @@ import {
     TermScreen, HomeScreen,
     MapScreen,
     FeedScreen, SettingsScreen, 
-    EditScreen
+    
 } from './screens';
 //components
 import SignInScreen from './screens/SignInScreen';
 import AuthLoadingScreen from './screens/AuthLoadingScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import LogInScreen from './screens/LogInScreen';
-
-import { CustomDrawer } from './components';
+import EditScreen from './screens/EditScreen';
+import CustomDrawer from './components/CustomDrawer';
 
 const AuthStackNavigator = createStackNavigator(
     {

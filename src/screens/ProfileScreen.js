@@ -33,6 +33,7 @@ class ProfileScreen extends Component {
             degree,
             semester
         } = this.props.user;
+        
 
         return (
             <View style={styles.container}>

@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
 import {
-    View,
-    Text,
-    StyleSheet,
-    SafeAreaView,
-    StatusBar,
-    ScrollView,
-    TextInput,
+    View, Text, StyleSheet,
+    SafeAreaView, StatusBar,
+    ScrollView, TextInput,
     ActivityIndicator,
     TouchableOpacity,
-    Alert,
-    Image,
-    Picker,
-    Keyboard,
+    Alert, Image,
+    Picker, Keyboard,
     AsyncStorage
 } from 'react-native';
+import { connect } from 'react-redux';
+import { userUpdate } from '../actions';
+import { Button } from '../components';
 
 const image = require('../assets/images/userImage.jpg');
 
@@ -23,18 +20,24 @@ class EditScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            names: '',
-            lastNames: '',
-            direccion: '',
-            barrio: 'Barrio',
-            carrera: 'Carrera',
-            semestre: 'Semestre',
-            email: '',
-            age: '',
+            user: {
+                names: '',
+                lastNames: '',
+                address: '',
+                neighborhood: '',
+                degree: '',
+                semester: '',
+                email: '',
+                age: '',
+            },
             charging: false,
-            semestreData: ['1', '2', '3', '4', ' 5', '6', '7', '8', '9', '10', 'otro']
+            semesterData: ['1', '2', '3', '4', ' 5', '6', '7', '8', '9', '10', 'otro']
         };
-        this.loadInfo();
+    }
+
+    componentWillMount() {
+        const num = this.props.user.age.toString(10);
+        this.setState(() => ({ user: { ...this.props.user, age: num } }));
     }
 
     onChanged = (text) => {
@@ -44,52 +47,27 @@ class EditScreen extends Component {
             const no = new RegExp('');
             if (re.test(text) || no.test(text)) {
                 newText = text;
-                this.setState({ age: newText });
+                this.setState({ user: { ...this.state.user, age: newText } });
             }
         }
     }
 
-    setInfo = async () => {
+    setInfo = async (user) => {
         try {
-            await AsyncStorage.setItem('semestre', this.state.semestre);
-            await AsyncStorage.setItem('age', this.state.age);
-            await AsyncStorage.setItem('carrera', this.state.carrera);
-            await AsyncStorage.setItem('direccion', this.state.direccion);
-            await AsyncStorage.setItem('barrio', this.state.barrio);
+            await AsyncStorage.setItem('user', JSON.stringify(user));
+            this.props.userUpdate(user);
         } catch (error) {
             Alert.alert('Advertencia',
                 `error: ${error}`,
                 [{ text: 'OK' }]
             );
         }
-    }
-
-    loadInfo = async () => {
-        try {
-            const json = await AsyncStorage.getItem('user');
-            const user = JSON.parse(json);
-            this.setState(() => ({ names: user.names }));
-            this.setState(() => ({ lastNames: user.lastNames }));
-            this.setState(() => ({ direccion: user.direccion }));
-            this.setState(() => ({ barrio: user.barrio }));
-            this.setState(() => ({ carrera: user.carrera }));
-            this.setState(() => ({ semestre: user.semestre }));
-            this.setState(() => ({ age: user.age }));
-            this.setState(() => ({ email: user.email }));
-        } catch (error) {
-            Alert.alert('Advertencia',
-                `error: ${error}`,
-                [{ text: 'OK' }]
-            );
-        }
-
     }
 
     validate = () => {
         Keyboard.dismiss();
-        if (!this.state.names || !this.state.lastNames || !this.state.age
-            || !this.state.carrera || !this.state.semestre || !this.state.direccion
-            || !this.state.barrio) {
+        const { names, lastNames, age, degree, semester, address, neighborhood } = this.state.user;
+        if (!names || !lastNames || !age || !degree || !semester || !address || !neighborhood) {
             Alert.alert('Advertencia', 'ningún campo puede estar vacío', [{ text: 'OK' }]);
         } else {
             this.sendUpdate();
@@ -97,19 +75,21 @@ class EditScreen extends Component {
     }
 
     sendUpdate = () => {
+        const { age, degree, semester, address, neighborhood, email } = this.state.user;
+        const { user } = this.state;
         this.setState(() => ({ charging: true }));
-        fetch(`https://carpool-back.herokuapp.com/users/update/${this.state.email}`, {
+        fetch(`https://carpool-back.herokuapp.com/users/update/${email}`, {
             method: 'PUT',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                edad: this.state.age,
-                carrera: this.state.carrera,
-                semestre: this.state.semestre,
-                direccion: this.state.direccion,
-                barrio: this.state.barrio
+                age,
+                degree,
+                semester,
+                address,
+                neighborhood
             })
         })
             .then(response => response.json())
@@ -119,7 +99,7 @@ class EditScreen extends Component {
                     Alert.alert('Mensaje',
                         'actualización exitosa',
                         [{ text: 'OK' }]);
-                    this.setInfo();
+                    this.setInfo(user);
                     this.props.navigation.navigate('Perfil');
                 } else {
                     this.setState(() => ({ charging: false }));
@@ -138,6 +118,8 @@ class EditScreen extends Component {
     }
 
     render() {
+        const { names, lastNames, age, degree, semester, address, neighborhood } = this.state.user;
+        const { user } = this.state;
         return (
             <SafeAreaView style={styles.container}>
                 <StatusBar barStyle='dark-content' backgroundColor='white' />
@@ -162,20 +144,22 @@ class EditScreen extends Component {
 
                         <TextInput
                             placeholder={'Nombres'} style={styles.textInput}
-                            onChangeText={(names) => this.setState({ names })}
+                            onChangeText={(value) =>
+                                this.setState({ user: { ...user, names: value } })}
                             returnKeyType='next'
                             autoCorrect={false}
-                            value={this.state.names}
+                            value={names}
                             editable={false}
                             onSubmitEditing={() => this.refs.txtApellidos.focus()}
                         />
 
                         <TextInput
                             placeholder={'Apellidos'} style={styles.textInput}
-                            onChangeText={(lastNames) => this.setState({ lastNames })}
+                            onChangeText={(value) =>
+                                this.setState({ user: { ...user, lastNames: value } })}
                             returnKeyType='next'
                             autoCorrect={false}
-                            value={this.state.lastNames}
+                            value={lastNames}
                             ref={'txtApellidos'}
                             editable={false}
                             onSubmitEditing={() => this.refs.txtCarrera.focus()}
@@ -184,38 +168,37 @@ class EditScreen extends Component {
                         <View style={styles.row}>
                             <TextInput
                                 placeholder={'edad'} style={styles.textInput}
-                                onChangeText={(age) => this.onChanged(age)}
+                                onChangeText={(value) => this.onChanged(value)}
                                 autoCorrect={false}
-                                value={this.state.age}
+                                value={age}
                                 keyboardType='numeric'
-                                onFocus={() => this.onChanged('')}
                             />
                         </View>
 
                         <TextInput
                             placeholder={'Carrera'} style={styles.textInput}
-                            onChangeText={(carrera) => this.setState({ carrera })}
+                            onChangeText={(value) =>
+                                this.setState({ user: { ...user, degree: value } })}
                             returnKeyType='next'
                             ref={'txtCarrera'}
-                            value={this.state.carrera}
+                            value={degree}
                             onSubmitEditing={() => this.refs.txtDireccion.focus()}
                         />
 
                         <View style={styles.row}>
                             <TextInput
-                                placeholder={'Semestre'} style={styles.textInput}
-                                onChangeText={(semestre) => this.setState({ semestre })}
+                                placeholder={'semester'} style={styles.textInput}
                                 autoCorrect={false}
                                 editable={false}
-                                value={this.state.semestre}
+                                value={semester}
                             />
                             <Picker
-                                selectedValue={this.state.semestre}
+                                selectedValue={semester}
                                 style={{ height: 50, width: 100 }}
-                                onValueChange={(semestreChange) =>
-                                    this.setState({ semestre: semestreChange })}
+                                onValueChange={(value) =>
+                                    this.setState({ user: { ...user, semester: value } })}
                             >
-                                {this.state.semestreData.map((item, index) => (
+                                {this.state.semesterData.map((item, index) => (
                                     <Picker.Item
                                         label={item}
                                         value={item}
@@ -227,30 +210,31 @@ class EditScreen extends Component {
 
                         <TextInput
                             placeholder={'Dirección'} style={styles.textInput}
-                            onChangeText={(direccion) => this.setState({ direccion })}
+                            onChangeText={(value) =>
+                                this.setState({ user: { ...user, address: value } })}
                             returnKeyType='next'
                             autoCorrect={false}
-                            value={this.state.direccion}
+                            value={address}
                             ref={'txtDireccion'}
                             onSubmitEditing={() => this.refs.txtBarrio.focus()}
                         />
 
                         <TextInput
                             placeholder={'Barrio'} style={styles.textInput}
-                            onChangeText={(barrio) => this.setState({ barrio })}
+                            onChangeText={(value) =>
+                                this.setState({ user: { ...user, neighborhood: value } })}
                             returnKeyType='next'
                             autoCorrect={false}
-                            value={this.state.barrio}
+                            value={neighborhood}
                             ref={'txtBarrio'}
                             onSubmitEditing={this.validate}
                         />
 
-                        <TouchableOpacity
-                            style={styles.button}
+                        <Button
                             onPress={this.validate}
                         >
-                            <Text style={styles.buttonText}>Save</Text>
-                        </TouchableOpacity>
+                            Guardar cambios
+                        </Button>
 
                     </View>
                 </ScrollView>
@@ -259,7 +243,9 @@ class EditScreen extends Component {
     }
 }
 
-export { EditScreen };
+const mapStateToProps = (state) => ({ user: state.userInfo });
+
+export default connect(mapStateToProps, { userUpdate })(EditScreen);
 
 const styles = StyleSheet.create({
     container: {
@@ -302,18 +288,6 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 16,
         borderRadius: 4,
-    },
-    button: {
-        alignSelf: 'stretch',
-        backgroundColor: '#237EE7',
-        padding: 15,
-        alignItems: 'center',
-        borderRadius: 4,
-    },
-    buttonText: {
-        textAlign: 'center',
-        color: 'white',
-        fontSize: 18,
     },
     footer: {
         color: 'black',
