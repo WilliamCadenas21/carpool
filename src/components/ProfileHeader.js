@@ -20,13 +20,11 @@ class ProfileHeader extends Component {
                 <View style={styles.header}>
                     <Text style={styles.name}>{this.props.names} {this.props.lastNames}</Text>
                     <View style={styles.profilePicWrapper}>
-                                <TouchableOpacity>
-                                    <Image
-                                        style={styles.profilePic}
-                                        source={image}
-                                    />
-                                </TouchableOpacity>
-                            </View>
+                        <Image
+                            style={styles.profilePic}
+                            source={image}
+                        />
+                    </View>
                     <Text style={styles.text}>{this.props.address}</Text>
                     <Text style={styles.text}>{this.props.neighborhood}</Text>
                 </View>
@@ -65,8 +63,6 @@ const styles = StyleSheet.create({
         width: 150,
         height: 150,
         borderRadius: 100,
-        borderColor: '#ECA228',
-        borderWidth: 2,
     },
     profilePicWrapper: {
         width: 160,

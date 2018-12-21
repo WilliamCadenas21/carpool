@@ -1,5 +1,5 @@
 import {
-    USER_UPDATE,
+    USER_UPDATE_INFO,
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -15,7 +15,7 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case USER_UPDATE:
+        case USER_UPDATE_INFO:
             return { ...state, ...action.payload }; // bring all new object
         default:
             return state;

@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import {
     View,
+    Text,
     TouchableOpacity,
     StyleSheet,
     StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Icon } from 'native-base';
-
-import { ProfileHeader, ProfileInfo, Button } from '../components';
+import { modeUpdate } from '../actions';
+import { ProfileHeader, ProfileInfo, CustomSwitch } from '../components';
 
 class ProfileScreen extends Component {
     static navigationOptions = ({ navigation }) => ({
@@ -22,6 +23,15 @@ class ProfileScreen extends Component {
             </TouchableOpacity>
         )
     });
+
+    componentWillMount() {
+        console.log(this.props);
+    }
+
+    userModeChanged = (value) => {
+        this.props.modeUpdate(value);
+    };
+
     render() {
         const {
             names,
@@ -33,8 +43,7 @@ class ProfileScreen extends Component {
             degree,
             semester
         } = this.props.user;
-        
-
+        const { rider } = this.props.mode;
         return (
             <View style={styles.container}>
                 <StatusBar barStyle='dark-content' backgroundColor='white' />
@@ -44,6 +53,7 @@ class ProfileScreen extends Component {
                     lastNames={lastNames}
                     address={address}
                     neighborhood={neighborhood}
+                    color={rider ? '#237EE7' : '#ECA228'}
                 />
                 <ProfileInfo
                     names={names}
@@ -56,27 +66,22 @@ class ProfileScreen extends Component {
                     age={age}
                 />
                 <View style={styles.footer}>
-                    <Button
-                        ParentStyle={styles.button2}
-                        ParentTextStyle={{ fontSize: 14 }}
-                    >
-                        Agregar Horario
-                        </Button>
-                    <Button
-                        ParentStyle={styles.button2}
-                        ParentTextStyle={{ fontSize: 14 }}
-                    >
-                        Agregar Ubicación
-                        </Button>
+                    <Text>
+                        {this.props.mode.rider.toString()}
+                    </Text>
+                    <CustomSwitch
+                        onValueChange={(value) => this.userModeChanged(value)}
+                        value={this.props.mode.rider}
+                    />
                 </View>
             </View>
         );
     }
 }
 
-const mapStateToProps = (state) => ({ user: state.userInfo });
+const mapStateToProps = (state) => ({ user: state.userInfo, mode: state.userMode });
 
-export default connect(mapStateToProps)(ProfileScreen);
+export default connect(mapStateToProps, { modeUpdate })(ProfileScreen);
 
 const styles = StyleSheet.create({
     container: {

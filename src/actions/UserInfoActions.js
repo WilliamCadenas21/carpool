@@ -1,10 +1,10 @@
 import {
-    USER_UPDATE,
+    USER_UPDATE_INFO,
 } from './types';
 
 export const userUpdate = (user) => {
     return {
-        type: USER_UPDATE,
+        type: USER_UPDATE_INFO,
         payload: user
     };
 };
