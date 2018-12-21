@@ -4,12 +4,8 @@ import {
     StyleSheet,
     Text,
     StatusBar,
-    Image,
-    TouchableOpacity,
 } from 'react-native';
-
-
-const image = require('../assets/images/userImage.jpg');
+import { UserPhoto } from '../components';
 
 class ProfileHeader extends Component {
 
@@ -19,12 +15,9 @@ class ProfileHeader extends Component {
                 <StatusBar barStyle='dark-content' backgroundColor='white' />
                 <View style={styles.header}>
                     <Text style={styles.name}>{this.props.names} {this.props.lastNames}</Text>
-                    <View style={styles.profilePicWrapper}>
-                        <Image
-                            style={styles.profilePic}
-                            source={image}
-                        />
-                    </View>
+                    <UserPhoto
+                        color={this.props.color}
+                    />
                     <Text style={styles.text}>{this.props.address}</Text>
                     <Text style={styles.text}>{this.props.neighborhood}</Text>
                 </View>
@@ -58,21 +51,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#e3ebf7',
-    },
-    profilePic: {
-        width: 150,
-        height: 150,
-        borderRadius: 100,
-    },
-    profilePicWrapper: {
-        width: 160,
-        height: 160,
-        borderRadius: 100,
-        borderColor: '#237EE7',
-        marginBottom: 5,
-        borderWidth: 10,
-        alignItems: 'center',
-        justifyContent: 'center',
     },
     name: {
         marginTop: 10,

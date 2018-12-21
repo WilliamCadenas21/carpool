@@ -1,19 +1,15 @@
 import React, { Component } from 'react';
 import {
-    View, Text, StyleSheet,
+    View, StyleSheet,
     SafeAreaView, StatusBar,
     ScrollView, TextInput,
     ActivityIndicator,
-    TouchableOpacity,
-    Alert, Image,
-    Picker, Keyboard,
+    Alert, Picker, Keyboard,
     AsyncStorage
 } from 'react-native';
 import { connect } from 'react-redux';
 import { userUpdate } from '../actions';
-import { Button } from '../components';
-
-const image = require('../assets/images/userImage.jpg');
+import { Button, UserPhoto } from '../components';
 
 class EditScreen extends Component {
 
@@ -120,22 +116,14 @@ class EditScreen extends Component {
     render() {
         const { names, lastNames, age, degree, semester, address, neighborhood } = this.state.user;
         const { user } = this.state;
+        const { rider } = this.props.mode;
         return (
             <SafeAreaView style={styles.container}>
                 <StatusBar barStyle='dark-content' backgroundColor='white' />
                 <ScrollView keyboardShouldPersistTaps='always'>
                     <View style={styles.innerContainer}>
                         <View style={styles.header}>
-                            <View style={styles.profilePicWrapper}>
-                                <TouchableOpacity
-                                    onPress={this.pickPhoto}
-                                >
-                                    <Image
-                                        style={styles.profilePic}
-                                        source={image}
-                                    />
-                                </TouchableOpacity>
-                            </View>
+                            <UserPhoto color={rider ? '#237EE7' : '#ECA228'} />
                         </View>
 
                         <View style={{ alignItems: 'center', marginBottom: 10 }}>
@@ -243,7 +231,7 @@ class EditScreen extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({ user: state.userInfo });
+const mapStateToProps = (state) => ({ user: state.userInfo, mode: state.userMode });
 
 export default connect(mapStateToProps, { userUpdate })(EditScreen);
 
@@ -299,23 +287,5 @@ const styles = StyleSheet.create({
     terms: {
         color: 'blue',
         textDecorationLine: 'underline',
-    },
-    profilePicWrapper: {
-        width: 160,
-        height: 160,
-        borderRadius: 100,
-        borderColor: '#237EE7',
-        marginTop: 40,
-        marginBottom: 5,
-        borderWidth: 10,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    profilePic: {
-        width: 150,
-        height: 150,
-        borderRadius: 100,
-        borderColor: '#ECA228',
-        borderWidth: 2,
     },
 });
