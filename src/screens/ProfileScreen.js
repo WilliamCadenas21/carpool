@@ -24,10 +24,6 @@ class ProfileScreen extends Component {
         )
     });
 
-    componentWillMount() {
-        console.log(this.props);
-    }
-
     userModeChanged = (value) => {
         this.props.modeUpdate(value);
     };

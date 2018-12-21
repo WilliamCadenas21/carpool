@@ -18,27 +18,32 @@ import {
 import React from 'react';
 import { connect } from 'react-redux';
 
-const CustomDrawer = ({ user, ownProps }) => (
-  <Container>
-    <SafeAreaView style={styles.safeArea}>
-      <Header style={styles.drawerHeader}>
-        <Body>
-          <Text style={styles.text} >{user.names} {user.lastNames}</Text>
-          <Text style={[styles.text, { fontSize: 12 }]} >{user.email}</Text>
-        </Body>
-      </Header>
+const CustomDrawer = ({ user, ownProps, mode }) => {
+  const { rider } = mode;
+  const color = rider ? '#237EE7' : '#ECA228';
+  return (
+    <Container>
+      <SafeAreaView style={styles.safeArea}>
+        <Header style={[styles.drawerHeader, { backgroundColor: color }]}>
+          <Body>
+            <Text style={styles.text} >{user.names} {user.lastNames}</Text>
+            <Text style={[styles.text, { fontSize: 12 }]} >{user.email}</Text>
+          </Body>
+        </Header>
 
-      <Content>
-        <StatusBar barStyle='dark-content' backgroundColor='white' />
-        <DrawerItems {...ownProps} />
-      </Content>
-    </SafeAreaView>
-  </Container>
-);
+        <Content>
+          <StatusBar barStyle='dark-content' backgroundColor='white' />
+          <DrawerItems {...ownProps} />
+        </Content>
+      </SafeAreaView>
+    </Container>
+  );
+};
 
 const mapStateToProps = (state, ownProps) => {
   const user = state.userInfo;
-  return { user, ownProps };
+  const mode = state.userMode;
+  return { user, ownProps, mode };
 };
 
 export default connect(mapStateToProps)(CustomDrawer);
@@ -59,6 +64,5 @@ const styles = StyleSheet.create({
   },
   drawerHeader: {
     height: 50,
-    backgroundColor: '#ECA228'
   },
 });
