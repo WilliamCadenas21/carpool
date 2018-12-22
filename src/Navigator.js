@@ -1,23 +1,15 @@
-import React from 'react';
 import {
     createSwitchNavigator,
     createStackNavigator,
     createDrawerNavigator,
 } from 'react-navigation';
-import {
-    View,
-    TouchableOpacity,
-} from 'react-native';
 
-import {
-    Icon
-} from 'native-base';
 //Screens
 import {
     TermScreen, HomeScreen,
     MapScreen,
-    FeedScreen, SettingsScreen, 
-    
+    SettingsScreen,
+
 } from './screens';
 //components
 import SignInScreen from './screens/SignInScreen';
@@ -26,6 +18,8 @@ import ProfileScreen from './screens/ProfileScreen';
 import LogInScreen from './screens/LogInScreen';
 import EditScreen from './screens/EditScreen';
 import CustomDrawer from './components/CustomDrawer';
+import FeedScreen from './screens/FeedScreen';
+import CreateTravel from './screens/CreateTravel';
 
 const AuthStackNavigator = createStackNavigator(
     {
@@ -46,6 +40,12 @@ const AppStackNavigator = createStackNavigator(
         },
         Edit: {
             screen: EditScreen,
+            navigationOptions: () => ({
+                headerTransparent: true,
+            }),
+        },
+        Create: {
+            screen: CreateTravel,
             navigationOptions: () => ({
                 headerTransparent: true,
             }),
@@ -71,16 +71,6 @@ const AppStackNavigator = createStackNavigator(
         },
         Feed: {
             screen: FeedScreen,
-            navigationOptions: ({ navigation }) => ({
-                headerLeft: (
-                    <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
-                        <View style={{ paddingHorizontal: 10 }}>
-                            <Icon name="menu" />
-                        </View>
-                    </TouchableOpacity>
-                ),
-                headerTransparent: true,
-            })
         }
     },
     {

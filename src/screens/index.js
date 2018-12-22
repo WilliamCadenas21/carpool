@@ -1,5 +1,4 @@
 
-export * from './FeedScreen';
 export * from './HomeScreen';
 export * from './MapScreen';
 export * from './SettingsScreen';

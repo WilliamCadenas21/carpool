@@ -63,11 +63,11 @@ class ProfileScreen extends Component {
                 />
                 <View style={styles.footer}>
                     <Text>
-                        {this.props.mode.rider.toString()}
+                        {rider ? 'pasajero' : 'conductor'}
                     </Text>
                     <CustomSwitch
                         onValueChange={(value) => this.userModeChanged(value)}
-                        value={this.props.mode.rider}
+                        value={rider}
                     />
                 </View>
             </View>
