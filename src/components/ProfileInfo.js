@@ -66,10 +66,10 @@ class ProfileInfo extends Component {
     }
 
     sendUpdate = () => {
-        const { age, degree, semester, address, neighborhood, email } = this.state.user;
+        const { age, degree, semester, address, neighborhood, email, token } = this.state.user;
         const { user } = this.state;
         this.setState(() => ({ charging: true }));
-        fetch(`https://carpool-back.herokuapp.com/users/update/${email}`, {
+        fetch(`https://carpool-back.herokuapp.com/users/update`, {
             method: 'PUT',
             headers: {
                 Accept: 'application/json',
@@ -80,7 +80,9 @@ class ProfileInfo extends Component {
                 degree,
                 semester,
                 address,
-                neighborhood
+                neighborhood,
+                email,
+                token
             })
         })
             .then(response => response.json())
@@ -142,6 +144,7 @@ class ProfileInfo extends Component {
                                 returnKeyType='next'
                                 autoCorrect={false}
                                 value={names}
+                                editable={false}
                                 onSubmitEditing={() => this.refs.txtApellidos.focus()}
                             />
                         </View>
@@ -158,6 +161,7 @@ class ProfileInfo extends Component {
                                 autoCorrect={false}
                                 value={lastNames}
                                 ref={'txtApellidos'}
+                                editable={false}
                                 onSubmitEditing={() => this.refs.txtCarrera.focus()}
                             />
                         </View>
