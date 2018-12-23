@@ -15,9 +15,7 @@ class ProfileHeader extends Component {
                 <StatusBar barStyle='dark-content' backgroundColor='white' />
                 <View style={styles.header}>
                     <Text style={styles.name}>{this.props.names} {this.props.lastNames}</Text>
-                    <UserPhoto
-                        color={this.props.color}
-                    />
+                    
                     <Text style={styles.text}>{this.props.address}</Text>
                     <Text style={styles.text}>{this.props.neighborhood}</Text>
                 </View>
@@ -46,12 +44,7 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 14,
     },
-    header: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#e3ebf7',
-    },
+
     name: {
         marginTop: 10,
         marginBottom: 5,

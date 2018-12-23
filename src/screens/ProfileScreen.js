@@ -2,66 +2,39 @@ import React, { Component } from 'react';
 import {
     View,
     Text,
-    TouchableOpacity,
     StyleSheet,
     StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { Icon } from 'native-base';
-import { modeUpdate } from '../actions';
-import { ProfileHeader, ProfileInfo, CustomSwitch } from '../components';
+import { modeUpdate, userUpdate } from '../actions';
+import { CustomSwitch } from '../components';
+import ProfileInfo from '../components/ProfileInfo';
 
 class ProfileScreen extends Component {
-    static navigationOptions = ({ navigation }) => ({
-        headerTransparent: true,
-        headerRight: (
-            <TouchableOpacity
-                style={{ marginRight: 10 }}
-                onPress={() => navigation.navigate('Edit')}
-            >
-                <Icon name="create" />
-            </TouchableOpacity>
-        )
+    static navigationOptions = () => ({
+        headerTransparent: false,
+        title: 'Perfil',
     });
 
+    componentWillMount() {
+        console.log(this.props.navigation);
+    }
     userModeChanged = (value) => {
         this.props.modeUpdate(value);
     };
-
     render() {
-        const {
-            names,
-            lastNames,
-            email,
-            age,
-            address,
-            neighborhood,
-            degree,
-            semester
-        } = this.props.user;
         const { rider } = this.props.mode;
         return (
             <View style={styles.container}>
                 <StatusBar barStyle='dark-content' backgroundColor='white' />
-                <ProfileHeader
-                    navigation={this.props.navigation}
-                    names={names}
-                    lastNames={lastNames}
-                    address={address}
-                    neighborhood={neighborhood}
-                    color={rider ? '#237EE7' : '#ECA228'}
-                />
-                <ProfileInfo
-                    names={names}
-                    lastNames={lastNames}
-                    address={address}
-                    neighborhood={neighborhood}
-                    email={email}
-                    degree={degree}
-                    semester={semester}
-                    age={age}
-                />
-                <View style={styles.footer}>
+                <View style={styles.main}>
+                    <ProfileInfo
+                        user={this.props.user}
+                        color={this.props.mode.rider ? '#237EE7' : '#ECA228'}
+                        navigation={this.props.navigation}
+                    />
+                </View>
+                <View style={styles.footer2}>
                     <Text>
                         {rider ? 'pasajero' : 'conductor'}
                     </Text>
@@ -77,7 +50,7 @@ class ProfileScreen extends Component {
 
 const mapStateToProps = (state) => ({ user: state.userInfo, mode: state.userMode });
 
-export default connect(mapStateToProps, { modeUpdate })(ProfileScreen);
+export default connect(mapStateToProps, { modeUpdate, userUpdate })(ProfileScreen);
 
 const styles = StyleSheet.create({
     container: {
@@ -91,17 +64,15 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 14,
     },
-    footer: {
-        backgroundColor: 'white',
-        flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        marginBottom: 10,
+    header: {
+        flex: 0.7,
+        backgroundColor: 'transparent'
     },
-    button2: {
-        backgroundColor: '#237EE7', //naranja
-        padding: 15,
-        alignItems: 'center',
-        borderRadius: 4,
-        height: 50,
+    footer2: {
+        flex: 0.7,
+        backgroundColor: 'transparent'
+    },
+    main: {
+        flex: 8,
     },
 });

@@ -21,16 +21,15 @@ export { UserPhoto };
 
 const styles = StyleSheet.create({
     profilePic: {
-        width: 150,
-        height: 150,
+        width: 100,
+        height: 100,
         borderRadius: 100,
     },
     profilePicWrapper: {
-        width: 160,
-        height: 160,
+        width: 110,
+        height: 110,
         borderRadius: 100,
         borderColor: '#237EE7',
-        marginBottom: 5,
         borderWidth: 10,
         alignItems: 'center',
         justifyContent: 'center',

@@ -17,6 +17,7 @@ import {
 } from 'native-base';
 import React from 'react';
 import { connect } from 'react-redux';
+import { Button } from '../components';
 
 const CustomDrawer = ({ user, ownProps, mode }) => {
   const { rider } = mode;
@@ -24,7 +25,9 @@ const CustomDrawer = ({ user, ownProps, mode }) => {
   return (
     <Container>
       <SafeAreaView style={styles.safeArea}>
+
         <Header style={[styles.drawerHeader, { backgroundColor: color }]}>
+          <StatusBar barStyle='dark-content' backgroundColor='white' />
           <Body>
             <Text style={styles.text} >{user.names} {user.lastNames}</Text>
             <Text style={[styles.text, { fontSize: 12 }]} >{user.email}</Text>
@@ -32,8 +35,12 @@ const CustomDrawer = ({ user, ownProps, mode }) => {
         </Header>
 
         <Content>
-          <StatusBar barStyle='dark-content' backgroundColor='white' />
           <DrawerItems {...ownProps} />
+          <Button
+            onPress={() => this.props.navigation.navigate('Sign_in')}
+          >
+            Registrarse
+          </Button>
         </Content>
       </SafeAreaView>
     </Container>
