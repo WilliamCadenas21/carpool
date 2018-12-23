@@ -31,7 +31,6 @@ class LogInScreen extends React.Component {
     try {
       const user = res.user;
       await AsyncStorage.setItem('user', JSON.stringify(user));
-      await AsyncStorage.setItem('token', 'William');
       this.props.userUpdate(user);
     } catch (error) {
       Alert.alert('Advertencia',

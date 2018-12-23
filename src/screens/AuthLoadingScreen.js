@@ -15,25 +15,17 @@ const urlMainLogo = require('../assets/images/main_logo.jpg');
 class AuthLoadingScreen extends Component {
 
     componentWillMount() {
-        this.loadInfo();
         this.loadApp();
-    }
-
-    loadInfo = async () => {
-        try {
-            const json = await AsyncStorage.getItem('user');
-            const user = JSON.parse(json);
-            this.props.userUpdate(user);
-        } catch (error) {
-            console.log('the information dosent exist');
-        }
     }
 
     loadApp = async () => {
         try {
-            const token = await AsyncStorage.getItem('token');
-            this.props.navigation.navigate(token ? 'App' : 'Auth');
+            const json = await AsyncStorage.getItem('user');
+            const user = JSON.parse(json);
+            this.props.navigation.navigate(user.token ? 'App' : 'Auth');
+            this.props.userUpdate(user);
         } catch (error) {
+            console.log('empty info');
             this.props.navigation.navigate('Auth');
         }
     }
