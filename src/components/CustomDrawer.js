@@ -1,3 +1,4 @@
+import React, { Component } from 'react';
 import {
   DrawerItems,
 } from 'react-navigation';
@@ -6,7 +7,8 @@ import {
   StyleSheet,
   Text,
   SafeAreaView,
-  StatusBar
+  StatusBar,
+  AsyncStorage
 } from 'react-native';
 
 import {
@@ -15,37 +17,63 @@ import {
   Header,
   Body,
 } from 'native-base';
-import React from 'react';
+
 import { connect } from 'react-redux';
 import { Button } from '../components';
+import { driverMode, riderMode } from '../actions/UserModeActions';
 
-const CustomDrawer = ({ user, ownProps, mode }) => {
-  const { rider } = mode;
-  const color = rider ? '#237EE7' : '#ECA228';
-  return (
-    <Container>
-      <SafeAreaView style={styles.safeArea}>
+class CustomDrawer extends Component {
 
-        <Header style={[styles.drawerHeader, { backgroundColor: color }]}>
-          <StatusBar barStyle='dark-content' backgroundColor='white' />
-          <Body>
-            <Text style={styles.text} >{user.names} {user.lastNames}</Text>
-            <Text style={[styles.text, { fontSize: 12 }]} >{user.email}</Text>
-          </Body>
-        </Header>
+  signOut = async () => {
+    AsyncStorage.clear();
+    this.props.navigation.navigate('AuthLoading');
+  };
 
-        <Content>
-          <DrawerItems {...ownProps} />
+  changeMode = () => {
+    if (this.props.mode.rider) {
+      this.props.driverMode();
+    } else {
+      this.props.riderMode();
+    }
+  };
+
+  render() {
+    const { user, ownProps, mode } = this.props;
+    const { rider, color } = mode;
+    return (
+      <Container>
+        <SafeAreaView style={styles.safeArea}>
+
+          <Header style={[styles.drawerHeader, { backgroundColor: color }]}>
+            <StatusBar barStyle='dark-content' backgroundColor='white' />
+            <Body>
+              <Text style={styles.text} >{user.names} {user.lastNames}</Text>
+              <Text style={[styles.text, { fontSize: 12 }]} >{user.email}</Text>
+            </Body>
+          </Header>
+
+          <Content>
+            <DrawerItems {...ownProps} />
+            <Button
+              ParentStyle={{ backgroundColor: color }}
+              onPress={this.changeMode}
+            >
+              {rider ? 'Modo Conductor' : 'Modo Pasajero'}
+            </Button>
+
+          </Content>
+
           <Button
-            onPress={() => this.props.navigation.navigate('Sign_in')}
+            ParentStyle={{ backgroundColor: 'red' }}
+            onPress={this.signOut}
           >
-            Registrarse
+            Cerrar Sesión
           </Button>
-        </Content>
-      </SafeAreaView>
-    </Container>
-  );
-};
+        </SafeAreaView>
+      </Container>
+    );
+  }
+}
 
 const mapStateToProps = (state, ownProps) => {
   const user = state.userInfo;
@@ -53,7 +81,7 @@ const mapStateToProps = (state, ownProps) => {
   return { user, ownProps, mode };
 };
 
-export default connect(mapStateToProps)(CustomDrawer);
+export default connect(mapStateToProps, { riderMode, driverMode })(CustomDrawer);
 
 const styles = StyleSheet.create({
   safeArea: {

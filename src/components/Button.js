@@ -35,12 +35,5 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 18,
     },
-    button2: {
-        backgroundColor: '#237EE7', //naranja
-        padding: 15,
-        alignItems: 'center',
-        borderRadius: 4,
-        height: 50,
-    },
 });
 

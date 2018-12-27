@@ -2,15 +2,15 @@ import {
     createSwitchNavigator,
     createStackNavigator,
     createDrawerNavigator,
+    createBottomTabNavigator
 } from 'react-navigation';
 
 //Screens
 import {
     TermScreen, HomeScreen,
     MapScreen,
-    SettingsScreen,
-
 } from './screens';
+
 //components
 import SignInScreen from './screens/SignInScreen';
 import AuthLoadingScreen from './screens/AuthLoadingScreen';
@@ -20,6 +20,7 @@ import EditScreen from './screens/EditScreen';
 import CustomDrawer from './components/CustomDrawer';
 import FeedScreen from './screens/FeedScreen';
 import CreateTravel from './screens/CreateTravel';
+import DriverScreen from './screens/DriverScreen';
 
 const AuthStackNavigator = createStackNavigator(
     {
@@ -33,10 +34,22 @@ const AuthStackNavigator = createStackNavigator(
     },
 );
 
+const BottomTabNavigator = createBottomTabNavigator({
+    Rider: {
+        screen: ProfileScreen,
+    },
+    Driver: {
+        screen: DriverScreen
+    }
+});
+
 const AppStackNavigator = createStackNavigator(
     {
-        Perfil: {
-            screen: ProfileScreen,
+        Profile: {
+            screen: BottomTabNavigator,
+            navigationOptions: () => ({
+                headerTransparent: true,
+            }),
         },
         Edit: {
             screen: EditScreen,
@@ -56,18 +69,11 @@ const AppStackNavigator = createStackNavigator(
                 headerTransparent: true,
             }),
         },
-        Terminos: {
+        Terms: {
             screen: TermScreen,
             navigationOptions: () => ({
                 headerTransparent: false,
             }),
-        },
-        Setting: {
-            screen: SettingsScreen,
-            navigationOptions: () => ({
-                title: 'Cerrar Sesión',
-                headerTransparent: true,
-            })
         },
         Feed: {
             screen: FeedScreen,
@@ -80,10 +86,9 @@ const AppStackNavigator = createStackNavigator(
 
 const AppDrawerNavigator = createDrawerNavigator({
     Feed: AppStackNavigator,
-    Perfil: ProfileScreen,
+    Profile: ProfileScreen,
     Map: MapScreen,
-    Terminos: TermScreen,
-    Setting: SettingsScreen,
+    Terms: TermScreen,
 },
     {
         contentComponent: CustomDrawer,

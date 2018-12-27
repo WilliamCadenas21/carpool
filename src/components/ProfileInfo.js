@@ -20,7 +20,7 @@ class ProfileInfo extends Component {
 
     constructor(props) {
         super(props);
-        const num = this.props.user.age.toString(10);
+        const num = (this.props.user.age ? this.props.user.age.toString(10) : '');
         this.state = {
             user: {
                 ...props.user,
@@ -69,7 +69,7 @@ class ProfileInfo extends Component {
         const { age, degree, semester, address, neighborhood, email, token } = this.state.user;
         const { user } = this.state;
         this.setState(() => ({ charging: true }));
-        fetch(`https://carpool-back.herokuapp.com/users/update`, {
+        fetch(`https://carpool-back.herokuapp.com/users/update/rider`, {
             method: 'PUT',
             headers: {
                 Accept: 'application/json',
@@ -105,7 +105,7 @@ class ProfileInfo extends Component {
     }
 
     render() {
-        const { names, lastNames, email, age, degree, 
+        const { names, lastNames, email, age, degree,
             semester, address, neighborhood } = this.state.user;
         const { user } = this.state;
         return (

@@ -12,7 +12,6 @@ import ProfileInfo from '../components/ProfileInfo';
 
 class ProfileScreen extends Component {
     static navigationOptions = () => ({
-        headerTransparent: false,
         title: 'Perfil',
     });
 
@@ -30,11 +29,11 @@ class ProfileScreen extends Component {
                 <View style={styles.main}>
                     <ProfileInfo
                         user={this.props.user}
-                        color={this.props.mode.rider ? '#237EE7' : '#ECA228'}
+                        color={rider ? '#237EE7' : '#ECA228'}
                         navigation={this.props.navigation}
                     />
                 </View>
-                <View style={styles.footer2}>
+                {/*<View style={styles.footer2}>
                     <Text>
                         {rider ? 'pasajero' : 'conductor'}
                     </Text>
@@ -42,7 +41,7 @@ class ProfileScreen extends Component {
                         onValueChange={(value) => this.userModeChanged(value)}
                         value={rider}
                     />
-                </View>
+                </View>*/}
             </View>
         );
     }

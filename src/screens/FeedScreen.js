@@ -13,7 +13,7 @@ import { connect } from 'react-redux';
 import { Card, ListItem } from '../components';
 
 class FeedScreen extends Component {
-    static navigationOptions = ({ navigation, mode }) => ({
+    static navigationOptions = ({ navigation }) => ({
         headerLeft: (
             <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
                 <View style={{ paddingHorizontal: 10 }}>
@@ -29,34 +29,33 @@ class FeedScreen extends Component {
                 <Text style={{ color: '#237EE7' }}>Crear</Text>
             </TouchableOpacity>
         ),
-            headerTransparent: true,
+        headerTransparent: true,
     })
 
-renderItem = (travel) => {
-    console.log(this.props.mode.rider);
-    return (
-        <ListItem color={this.props.mode.rider ? '#237EE7' : '#ECA228'} travel={travel} />
-    );
-};
+    renderItem = (travel) => {
+        return (
+            <ListItem color={this.props.mode.color} travel={travel} />
+        );
+    };
 
 
-render() {
-    const { container, header, footer, scroll } = styles;
-    return (
-        <View style={container}>
-            <StatusBar barStyle='dark-content' backgroundColor='white' />
-            <View style={header} />
-            <View style={scroll}>
-                <FlatList
-                    data={this.props.travels}
-                    renderItem={this.renderItem}
-                    keyExtractor={(travel) => travel.id}
-                />
+    render() {
+        const { container, header, footer, scroll } = styles;
+        return (
+            <View style={container}>
+                <StatusBar barStyle='dark-content' backgroundColor='white' />
+                <View style={header} />
+                <View style={scroll}>
+                    <FlatList
+                        data={this.props.travels}
+                        renderItem={this.renderItem}
+                        keyExtractor={(travel) => travel.id}
+                    />
+                </View>
+                <View style={footer} />
             </View>
-            <View style={footer} />
-        </View>
-    );
-}
+        );
+    }
 }
 
 const mapStateToProps = (state) => {
