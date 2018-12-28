@@ -22,6 +22,7 @@ class AuthLoadingScreen extends Component {
         try {
             const json = await AsyncStorage.getItem('user');
             const user = JSON.parse(json);
+            console.log(user);
             this.props.navigation.navigate(user.token ? 'App' : 'Auth');
             this.props.userUpdate(user);
         } catch (error) {

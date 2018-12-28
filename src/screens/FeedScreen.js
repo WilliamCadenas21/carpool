@@ -38,7 +38,6 @@ class FeedScreen extends Component {
         );
     };
 
-
     render() {
         const { container, header, footer, scroll } = styles;
         return (

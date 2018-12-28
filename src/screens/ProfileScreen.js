@@ -47,19 +47,6 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch',
         justifyContent: 'center',
     },
-    buttonText: {
-        textAlign: 'center',
-        color: 'white',
-        fontSize: 14,
-    },
-    header: {
-        flex: 0.7,
-        backgroundColor: 'transparent'
-    },
-    footer2: {
-        flex: 0.7,
-        backgroundColor: 'transparent'
-    },
     main: {
         flex: 8,
     },

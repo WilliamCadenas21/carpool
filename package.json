@@ -5,7 +5,6 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
-    "postinstall": "./node_modules/react-native-maps/enable-google-maps ./ios",
     "build": "cd C:/Users/will/Desktop/carpool/android && gradlew assembleRelease",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
@@ -16,6 +15,7 @@
     "react": "16.6.0-alpha.8af6728",
     "react-native": "0.57.4",
     "react-native-maps": "^0.22.1",
+    "react-native-modal-datetime-picker": "^6.0.0",
     "react-navigation": "^2.18.2",
     "react-redux": "^6.0.0",
     "redux": "^4.0.1",
@@ -27,7 +27,7 @@
     "jest": "23.6.0",
     "metro-react-native-babel-preset": "0.49.0",
     "react-test-renderer": "16.6.3",
-    "solidarity": "^2.1.0",
+    "solidarity": "^2.3.1",
     "solidarity-react-native": "^2.0.2"
   },
   "jest": {

@@ -57,7 +57,7 @@ class DriverScreen extends Component {
         const { car } = this.state;
         const user = this.props.user;
         this.setState(() => ({ charging: true }));
-        fetch('https://carpool-back.herokuapp.com/users/create/drider', {
+        fetch('https://carpool-back.herokuapp.com/users/create/driver', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -113,6 +113,7 @@ class DriverScreen extends Component {
                                 returnKeyType='next'
                                 autoCorrect={false}
                                 value={plate}
+                                autoCapitalize={'characters'}
                                 onSubmitEditing={() => this.refs.txtModel.focus()}
                             />
                         </View>
@@ -215,10 +216,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         paddingVertical: 5
     },
-    textForInput: {
-        paddingTop: 15,
-        paddingRight: 10,
-    },
     row: {
         flex: 1,
         flexDirection: 'row',
@@ -241,5 +238,9 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 16,
         borderRadius: 4,
+    },
+    textForInput: {
+        paddingTop: 15,
+        paddingRight: 10,
     },
 });

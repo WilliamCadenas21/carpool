@@ -206,20 +206,22 @@ class ProfileInfo extends Component {
                                 editable={false}
                                 value={semester}
                             />
-                            <Picker
-                                selectedValue={semester}
-                                style={{ height: 50, width: 100 }}
-                                onValueChange={(value) =>
-                                    this.setState({ user: { ...user, semester: value } })}
-                            >
-                                {this.state.semesterData.map((item, index) => (
-                                    <Picker.Item
-                                        label={item}
-                                        value={item}
-                                        key={index}
-                                    />
-                                ))}
-                            </Picker>
+                            <View>
+                                <Picker
+                                    selectedValue={semester}
+                                    style={{ height: 50, width: 100 }}
+                                    onValueChange={(value) =>
+                                        this.setState({ user: { ...user, semester: value } })}
+                                >
+                                    {this.state.semesterData.map((item, index) => (
+                                        <Picker.Item
+                                            label={item}
+                                            value={item}
+                                            key={index}
+                                        />
+                                    ))}
+                                </Picker>
+                            </View>
                         </View>
 
                         <View style={styles.column}>
