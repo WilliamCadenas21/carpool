@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import {
     View,
-    Text,
     StyleSheet,
     StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { modeUpdate, userUpdate } from '../actions';
-import { CustomSwitch } from '../components';
 import ProfileInfo from '../components/ProfileInfo';
 
 class ProfileScreen extends Component {
@@ -33,15 +31,6 @@ class ProfileScreen extends Component {
                         navigation={this.props.navigation}
                     />
                 </View>
-                {/*<View style={styles.footer2}>
-                    <Text>
-                        {rider ? 'pasajero' : 'conductor'}
-                    </Text>
-                    <CustomSwitch
-                        onValueChange={(value) => this.userModeChanged(value)}
-                        value={rider}
-                    />
-                </View>*/}
             </View>
         );
     }

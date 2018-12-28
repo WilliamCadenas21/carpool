@@ -10,7 +10,8 @@ const INITIAL_STATE = {
     email: '',
     degree: '',
     semester: '',
-    age: ''
+    age: '',
+    token: ''
 };
 
 export default (state = INITIAL_STATE, action) => {

@@ -66,10 +66,11 @@ class ProfileInfo extends Component {
     }
 
     sendUpdate = () => {
-        const { age, degree, semester, address, neighborhood, email, token } = this.state.user;
+        const { age, degree, semester, address, neighborhood } = this.state.user;
+        const { token, email } = this.props.user;
         const { user } = this.state;
         this.setState(() => ({ charging: true }));
-        fetch(`https://carpool-back.herokuapp.com/users/update/rider`, {
+        fetch('https://carpool-back.herokuapp.com/users/update/rider', {
             method: 'PUT',
             headers: {
                 Accept: 'application/json',
@@ -81,23 +82,24 @@ class ProfileInfo extends Component {
                 semester,
                 address,
                 neighborhood,
-                email,
+                email_id: email,
                 token
             })
         })
             .then(response => response.json())
             .then(res => {
+                this.setState(() => ({ charging: false }));
                 if (res.success === true) {
-                    this.setState(() => ({ charging: false }));
+                    console.log('Todo bien');
                     Alert.alert('Mensaje',
                         'actualización exitosa',
                         [{ text: 'OK' }]);
                     this.setInfo(user);
                     this.props.navigation.navigate('Feed');
                 } else {
-                    this.setState(() => ({ charging: false }));
+                    console.log('error fatal');
                     Alert.alert('Mensaje',
-                        res.message,
+                        'Error en la actualización',
                         [{ text: 'OK' }]);
                 }
             })

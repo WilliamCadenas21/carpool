@@ -30,6 +30,7 @@ class LogInScreen extends React.Component {
   setInfo = async (res) => {
     try {
       const user = res.user;
+      console.log(user);
       await AsyncStorage.setItem('user', JSON.stringify(user));
       this.props.userUpdate(user);
     } catch (error) {
@@ -70,12 +71,11 @@ class LogInScreen extends React.Component {
     })
       .then(response => response.json())
       .then(res => {
+        this.setState(() => ({ charging: false }));
         if (res.success === true) {
-          this.setState(() => ({ charging: false }));
           this.setInfo(res);
           this.props.navigation.navigate('App');
         } else {
-          this.setState(() => ({ charging: false }));
           Alert.alert('Mensaje', res.message + '', [{ text: 'OK' }]);
         }
       })

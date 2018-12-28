@@ -30,6 +30,63 @@ class DriverScreen extends Component {
         };
     }
 
+    setInfo = async (car) => {
+        try {
+            await AsyncStorage.setItem('car', JSON.stringify(car));
+            this.props.driverUpdate(car);
+        } catch (error) {
+            Alert.alert('Advertencia',
+                `error: ${error}`,
+                [{ text: 'OK' }]
+            );
+        }
+    }
+    
+    validate = () => {
+        Keyboard.dismiss();
+        const { plate, model, color, brand } = this.state.car;
+        if (!plate || !model || !color || !brand) {
+            Alert.alert('Advertencia', 'ningún campo puede estar vacío', [{ text: 'OK' }]);
+        } else {
+            this.sendUpdate();
+        }
+    }
+
+    sendUpdate = () => {
+        const { token } = this.props.user;
+        const { car } = this.state;
+        const user = this.props.user;
+        this.setState(() => ({ charging: true }));
+        fetch('https://carpool-back.herokuapp.com/users/create/drider', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email_id: user.email,
+                car,
+                token
+            })
+        })
+            .then(response => response.json())
+            .then(res => {
+                this.setState(() => ({ charging: false }));
+                if (res.success === true) {
+                    Alert.alert('Mensaje',
+                        'actualización exitosa',
+                        [{ text: 'OK' }]);
+                    this.setInfo(car);
+                    this.props.navigation.navigate('Feed');
+                } else {
+                    Alert.alert('Mensaje',
+                        res.message,
+                        [{ text: 'OK' }]);
+                }
+            })
+            .done();
+    }
+
     render() {
         const { plate, model, color, brand } = this.state.car;
         const { car } = this.state;
@@ -128,7 +185,11 @@ class DriverScreen extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({ car: state.driverInfo, mode: state.userMode });
+const mapStateToProps = (state) => ({
+    user: state.userInfo,
+    car: state.driverInfo,
+    mode: state.userMode
+});
 
 export default connect(mapStateToProps, { driverUpdate })(DriverScreen);
 
