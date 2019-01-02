@@ -104,7 +104,12 @@ class EditScreen extends Component {
                         [{ text: 'OK' }]);
                 }
             })
-            .done();
+            .catch(err => {
+                this.setState(() => ({ charging: false }));
+                Alert.alert('Mensaje',
+                    `Error en la conexión: ${err}`,
+                    [{ text: 'OK' }]);
+            });
     }
 
     pickPhoto = () => {

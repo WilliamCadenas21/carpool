@@ -5,12 +5,12 @@ import {
     StyleSheet,
     StatusBar,
     TouchableOpacity,
-    ScrollView,
-    FlatList
+    FlatList,
+    Alert
 } from 'react-native';
 import { Icon } from 'native-base';
 import { connect } from 'react-redux';
-import { Card, ListItem } from '../components';
+import { ListItem } from '../components';
 
 class FeedScreen extends Component {
     static navigationOptions = ({ navigation }) => ({
@@ -31,6 +31,46 @@ class FeedScreen extends Component {
         ),
         headerTransparent: true,
     })
+
+    componentWillMount() {
+        //this.loadTravel;
+    }
+
+    loadTravels = () => {
+        const { email, token } = this.props.user;
+        fetch('https://carpool-back.herokuapp.com/get/travels', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email,
+                token
+            })
+        })
+            .then(response => response.json())
+            .then(res => {
+                this.setState(() => ({ charging: false }));
+                if (res.success === true) {
+                    console.log('Viaje registrado');
+                    Alert.alert('Mensaje',
+                        'Viaje registrado',
+                        [{ text: 'OK' }]);
+                    this.props.navigation.navigate('Feed');
+                } else {
+                    Alert.alert('Mensaje',
+                        'Error ',
+                        [{ text: 'OK' }]);
+                }
+            })
+            .catch(err => {
+                this.setState(() => ({ charging: false }));
+                Alert.alert('Mensaje',
+                    `Error en la conexión: ${err}`,
+                    [{ text: 'OK' }]);
+            });
+    }
 
     renderItem = (travel) => {
         return (
@@ -58,7 +98,7 @@ class FeedScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return { travels: state.travel, mode: state.userMode };
+    return { user: state.userInfo, travels: state.travel, mode: state.userMode };
 };
 
 export default connect(mapStateToProps)(FeedScreen);

@@ -200,13 +200,7 @@ class ProfileInfo extends Component {
                             <Text style={styles.textForInput}>
                                 Semestre
                             </Text>
-                            <TextInput
-                                placeholder={'semester'} style={styles.textInput}
-                                autoCorrect={false}
-                                editable={false}
-                                value={semester}
-                            />
-                            <View>
+                            <View style={styles.boxStyle}>
                                 <Picker
                                     selectedValue={semester}
                                     style={{ height: 50, width: 100 }}
@@ -255,6 +249,7 @@ class ProfileInfo extends Component {
                                 onSubmitEditing={this.validate}
                             />
                         </View>
+
                         <View style={{ alignItems: 'center', marginBottom: 10 }}>
                             {this.state.charging && <ActivityIndicator />}
                         </View>
@@ -325,4 +320,11 @@ const styles = StyleSheet.create({
         paddingHorizontal: 16,
         borderRadius: 4,
     },
+    boxStyle: {
+        alignSelf: 'stretch',
+        borderColor: 'gray',
+        borderWidth: 1,
+        borderRadius: 4,
+        paddingHorizontal: 10,
+    }
 });

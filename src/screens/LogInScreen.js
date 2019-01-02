@@ -76,7 +76,7 @@ class LogInScreen extends React.Component {
           this.setInfo(res);
           this.props.navigation.navigate('App');
         } else {
-          Alert.alert('Mensaje', res.message + '', [{ text: 'OK' }]);
+          Alert.alert('Mensaje', res.message, [{ text: 'OK' }]);
         }
       })
       .catch(err => {

@@ -41,7 +41,7 @@ class DriverScreen extends Component {
             );
         }
     }
-    
+
     validate = () => {
         Keyboard.dismiss();
         const { plate, model, color, brand } = this.state.car;
@@ -84,7 +84,12 @@ class DriverScreen extends Component {
                         [{ text: 'OK' }]);
                 }
             })
-            .done();
+            .catch(err => {
+                this.setState(() => ({ charging: false }));
+                Alert.alert('Mensaje',
+                    `Error en la conexión: ${err}`,
+                    [{ text: 'OK' }]);
+            });
     }
 
     render() {
