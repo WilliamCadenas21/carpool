@@ -30,7 +30,6 @@ class LogInScreen extends React.Component {
   setInfo = async (res) => {
     try {
       const user = res.user;
-      console.log(user);
       await AsyncStorage.setItem('user', JSON.stringify(user));
       this.props.userUpdate(user);
     } catch (error) {
@@ -40,7 +39,7 @@ class LogInScreen extends React.Component {
     }
   }
 
-  validate = () => {
+  validate = async () => {
     Keyboard.dismiss();
     if (!this.state.email || !this.state.password) {
       Alert.alert('Advertencia', 'ningún campo puede estar vacío', [{ text: 'OK' }]);
@@ -51,40 +50,41 @@ class LogInScreen extends React.Component {
           'su correo electronico debe pertenecer al dominio @uninorte.edu.co',
           [{ text: 'OK' }]);
       } else {
-        this.logIn();
+        await this.logIn();
       }
     }
   }
 
-  logIn = () => {
-    this.setState(() => ({ charging: true }));
-    fetch('https://carpool-back.herokuapp.com/users/login', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email_id: this.state.email,
-        password: this.state.password
-      })
-    })
-      .then(response => response.json())
-      .then(res => {
-        this.setState(() => ({ charging: false }));
-        if (res.success === true) {
-          this.setInfo(res);
-          this.props.navigation.navigate('App');
-        } else {
-          Alert.alert('Mensaje', res.message, [{ text: 'OK' }]);
-        }
-      })
-      .catch(err => {
-        this.setState(() => ({ charging: false }));
-        Alert.alert('Mensaje',
-          `Error en la conexión: ${err}`,
-          [{ text: 'OK' }]);
-      });
+  logIn = async () => {
+    try {
+      this.setState(() => ({ charging: true }));
+      const uri = 'https://carpool-back.herokuapp.com/users/login';
+      const configObj = {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: this.state.email,
+          password: this.state.password
+        })
+      };
+      const response = await fetch(uri, configObj);
+      const res = await response.json();
+      this.setState(() => ({ charging: false }));
+      if (res.success === true) {
+        await this.setInfo(res);
+        this.props.navigation.navigate('App');
+      } else {
+        Alert.alert('Mensaje', res.message, [{ text: 'OK' }]);
+      }
+    } catch (e) {
+      this.setState(() => ({ charging: false }));
+      Alert.alert('Mensaje',
+        `Error en la conexión: ${e}`,
+        [{ text: 'OK' }]);
+    }
   }
 
   render() {

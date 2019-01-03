@@ -33,43 +33,41 @@ class FeedScreen extends Component {
     })
 
     componentWillMount() {
-        //this.loadTravel;
+        this.loadTravels();
     }
 
-    loadTravels = () => {
-        const { email, token } = this.props.user;
-        fetch('https://carpool-back.herokuapp.com/get/travels', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                email,
-                token
-            })
-        })
-            .then(response => response.json())
-            .then(res => {
-                this.setState(() => ({ charging: false }));
-                if (res.success === true) {
-                    console.log('Viaje registrado');
-                    Alert.alert('Mensaje',
-                        'Viaje registrado',
-                        [{ text: 'OK' }]);
-                    this.props.navigation.navigate('Feed');
-                } else {
-                    Alert.alert('Mensaje',
-                        'Error ',
-                        [{ text: 'OK' }]);
-                }
-            })
-            .catch(err => {
-                this.setState(() => ({ charging: false }));
+    loadTravels = async () => {
+        try {
+            const { email, token } = this.props.user;
+            const url = 'https://carpool-back.herokuapp.com/travels/get';
+            const configObj = {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email,
+                    token
+                })
+            };
+            const response = await fetch(url, configObj);
+            const res = await response.json();
+            this.setState(() => ({ charging: false }));
+            console.log(res);
+            if (res.success === true) {
+                console.log(res.message);
+            } else {
                 Alert.alert('Mensaje',
-                    `Error en la conexión: ${err}`,
+                    'Error ',
                     [{ text: 'OK' }]);
-            });
+            }
+        } catch (e) {
+            this.setState(() => ({ charging: false }));
+            Alert.alert('Mensaje',
+                `Error en la conexión: ${e}`,
+                [{ text: 'OK' }]);
+        }
     }
 
     renderItem = (travel) => {
@@ -85,11 +83,11 @@ class FeedScreen extends Component {
                 <StatusBar barStyle='dark-content' backgroundColor='white' />
                 <View style={header} />
                 <View style={scroll}>
-                    <FlatList
+                    {/*<FlatList
                         data={this.props.travels}
                         renderItem={this.renderItem}
                         keyExtractor={(travel) => travel.id}
-                    />
+                    />*/}
                 </View>
                 <View style={footer} />
             </View>
