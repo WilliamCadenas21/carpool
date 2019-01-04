@@ -11,8 +11,10 @@ import {
 } from 'react-native';
 import { Icon } from 'native-base';
 import { connect } from 'react-redux';
+
 import { ListItem } from '../components';
 import { setTravels } from '../actions/TravelsActions';
+import { io } from '../lib/socket';
 
 class FeedScreen extends Component {
     static navigationOptions = ({ navigation }) => ({
@@ -39,11 +41,14 @@ class FeedScreen extends Component {
         this.state = {
             charging: false,
         };
+        io.on('travelAdded', (data) => {
+            console.log(data);
+            this.loadTravels();       
+        });
     }
 
     componentWillMount() {
         this.loadTravels();
-        console.log(this.props.travels);
     }
 
     loadTravels = async () => {

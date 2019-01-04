@@ -8,7 +8,8 @@
     "build": "cd C:/Users/will/Desktop/carpool/android && gradlew assembleRelease",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "redmi4x": "cd C:/Users/will/AppData/Local/Android/Sdk/platform-tools && adb -s bccfda2c7d34 reverse tcp:8081 tcp:8081"
+    "redmi4x": "cd C:/Users/will/AppData/Local/Android/Sdk/platform-tools && adb -s bccfda2c7d34 reverse tcp:8081 tcp:8081",
+    "local": "cd C:/Users/will/AppData/Local/Android/Sdk/platform-tools && adb reverse tcp:3000 tcp:3000"
   },
   "dependencies": {
     "native-base": "^2.8.1",
@@ -19,7 +20,9 @@
     "react-navigation": "^2.18.2",
     "react-redux": "^6.0.0",
     "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0"
   },
   "devDependencies": {
     "babel-jest": "23.6.0",
