@@ -55,55 +55,58 @@ class ProfileInfo extends Component {
         }
     }
 
-    validate = () => {
+    validate = async () => {
         Keyboard.dismiss();
         const { names, lastNames, age, degree, semester, address, neighborhood } = this.state.user;
         if (!names || !lastNames || !age || !degree || !semester || !address || !neighborhood) {
             Alert.alert('Advertencia', 'ningún campo puede estar vacío', [{ text: 'OK' }]);
         } else {
-            this.sendUpdate();
+            await this.sendUpdate();
         }
     }
 
-    sendUpdate = () => {
-        const { age, degree, semester, address, neighborhood } = this.state.user;
-        const { token, email } = this.props.user;
-        const { user } = this.state;
-        this.setState(() => ({ charging: true }));
-        fetch('https://carpool-back.herokuapp.com/users/update/rider', {
-            method: 'PUT',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                age,
-                degree,
-                semester,
-                address,
-                neighborhood,
-                email_id: email,
-                token
-            })
-        })
-            .then(response => response.json())
-            .then(res => {
-                this.setState(() => ({ charging: false }));
-                if (res.success === true) {
-                    console.log('Todo bien');
-                    Alert.alert('Mensaje',
-                        'actualización exitosa',
-                        [{ text: 'OK' }]);
-                    this.setInfo(user);
-                    this.props.navigation.navigate('Feed');
-                } else {
-                    console.log('error fatal');
-                    Alert.alert('Mensaje',
-                        'Error en la actualización',
-                        [{ text: 'OK' }]);
-                }
-            })
-            .done();
+    sendUpdate = async () => {
+        try {
+            const { age, degree, semester, address, neighborhood } = this.state.user;
+            const { token, email } = this.props.user;
+            const { user } = this.state;
+            this.setState(() => ({ charging: true }));
+            const url = 'https://carpool-back.herokuapp.com/users/update/rider';
+            const configObj = {
+                method: 'PUT',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    age,
+                    degree,
+                    semester,
+                    address,
+                    neighborhood,
+                    email,
+                    token
+                })
+            };
+            const response = await fetch(url, configObj);
+            const res = await response.json();
+            this.setState(() => ({ charging: false }));
+            if (res.success === true) {
+                Alert.alert('Mensaje',
+                    'actualización exitosa',
+                    [{ text: 'OK' }]);
+                this.setInfo(user);
+                this.props.navigation.navigate('Feed');
+            } else {
+                Alert.alert('Mensaje',
+                    'Error en la actualización',
+                    [{ text: 'OK' }]);
+            }
+        } catch (e) {
+            Alert.alert('Mensaje',
+                `${e}`,
+                [{ text: 'OK' }]);
+        }
     }
 
     render() {

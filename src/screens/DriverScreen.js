@@ -68,8 +68,8 @@ class DriverScreen extends Component {
                     email,
                     car,
                     token
-                }
-            }
+                })
+            };
             const response = await fetch(url, configObj);
             const res = await response.json();
             this.setState(() => ({ charging: false }));
