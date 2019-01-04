@@ -14,7 +14,7 @@ import {
 import { connect } from 'react-redux';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import { Button } from '../components';
-
+import { createTravel } from '../actions/TravelsActions';
 
 class CreateTravel extends Component {
     constructor(props) {
@@ -23,8 +23,8 @@ class CreateTravel extends Component {
             travel: {
                 startingPoint: '',
                 endPoint: '',
-                date_hour: '',
-                email_id_driver: '',
+                date: '',
+                emailDriver: '',
                 seats: '4',
             },
             charging: false,
@@ -38,66 +38,67 @@ class CreateTravel extends Component {
     hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
 
     handleDatePicked = (date) => {
-        console.log('A date has been picked: ', date);
         const { travel } = this.state;
         const vec = date.toString().split('G');
-        this.setState({ travel: { ...travel, date_hour: vec[0] } });
+        this.setState({ travel: { ...travel, date: vec[0] } });
         this.hideDateTimePicker();
     };
 
-    validate = () => {
+    validate = async () => {
         Keyboard.dismiss();
-        const { startingPoint, endPoint, date_hour, seats } = this.state.travel;
-        if (!startingPoint || !endPoint || !date_hour || !seats) {
+        const { startingPoint, endPoint, date, seats } = this.state.travel;
+        if (!startingPoint || !endPoint || !date || !seats) {
             Alert.alert('Advertencia', 'ningún campo puede estar vacío', [{ text: 'OK' }]);
         } else {
-            this.sendUpdate();
+            await this.sendUpdate();
         }
     }
 
-    sendUpdate = () => {
-        const travel = this.state.travel;
-        const { token, email } = this.props.user;
-        this.setState(() => ({ charging: true }));
-        fetch('https://carpool-back.herokuapp.com/travels/create', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                travel,
-                email,
-                token
-            })
-        })
-            .then(response => response.json())
-            .then(res => {
-                this.setState(() => ({ charging: false }));
-                if (res.success === true) {
-                    console.log('Viaje registrado');
-                    Alert.alert('Mensaje',
-                        'Viaje registrado',
-                        [{ text: 'OK' }]);
-                    this.props.navigation.navigate('Feed');
-                } else {
-                    console.log('error al crear el viaje');
-                    Alert.alert('Mensaje',
-                        'Error en la actualización',
-                        [{ text: 'OK' }]);
-                }
-            })
-            .catch(err => {
-                this.setState(() => ({ charging: false }));
+    sendUpdate = async () => {
+        try {
+            const travel = this.state.travel;
+            const { token, email } = this.props.user;
+            this.setState(() => ({ charging: true }));
+            const url = 'https://carpool-back.herokuapp.com/travels/create';
+            const configObj = {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    travel,
+                    email,
+                    token
+                })
+            };
+            const response = await fetch(url, configObj);
+            const res = await response.json();
+            
+            this.setState(() => ({ charging: false }));
+            if (res.success === true) {
+                this.props.createTravel(res.message);
                 Alert.alert('Mensaje',
-                    `Error en la conexión: ${err}`,
+                    'Viaje registrado',
                     [{ text: 'OK' }]);
-            });
+                this.props.navigation.navigate('Feed');
+            } else {
+                Alert.alert('Mensaje',
+                    'Error en la actualización',
+                    [{ text: 'OK' }]);
+            }
+        } catch (e) {
+            this.setState(() => ({ charging: false }));
+            console.log(e);
+            Alert.alert('Mensaje',
+                `Error en la conexión: ${e}`,
+                [{ text: 'OK' }]);
+        }
     }
 
     render() {
         const { travel } = this.state;
-        const { startingPoint, endPoint, date_hour, seats } = travel;
+        const { startingPoint, endPoint, date, seats } = travel;
         return (
             <View style={styles.mainContainer}>
                 <StatusBar barStyle='dark-content' backgroundColor='white' />
@@ -145,10 +146,10 @@ class CreateTravel extends Component {
                                 placeholder={'fecha y hora'}
                                 style={styles.textInput}
                                 onChangeText={(value) =>
-                                    this.setState({ travel: { ...travel, date_hour: value } })}
+                                    this.setState({ travel: { ...travel, date: value } })}
                                 autoCorrect={false}
                                 editable={false}
-                                value={date_hour}
+                                value={date}
                                 onSubmitEditing={() => this.refs.txtColor.focus()}
                             />
                             <Button
@@ -208,7 +209,7 @@ class CreateTravel extends Component {
 
 const mapStateToProps = (state) => ({ user: state.userInfo });
 
-export default connect(mapStateToProps)(CreateTravel);
+export default connect(mapStateToProps, { createTravel })(CreateTravel);
 
 const styles = StyleSheet.create({
     mainContainer: {

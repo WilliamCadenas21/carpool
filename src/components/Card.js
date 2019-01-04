@@ -6,7 +6,7 @@ const Card = (props) => {
     const { children, color } = props;
     return (
         <View style={containerStyle}>
-            <View style={body}>
+            <View style={[body, { borderLeftColor: color }]}>
                 <TouchableOpacity>
                     {children}
                 </TouchableOpacity>
@@ -24,7 +24,6 @@ const styles = {
         borderRadius: 4,
         borderLeftWidth: 10,
         paddingHorizontal: 10,
-        borderLeftColor: '#ECA228'
     },
     containerStyle: {
         height: 90,

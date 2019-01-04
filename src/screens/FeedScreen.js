@@ -6,11 +6,13 @@ import {
     StatusBar,
     TouchableOpacity,
     FlatList,
-    Alert
+    Alert,
+    ActivityIndicator
 } from 'react-native';
 import { Icon } from 'native-base';
 import { connect } from 'react-redux';
 import { ListItem } from '../components';
+import { setTravels } from '../actions/TravelsActions';
 
 class FeedScreen extends Component {
     static navigationOptions = ({ navigation }) => ({
@@ -32,12 +34,21 @@ class FeedScreen extends Component {
         headerTransparent: true,
     })
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            charging: false,
+        };
+    }
+
     componentWillMount() {
         this.loadTravels();
+        console.log(this.props.travels);
     }
 
     loadTravels = async () => {
         try {
+            this.setState(() => ({ charging: true }));
             const { email, token } = this.props.user;
             const url = 'https://carpool-back.herokuapp.com/travels/get';
             const configObj = {
@@ -54,9 +65,8 @@ class FeedScreen extends Component {
             const response = await fetch(url, configObj);
             const res = await response.json();
             this.setState(() => ({ charging: false }));
-            console.log(res);
             if (res.success === true) {
-                console.log(res.message);
+                this.props.setTravels(res.message);
             } else {
                 Alert.alert('Mensaje',
                     'Error ',
@@ -83,11 +93,14 @@ class FeedScreen extends Component {
                 <StatusBar barStyle='dark-content' backgroundColor='white' />
                 <View style={header} />
                 <View style={scroll}>
-                    {/*<FlatList
+                    <View style={{ alignItems: 'center', marginBottom: 10 }}>
+                        {this.state.charging && <ActivityIndicator />}
+                    </View>
+                    {<FlatList
                         data={this.props.travels}
                         renderItem={this.renderItem}
-                        keyExtractor={(travel) => travel.id}
-                    />*/}
+                        keyExtractor={(travel) => travel.id.toString()}
+                    />}
                 </View>
                 <View style={footer} />
             </View>
@@ -99,7 +112,7 @@ const mapStateToProps = (state) => {
     return { user: state.userInfo, travels: state.travel, mode: state.userMode };
 };
 
-export default connect(mapStateToProps)(FeedScreen);
+export default connect(mapStateToProps, { setTravels })(FeedScreen);
 
 const styles = StyleSheet.create({
     header: {
