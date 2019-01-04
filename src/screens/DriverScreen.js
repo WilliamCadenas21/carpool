@@ -42,54 +42,54 @@ class DriverScreen extends Component {
         }
     }
 
-    validate = () => {
+    validate = async () => {
         Keyboard.dismiss();
         const { plate, model, color, brand } = this.state.car;
         if (!plate || !model || !color || !brand) {
             Alert.alert('Advertencia', 'ningún campo puede estar vacío', [{ text: 'OK' }]);
         } else {
-            this.sendUpdate();
+            await this.sendUpdate();
         }
     }
 
-    sendUpdate = () => {
-        const { token } = this.props.user;
-        const { car } = this.state;
-        const user = this.props.user;
-        this.setState(() => ({ charging: true }));
-        fetch('https://carpool-back.herokuapp.com/users/create/driver', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                email_id: user.email,
-                car,
-                token
-            })
-        })
-            .then(response => response.json())
-            .then(res => {
-                this.setState(() => ({ charging: false }));
-                if (res.success === true) {
-                    Alert.alert('Mensaje',
-                        'actualización exitosa',
-                        [{ text: 'OK' }]);
-                    this.setInfo(car);
-                    this.props.navigation.navigate('Feed');
-                } else {
-                    Alert.alert('Mensaje',
-                        res.message,
-                        [{ text: 'OK' }]);
+    sendUpdate = async () => {
+        try {
+            const { token, email } = this.props.user;
+            const { car } = this.state;
+            this.setState(() => ({ charging: true }));
+            const url = 'https://carpool-back.herokuapp.com/users/create/driver';
+            const configObj = {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email,
+                    car,
+                    token
                 }
-            })
-            .catch(err => {
-                this.setState(() => ({ charging: false }));
+            }
+            const response = await fetch(url, configObj);
+            const res = await response.json();
+            this.setState(() => ({ charging: false }));
+            if (res.success === true) {
                 Alert.alert('Mensaje',
-                    `Error en la conexión: ${err}`,
+                    'actualización exitosa',
                     [{ text: 'OK' }]);
-            });
+                this.setInfo(car);
+                this.props.navigation.navigate('Feed');
+            } else {
+                Alert.alert('Mensaje',
+                    res.message,
+                    [{ text: 'OK' }]);
+            }
+        } catch (e) {
+            this.setState(() => ({ charging: false }));
+            Alert.alert('Mensaje',
+                `Error en la conexión: ${e}`,
+                [{ text: 'OK' }]);
+        }
     }
 
     render() {
