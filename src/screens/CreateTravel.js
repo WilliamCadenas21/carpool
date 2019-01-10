@@ -15,6 +15,7 @@ import { connect } from 'react-redux';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import { Button } from '../components';
 import { createTravel } from '../actions/TravelsActions';
+import { io } from '../lib/socket';
 
 class CreateTravel extends Component {
     constructor(props) {
@@ -77,6 +78,7 @@ class CreateTravel extends Component {
             
             this.setState(() => ({ charging: false }));
             if (res.success === true) {
+                io.emit('travelAdded');
                 this.props.createTravel(res.message);
                 Alert.alert('Mensaje',
                     'Viaje registrado',

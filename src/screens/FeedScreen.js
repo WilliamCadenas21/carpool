@@ -41,8 +41,8 @@ class FeedScreen extends Component {
         this.state = {
             charging: false,
         };
-        io.on('travelAdded', (data) => {
-            console.log(data);
+        io.on('refreshTravels', () => {
+            console.log('llego un nuevo viaje');
             this.loadTravels();       
         });
     }
